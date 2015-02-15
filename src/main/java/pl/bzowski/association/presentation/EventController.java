@@ -19,12 +19,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("eventController")
 @SessionScoped
 public class EventController implements Serializable {
 
-    @EJB
-    private pl.bzowski.association.business.boundary.EventFacade ejbFacade;
+
+    @EJB private pl.bzowski.association.business.boundary.EventFacade ejbFacade;
     private List<Event> items = null;
     private Event selected;
 
@@ -121,7 +122,7 @@ public class EventController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Event.class)
+    @FacesConverter(forClass=Event.class)
     public static class EventControllerConverter implements Converter {
 
         @Override
@@ -129,7 +130,7 @@ public class EventController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            EventController controller = (EventController) facesContext.getApplication().getELResolver().
+            EventController controller = (EventController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "eventController");
             return controller.getEvent(getKey(value));
         }

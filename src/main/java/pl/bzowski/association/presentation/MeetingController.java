@@ -19,12 +19,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("meetingController")
 @SessionScoped
 public class MeetingController implements Serializable {
 
-    @EJB
-    private pl.bzowski.association.business.boundary.MeetingFacade ejbFacade;
+
+    @EJB private pl.bzowski.association.business.boundary.MeetingFacade ejbFacade;
     private List<Meeting> items = null;
     private Meeting selected;
 
@@ -121,7 +122,7 @@ public class MeetingController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Meeting.class)
+    @FacesConverter(forClass=Meeting.class)
     public static class MeetingControllerConverter implements Converter {
 
         @Override
@@ -129,7 +130,7 @@ public class MeetingController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            MeetingController controller = (MeetingController) facesContext.getApplication().getELResolver().
+            MeetingController controller = (MeetingController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "meetingController");
             return controller.getMeeting(getKey(value));
         }

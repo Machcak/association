@@ -12,6 +12,10 @@
             <h:form id="LeadershipMemberViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{leadershipMemberController.selected != null}">
+                        <h:outputText value="#{bundle.ViewLeadershipMemberLabel_leadership}"/>
+                        <h:outputText value="#{leadershipMemberController.selected.leadership}" title="#{bundle.ViewLeadershipMemberTitle_leadership}"/>
+                        <h:outputText value="#{bundle.ViewLeadershipMemberLabel_member}"/>
+                        <h:outputText value="#{leadershipMemberController.selected.member}" title="#{bundle.ViewLeadershipMemberTitle_member}"/>
                         <h:outputText value="#{bundle.ViewLeadershipMemberLabel_id}"/>
                         <h:outputText value="#{leadershipMemberController.selected.id}" title="#{bundle.ViewLeadershipMemberTitle_id}"/>
                     </p:panelGrid>

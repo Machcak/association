@@ -19,12 +19,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("associationMemberController")
 @SessionScoped
 public class AssociationMemberController implements Serializable {
 
-    @EJB
-    private pl.bzowski.association.business.boundary.AssociationMemberFacade ejbFacade;
+
+    @EJB private pl.bzowski.association.business.boundary.AssociationMemberFacade ejbFacade;
     private List<AssociationMember> items = null;
     private AssociationMember selected;
 
@@ -121,7 +122,7 @@ public class AssociationMemberController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = AssociationMember.class)
+    @FacesConverter(forClass=AssociationMember.class)
     public static class AssociationMemberControllerConverter implements Converter {
 
         @Override
@@ -129,7 +130,7 @@ public class AssociationMemberController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            AssociationMemberController controller = (AssociationMemberController) facesContext.getApplication().getELResolver().
+            AssociationMemberController controller = (AssociationMemberController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "associationMemberController");
             return controller.getAssociationMember(getKey(value));
         }

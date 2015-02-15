@@ -19,12 +19,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("resolutionController")
 @SessionScoped
 public class ResolutionController implements Serializable {
 
-    @EJB
-    private pl.bzowski.association.business.boundary.ResolutionFacade ejbFacade;
+
+    @EJB private pl.bzowski.association.business.boundary.ResolutionFacade ejbFacade;
     private List<Resolution> items = null;
     private Resolution selected;
 
@@ -121,7 +122,7 @@ public class ResolutionController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Resolution.class)
+    @FacesConverter(forClass=Resolution.class)
     public static class ResolutionControllerConverter implements Converter {
 
         @Override
@@ -129,7 +130,7 @@ public class ResolutionController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ResolutionController controller = (ResolutionController) facesContext.getApplication().getELResolver().
+            ResolutionController controller = (ResolutionController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "resolutionController");
             return controller.getResolution(getKey(value));
         }

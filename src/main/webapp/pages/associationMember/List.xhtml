@@ -14,60 +14,60 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="AssociationMemberListForm">
-                <p:panel header="#{bundle.ListAssociationMemberTitle}">
-                    <p:dataTable id="datalist" value="#{associationMemberController.items}" var="item"
-                                 selectionMode="single" selection="#{associationMemberController.selected}"
-                                 paginator="true"
-                                 rowKey="#{item.id}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 >
+                <h:form id="AssociationMemberListForm">
+                    <p:panel header="#{bundle.ListAssociationMemberTitle}">
+                        <p:dataTable id="datalist" value="#{associationMemberController.items}" var="item"
+                            selectionMode="single" selection="#{associationMemberController.selected}"
+                            paginator="true"
+                            rowKey="#{item.id}"
+                            rows="10"
+                            rowsPerPageTemplate="10,20,30,40,50"
+                            >
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                            <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                            <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssociationMemberTitle_id}"/>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListAssociationMemberTitle_id}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListAssociationMemberTitle_firstName}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.firstName}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListAssociationMemberTitle_lastName}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.lastName}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListAssociationMemberTitle_since}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.since}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListAssociationMemberTitle_active}"/>
+                                </f:facet>
+                                <p:selectBooleanCheckbox value="#{item.active}" disabled="true"/>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{associationMemberController.prepareCreate}" update=":AssociationMemberCreateForm" oncomplete="PF('AssociationMemberCreateDialog').show()"/>
+                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AssociationMemberViewForm" oncomplete="PF('AssociationMemberViewDialog').show()" disabled="#{empty associationMemberController.selected}"/>
+                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AssociationMemberEditForm" oncomplete="PF('AssociationMemberEditDialog').show()" disabled="#{empty associationMemberController.selected}"/>
+                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{associationMemberController.destroy}" update=":growl,datalist" disabled="#{empty associationMemberController.selected}"/>
                             </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssociationMemberTitle_firstName}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.firstName}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssociationMemberTitle_lastName}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.lastName}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssociationMemberTitle_since}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.since}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAssociationMemberTitle_active}"/>
-                            </f:facet>
-                            <p:selectBooleanCheckbox value="#{item.active}" disabled="true"/>
-                        </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{associationMemberController.prepareCreate}" update=":AssociationMemberCreateForm" oncomplete="PF('AssociationMemberCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AssociationMemberViewForm" oncomplete="PF('AssociationMemberViewDialog').show()" disabled="#{empty associationMemberController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AssociationMemberEditForm" oncomplete="PF('AssociationMemberEditDialog').show()" disabled="#{empty associationMemberController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{associationMemberController.destroy}" update=":growl,datalist" disabled="#{empty associationMemberController.selected}"/>
-                        </f:facet>
-                    </p:dataTable>
-                </p:panel>
-            </h:form>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
 
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>

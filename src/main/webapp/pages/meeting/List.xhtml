@@ -14,46 +14,46 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="MeetingListForm">
-                <p:panel header="#{bundle.ListMeetingTitle}">
-                    <p:dataTable id="datalist" value="#{meetingController.items}" var="item"
-                                 selectionMode="single" selection="#{meetingController.selected}"
-                                 paginator="true"
-                                 rowKey="#{item.id}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 >
+                <h:form id="MeetingListForm">
+                    <p:panel header="#{bundle.ListMeetingTitle}">
+                        <p:dataTable id="datalist" value="#{meetingController.items}" var="item"
+                            selectionMode="single" selection="#{meetingController.selected}"
+                            paginator="true"
+                            rowKey="#{item.id}"
+                            rows="10"
+                            rowsPerPageTemplate="10,20,30,40,50"
+                            >
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                            <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                            <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListMeetingTitle_id}"/>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListMeetingTitle_id}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListMeetingTitle_number}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.number}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListMeetingTitle_description}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.description}"/>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{meetingController.prepareCreate}" update=":MeetingCreateForm" oncomplete="PF('MeetingCreateDialog').show()"/>
+                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MeetingViewForm" oncomplete="PF('MeetingViewDialog').show()" disabled="#{empty meetingController.selected}"/>
+                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MeetingEditForm" oncomplete="PF('MeetingEditDialog').show()" disabled="#{empty meetingController.selected}"/>
+                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{meetingController.destroy}" update=":growl,datalist" disabled="#{empty meetingController.selected}"/>
                             </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListMeetingTitle_number}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.number}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListMeetingTitle_description}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.description}"/>
-                        </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{meetingController.prepareCreate}" update=":MeetingCreateForm" oncomplete="PF('MeetingCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MeetingViewForm" oncomplete="PF('MeetingViewDialog').show()" disabled="#{empty meetingController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MeetingEditForm" oncomplete="PF('MeetingEditDialog').show()" disabled="#{empty meetingController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{meetingController.destroy}" update=":growl,datalist" disabled="#{empty meetingController.selected}"/>
-                        </f:facet>
-                    </p:dataTable>
-                </p:panel>
-            </h:form>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
 
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>

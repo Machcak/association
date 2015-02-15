@@ -19,12 +19,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("reportController")
 @SessionScoped
 public class ReportController implements Serializable {
 
-    @EJB
-    private pl.bzowski.association.business.boundary.ReportFacade ejbFacade;
+
+    @EJB private pl.bzowski.association.business.boundary.ReportFacade ejbFacade;
     private List<Report> items = null;
     private Report selected;
 
@@ -121,7 +122,7 @@ public class ReportController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Report.class)
+    @FacesConverter(forClass=Report.class)
     public static class ReportControllerConverter implements Converter {
 
         @Override
@@ -129,7 +130,7 @@ public class ReportController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ReportController controller = (ReportController) facesContext.getApplication().getELResolver().
+            ReportController controller = (ReportController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "reportController");
             return controller.getReport(getKey(value));
         }

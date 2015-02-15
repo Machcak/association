@@ -28,6 +28,8 @@
                         <h:outputText value="#{leadershipController.selected.continuesTo}" title="#{bundle.ViewLeadershipTitle_continuesTo}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
+                        <h:outputText value="#{bundle.ViewLeadershipLabel_leadershipMember}"/>
+                        <h:outputText value="#{leadershipController.selected.leadershipMember}" title="#{bundle.ViewLeadershipTitle_leadershipMember}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="LeadershipViewDialog.hide()"/>
                 </h:panelGroup>

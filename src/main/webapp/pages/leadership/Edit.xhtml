@@ -24,6 +24,13 @@
                         <p:calendar id="since" pattern="MM/dd/yyyy" value="#{leadershipController.selected.since}" title="#{bundle.EditLeadershipTitle_since}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditLeadershipLabel_continuesTo}" for="continuesTo" />
                         <p:calendar id="continuesTo" pattern="MM/dd/yyyy" value="#{leadershipController.selected.continuesTo}" title="#{bundle.EditLeadershipTitle_continuesTo}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditLeadershipLabel_leadershipMember}" for="leadershipMember" />
+                        <p:selectOneMenu id="leadershipMember" value="#{leadershipController.selected.leadershipMember}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{leadershipMemberController.itemsAvailableSelectOne}"
+                                           var="leadershipMemberItem"
+                                           itemValue="#{leadershipMemberItem}"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{leadershipController.update}" value="#{bundle.Save}" update="display,:LeadershipListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LeadershipEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="LeadershipEditDialog.hide()"/>

@@ -19,12 +19,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("leadershipMemberController")
 @SessionScoped
 public class LeadershipMemberController implements Serializable {
 
-    @EJB
-    private pl.bzowski.association.business.boundary.LeadershipMemberFacade ejbFacade;
+
+    @EJB private pl.bzowski.association.business.boundary.LeadershipMemberFacade ejbFacade;
     private List<LeadershipMember> items = null;
     private LeadershipMember selected;
 
@@ -121,7 +122,7 @@ public class LeadershipMemberController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = LeadershipMember.class)
+    @FacesConverter(forClass=LeadershipMember.class)
     public static class LeadershipMemberControllerConverter implements Converter {
 
         @Override
@@ -129,7 +130,7 @@ public class LeadershipMemberController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            LeadershipMemberController controller = (LeadershipMemberController) facesContext.getApplication().getELResolver().
+            LeadershipMemberController controller = (LeadershipMemberController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "leadershipMemberController");
             return controller.getLeadershipMember(getKey(value));
         }

@@ -14,60 +14,60 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="ReportListForm">
-                <p:panel header="#{bundle.ListReportTitle}">
-                    <p:dataTable id="datalist" value="#{reportController.items}" var="item"
-                                 selectionMode="single" selection="#{reportController.selected}"
-                                 paginator="true"
-                                 rowKey="#{item.id}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 >
+                <h:form id="ReportListForm">
+                    <p:panel header="#{bundle.ListReportTitle}">
+                        <p:dataTable id="datalist" value="#{reportController.items}" var="item"
+                            selectionMode="single" selection="#{reportController.selected}"
+                            paginator="true"
+                            rowKey="#{item.id}"
+                            rows="10"
+                            rowsPerPageTemplate="10,20,30,40,50"
+                            >
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                            <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                            <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListReportTitle_id}"/>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListReportTitle_id}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListReportTitle_title}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.title}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListReportTitle_report}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.report}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListReportTitle_dateOf}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.dateOf}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListReportTitle_associationMember}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.associationMember}"/>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{reportController.prepareCreate}" update=":ReportCreateForm" oncomplete="PF('ReportCreateDialog').show()"/>
+                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ReportViewForm" oncomplete="PF('ReportViewDialog').show()" disabled="#{empty reportController.selected}"/>
+                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ReportEditForm" oncomplete="PF('ReportEditDialog').show()" disabled="#{empty reportController.selected}"/>
+                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{reportController.destroy}" update=":growl,datalist" disabled="#{empty reportController.selected}"/>
                             </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListReportTitle_title}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.title}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListReportTitle_report}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.report}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListReportTitle_dateOf}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.dateOf}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListReportTitle_associationMember}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.associationMember}"/>
-                        </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{reportController.prepareCreate}" update=":ReportCreateForm" oncomplete="PF('ReportCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ReportViewForm" oncomplete="PF('ReportViewDialog').show()" disabled="#{empty reportController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ReportEditForm" oncomplete="PF('ReportEditDialog').show()" disabled="#{empty reportController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{reportController.destroy}" update=":growl,datalist" disabled="#{empty reportController.selected}"/>
-                        </f:facet>
-                    </p:dataTable>
-                </p:panel>
-            </h:form>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
 
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>

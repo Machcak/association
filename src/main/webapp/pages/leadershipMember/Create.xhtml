@@ -12,6 +12,18 @@
             <h:form id="LeadershipMemberCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{leadershipMemberController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateLeadershipMemberLabel_leadership}" for="leadership" />
+                        <p:selectOneMenu id="leadership" value="#{leadershipMemberController.selected.leadership}" >
+                            <f:selectItems value="#{leadershipController.itemsAvailableSelectOne}"
+                                           var="leadershipItem"
+                                           itemValue="#{leadershipItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLeadershipMemberLabel_member}" for="member" />
+                        <p:selectOneMenu id="member" value="#{leadershipMemberController.selected.member}" >
+                            <f:selectItems value="#{associationMemberController.itemsAvailableSelectOne}"
+                                           var="memberItem"
+                                           itemValue="#{memberItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateLeadershipMemberLabel_id}" for="id" />
                         <p:inputText id="id" value="#{leadershipMemberController.selected.id}" title="#{bundle.CreateLeadershipMemberTitle_id}" />
                     </p:panelGrid>
