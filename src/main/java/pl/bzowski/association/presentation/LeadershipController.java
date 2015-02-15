@@ -6,11 +6,11 @@ import pl.bzowski.association.presentation.util.JsfUtil.PersistAction;
 import pl.bzowski.association.business.boundary.LeadershipFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -18,6 +18,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
+import pl.bzowski.association.business.boundary.AssociationMemberFacade;
+import pl.bzowski.association.business.entity.AssociationMember;
 
 
 @Named("leadershipController")
@@ -25,9 +28,14 @@ import javax.faces.convert.FacesConverter;
 public class LeadershipController implements Serializable {
 
 
-    @EJB private pl.bzowski.association.business.boundary.LeadershipFacade ejbFacade;
+    @Inject private LeadershipFacade ejbFacade;
+    @Inject private AssociationMemberFacade associationMemberFacade; 
+    
     private List<Leadership> items = null;
     private Leadership selected;
+    
+    private List<AssociationMember> members = new ArrayList<>();
+    private AssociationMember selectedMember;
 
     public LeadershipController() {
     }
@@ -54,6 +62,11 @@ public class LeadershipController implements Serializable {
         selected = new Leadership();
         initializeEmbeddableKey();
         return selected;
+    }
+    
+    public AssociationMember prepareAddMember(){
+        selectedMember = new AssociationMember();
+        return selectedMember;
     }
 
     public void create() {
@@ -160,7 +173,22 @@ public class LeadershipController implements Serializable {
                 return null;
             }
         }
-
+    }
+    
+    public List<AssociationMember> getLeadershipMembers(){
+        if(selected == null){
+            return new ArrayList<>();
+        }
+        Long leadershipId = selected.getId();
+        members = associationMemberFacade.findAllMembersOfLeadership(leadershipId);
+        return members;
     }
 
+    public AssociationMember getSelectedMember() {
+        return selectedMember;
+    }
+
+    public void setSelectedMember(AssociationMember selectedMember) {
+        this.selectedMember = selectedMember;
+    }
 }

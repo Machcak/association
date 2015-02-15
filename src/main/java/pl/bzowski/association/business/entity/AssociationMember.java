@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -20,8 +22,15 @@ import javax.validation.constraints.Size;
  *
  * @author Machcak
  */
+@NamedQueries({
+    @NamedQuery(name = AssociationMember.findAllMembersOfLeadership, 
+            query = "SELECT lm.member FROM LeadershipMember lm WHERE lm.leadership.id = :leadershipId ")
+})
 @Entity
 public class AssociationMember implements Serializable {
+    
+    public static final String findAllMembersOfLeadership = "AssociationMember.findAllMembersOfLeadership";
+    
     @OneToOne(mappedBy = "member")
     private LeadershipMember leadershipMember;
        

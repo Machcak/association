@@ -1,5 +1,6 @@
 package pl.bzowski.association.business.boundary;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,6 +22,12 @@ public class AssociationMemberFacade extends AbstractFacade<AssociationMember> {
 
     public AssociationMemberFacade() {
         super(AssociationMember.class);
+    }
+
+    public List<AssociationMember> findAllMembersOfLeadership(Long leadershipId) {
+        return getEntityManager()
+                .createNamedQuery(AssociationMember.findAllMembersOfLeadership)
+                .setParameter("leadershipId", leadershipId).getResultList();
     }
 
 }
