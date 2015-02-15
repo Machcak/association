@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LeadershipEditDlg" widgetVar="LeadershipEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLeadershipTitle}">
+            <h:form id="LeadershipEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{leadershipController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditLeadershipLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{leadershipController.selected.id}" title="#{bundle.EditLeadershipTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditLeadershipLabel_type}" for="type" />
+                        <p:inputText id="type" value="#{leadershipController.selected.type}" title="#{bundle.EditLeadershipTitle_type}" />
+                        <p:outputLabel value="#{bundle.EditLeadershipLabel_membersCount}" for="membersCount" />
+                        <p:inputText id="membersCount" value="#{leadershipController.selected.membersCount}" title="#{bundle.EditLeadershipTitle_membersCount}" />
+                        <p:outputLabel value="#{bundle.EditLeadershipLabel_number}" for="number" />
+                        <p:inputText id="number" value="#{leadershipController.selected.number}" title="#{bundle.EditLeadershipTitle_number}" />
+                        <p:outputLabel value="#{bundle.EditLeadershipLabel_since}" for="since" />
+                        <p:calendar id="since" pattern="MM/dd/yyyy" value="#{leadershipController.selected.since}" title="#{bundle.EditLeadershipTitle_since}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditLeadershipLabel_continuesTo}" for="continuesTo" />
+                        <p:calendar id="continuesTo" pattern="MM/dd/yyyy" value="#{leadershipController.selected.continuesTo}" title="#{bundle.EditLeadershipTitle_continuesTo}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{leadershipController.update}" value="#{bundle.Save}" update="display,:LeadershipListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LeadershipEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LeadershipEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
