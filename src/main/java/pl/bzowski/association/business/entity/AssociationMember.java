@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -21,6 +22,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 public class AssociationMember implements Serializable {
+    @OneToOne(mappedBy = "member")
+    private LeadershipMember leadershipMember;
        
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,17 +48,6 @@ public class AssociationMember implements Serializable {
     @OneToMany(mappedBy = "associationMember")
     private List<Report> reports;
 
-    @ManyToMany(mappedBy = "associationMembers")
-    private List<Leadership> leaderships;
-
-    public List<Leadership> getLeaderships() {
-        return leaderships;
-    }
-
-    public void setLeaderships(List<Leadership> leaderships) {
-        this.leaderships = leaderships;
-    }
-    
     public Long getId() {
         return id;
     }

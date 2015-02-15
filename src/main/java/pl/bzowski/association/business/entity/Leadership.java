@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -34,8 +35,8 @@ public class Leadership implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date continuesTo;
     
-    @ManyToMany
-    private Collection<AssociationMember> associationMembers;
+    @OneToOne(mappedBy = "leadership")
+    private LeadershipMember leadershipMember;
     
     public Leadership(){
         
@@ -89,12 +90,12 @@ public class Leadership implements Serializable {
         return continuesTo;
     }
 
-    public Collection<AssociationMember> getAssociationMembers() {
-        return associationMembers;
+    public LeadershipMember getLeadershipMember() {
+        return leadershipMember;
     }
 
-    public void setAssociationMembers(Collection<AssociationMember> associationMembers) {
-        this.associationMembers = associationMembers;
+    public void setLeadershipMember(LeadershipMember leadershipMember) {
+        this.leadershipMember = leadershipMember;
     }
-    
+
 }

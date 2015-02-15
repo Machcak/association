@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -17,9 +18,27 @@ public class LeadershipMember implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @OneToOne
     private Leadership leadership;
     
+    @OneToOne
     private AssociationMember member;
+
+    public Leadership getLeadership() {
+        return leadership;
+    }
+
+    public void setLeadership(Leadership leadership) {
+        this.leadership = leadership;
+    }
+
+    public AssociationMember getMember() {
+        return member;
+    }
+
+    public void setMember(AssociationMember member) {
+        this.member = member;
+    }
 
     public Long getId() {
         return id;
