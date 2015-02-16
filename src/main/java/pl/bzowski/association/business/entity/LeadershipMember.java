@@ -24,6 +24,14 @@ public class LeadershipMember implements Serializable {
     @OneToOne
     private AssociationMember member;
 
+    public LeadershipMember() {
+    }
+
+    public LeadershipMember(Leadership leadership, AssociationMember member) {
+        this.leadership = leadership;
+        this.member = member;
+    }
+
     public Leadership getLeadership() {
         return leadership;
     }

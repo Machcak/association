@@ -179,11 +179,16 @@ public class LeadershipController implements Serializable {
         this.leadershipMembers = leadershipMembers;
     }
     
-    
     public void prepareAddMember(){
         List<AssociationMember> source = associationMemberFacade.findAll();
         Long leadershipId = selected.getId();
         List<AssociationMember> target = associationMemberFacade.findAllMembersOfLeadership(leadershipId);
         leadershipMembers = new DualListModel<>(source, target);
+    }
+    
+    public void saveLeadershipMembers(){
+        List<AssociationMember> source = leadershipMembers.getSource();
+        List<AssociationMember> target = leadershipMembers.getTarget();
+        associationMemberFacade.saveLeadershipMembers(selected, source, target);
     }
 }
