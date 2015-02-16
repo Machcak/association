@@ -11,9 +11,18 @@
         <p:dialog id="LeadershipAddMemberDlg" widgetVar="LeadershipAddMemberDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLeadershipTitle}">
             <h:form id="LeadershipAddMemberForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{leadershipController.selectedMember != null}">
-                       
-                    </p:panelGrid>
+                    <p:pickList id="PojoPickList" value="#{leadershipController.leadershipMembers}" var="member" effect="bounce"
+                                itemValue="#{member}" itemLabel="#{member.lastName}" showSourceControls="true" showTargetControls="true" showCheckbox="true"
+                                showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" converter="member">
+
+                        <f:facet name="sourceCaption">Available</f:facet>
+                        <f:facet name="targetCaption">Starting</f:facet>
+
+                        <p:column style="width:75%;">
+                            <h:outputText value="#{member.lastName}" />
+                        </p:column>
+                    </p:pickList>
+
                     <p:commandButton actionListener="#{leadershipController.create}" value="#{bundle.Save}" update="display,:LeadershipListForm:datalist,:growl" oncomplete="handleSubmit(args,'LeadershipCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="LeadershipCreateDialog.hide()"/>
                 </h:panelGroup>

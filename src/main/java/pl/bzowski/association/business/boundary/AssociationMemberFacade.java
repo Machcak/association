@@ -26,7 +26,7 @@ public class AssociationMemberFacade extends AbstractFacade<AssociationMember> {
 
     public List<AssociationMember> findAllMembersOfLeadership(Long leadershipId) {
         return getEntityManager()
-                .createNamedQuery(AssociationMember.findAllMembersOfLeadership)
+                .createNamedQuery(AssociationMember.findAllMembersOfLeadership, AssociationMember.class)
                 .setParameter("leadershipId", leadershipId).getResultList();
     }
 

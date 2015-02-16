@@ -19,6 +19,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
+import org.primefaces.model.DualListModel;
 import pl.bzowski.association.business.boundary.AssociationMemberFacade;
 import pl.bzowski.association.business.entity.AssociationMember;
 
@@ -34,8 +35,8 @@ public class LeadershipController implements Serializable {
     private List<Leadership> items = null;
     private Leadership selected;
     
-    private List<AssociationMember> members = new ArrayList<>();
-    private AssociationMember selectedMember;
+    private DualListModel<AssociationMember> leadershipMembers = new DualListModel<>(new ArrayList<AssociationMember>(), new ArrayList<AssociationMember>());    
+    
 
     public LeadershipController() {
     }
@@ -64,11 +65,6 @@ public class LeadershipController implements Serializable {
         return selected;
     }
     
-    public AssociationMember prepareAddMember(){
-        selectedMember = new AssociationMember();
-        return selectedMember;
-    }
-
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("LeadershipCreated"));
         if (!JsfUtil.isValidationFailed()) {
@@ -175,20 +171,19 @@ public class LeadershipController implements Serializable {
         }
     }
     
-    public List<AssociationMember> getLeadershipMembers(){
-        if(selected == null){
-            return new ArrayList<>();
-        }
+    public DualListModel<AssociationMember> getLeadershipMembers(){
+        return leadershipMembers;
+    }
+
+    public void setLeadershipMembers(DualListModel<AssociationMember> leadershipMembers) {
+        this.leadershipMembers = leadershipMembers;
+    }
+    
+    
+    public void prepareAddMember(){
+        List<AssociationMember> source = associationMemberFacade.findAll();
         Long leadershipId = selected.getId();
-        members = associationMemberFacade.findAllMembersOfLeadership(leadershipId);
-        return members;
-    }
-
-    public AssociationMember getSelectedMember() {
-        return selectedMember;
-    }
-
-    public void setSelectedMember(AssociationMember selectedMember) {
-        this.selectedMember = selectedMember;
+        List<AssociationMember> target = associationMemberFacade.findAllMembersOfLeadership(leadershipId);
+        leadershipMembers = new DualListModel<>(source, target);
     }
 }
