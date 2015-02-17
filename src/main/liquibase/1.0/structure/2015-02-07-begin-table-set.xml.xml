@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns='http://www.liquibase.org/xml/ns/dbchangelog'
+  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+  xsi:schemaLocation='http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd'>
+  
+    <changeSet id="001" author="mbzowski">
+        <preConditions onFail="markRun">
+            <not>
+                <tableExists tableName="associationmember" />
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE associationmember (`ID` BIGINT NOT NULL AUTO_INCREMENT, `ACTIVE` TINYINT(1) DEFAULT 0 , `FIRSTNAME` VARCHAR(255), `LASTNAME` VARCHAR(255), `SINCE` DATE, PRIMARY KEY (`ID`));
+        </sql>
+    </changeSet>   
+    
+    <changeSet id="002" author="mbzowski">
+        <preConditions onFail="markRun">
+            <not>
+                <tableExists tableName="event" />
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE event (`ID` BIGINT NOT NULL AUTO_INCREMENT, `DESCRIPTION` VARCHAR(255), `TITLE` VARCHAR(255), PRIMARY KEY (`ID`));
+        </sql>
+    </changeSet>   
+    
+    <changeSet id="003" author="mbzowski">
+        <preConditions onFail="markRun">
+            <not>
+                <tableExists tableName="leadership" />
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE leadership (`ID` BIGINT NOT NULL AUTO_INCREMENT, `CONTINUESTO` DATE, `MEMBERSCOUNT` INT, `NUMBER` VARCHAR(255), `SINCE` DATE, `TYPE` VARCHAR(255), PRIMARY KEY (`ID`));
+        </sql>
+    </changeSet>   
+    
+    <changeSet id="004" author="mbzowski">
+        <preConditions onFail="markRun">
+            <not>
+                <tableExists tableName="leadershipmember" />
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE leadershipmember (`ID` BIGINT NOT NULL, `LEADERSHIP_ID` BIGINT, `MEMBER_ID` BIGINT, PRIMARY KEY (`ID`));
+        </sql>
+    </changeSet>   
+    
+    <changeSet id="005" author="mbzowski">
+        <preConditions onFail="markRun">
+            <not>
+                <tableExists tableName="meeting" />
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE meeting (`ID` BIGINT NOT NULL AUTO_INCREMENT, `DESCRIPTION` VARCHAR(255), `NUMBER` VARCHAR(255), PRIMARY KEY (`ID`));
+        </sql>
+    </changeSet>   
+    
+    <changeSet id="006" author="mbzowski">
+        <preConditions onFail="markRun">
+            <not>
+                <tableExists tableName="report" />
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE report (`ID` BIGINT NOT NULL AUTO_INCREMENT, `DATEOF` DATE, `REPORT` VARCHAR(255), `TITLE` VARCHAR(255), `ASSOCIATIONMEMBER_ID` BIGINT, PRIMARY KEY (`ID`));
+        </sql>
+    </changeSet>   
+    
+    <changeSet id="007" author="mbzowski">
+        <preConditions onFail="markRun">
+            <not>
+                <tableExists tableName="resolution" />
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE resolution (`ID` BIGINT NOT NULL AUTO_INCREMENT, `CONTENT` VARCHAR(255), `DAYOFRESOLUTION` DATE, `NUMBER` VARCHAR(255), PRIMARY KEY (`ID`));
+        </sql>
+    </changeSet>   
+    
+        <changeSet id="008" author="mbzowski">
+        <preConditions onFail="markRun">
+            <not>
+                <tableExists tableName="sequence" />
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE `sequence` (`SEQ_NAME` VARCHAR(50) NOT NULL, `SEQ_COUNT` DECIMAL(38), PRIMARY KEY (`SEQ_NAME`));
+        </sql>
+    </changeSet>   
+</databaseChangeLog>
