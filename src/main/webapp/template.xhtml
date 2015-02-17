@@ -3,8 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+        
+    <f:loadBundle basename="/langs/i18n" var="text" />
+    
     <h:head>
         <title><ui:insert name="title">Default Title</ui:insert></title>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
@@ -13,22 +16,21 @@
 
     <h:body>
 
-        <p:growl id="growl" life="3000" />
+        <p:growl id="growl" life="6000" />
 
         <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
+            <p:layoutUnit position="north" size="65" header="#{text.AppName}">
                 <h:form id="menuForm">
                     <p:menubar>
-                        <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                        <p:submenu label="#{bundle.Maintenance}">
-                            <p:menuitem value="AssociationMember" outcome="/pages/associationMember/List.xhtml" />
-                            <p:menuitem value="Event" outcome="/pages/event/List.xhtml" />
-                            <p:menuitem value="Leadership" outcome="/pages/leadership/List.xhtml" />
-                            <p:menuitem value="Leadership Member" outcome="/pages/leadershipMember/List.xhtml" />
-                            <p:menuitem value="Meeting" outcome="/pages/meeting/List.xhtml" />
-                            <p:menuitem value="Report" outcome="/pages/report/List.xhtml" />
-                            <p:menuitem value="Resolution" outcome="/pages/resolution/List.xhtml" />
+                        <p:menuitem value="#{text.menu_home}" outcome="/index" icon="ui-icon-home"/>
+                        <p:submenu label="#{text.menu_definitions}">
+                            <p:menuitem value="#{text.menu_association_member}" outcome="/pages/associationMember/List.xhtml" />
+                            <p:menuitem value="#{text.menu_association_leaderships}" outcome="/pages/leadership/List.xhtml" />
                         </p:submenu>
+                        <p:menuitem value="#{text.menu_events}" outcome="/pages/event/List.xhtml" />
+                        <p:menuitem value="#{text.menu_meetings}" outcome="/pages/meeting/List.xhtml" />
+                        <p:menuitem value="#{text.menu_reports}" outcome="/pages/report/List.xhtml" />
+                        <p:menuitem value="#{text.menu_resolutions}" outcome="/pages/resolution/List.xhtml" />
                     </p:menubar>
                 </h:form>
             </p:layoutUnit>
