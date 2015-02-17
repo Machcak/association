@@ -23,37 +23,37 @@ import javax.validation.constraints.Size;
  * @author Machcak
  */
 @NamedQueries({
-    @NamedQuery(name = AssociationMember.findAllMembersOfLeadership, 
+    @NamedQuery(name = AssociationMember.findAllMembersOfLeadership,
             query = "SELECT lm.member FROM LeadershipMember lm WHERE lm.leadership.id = :leadershipId ")
 })
 @Entity
 public class AssociationMember implements Serializable {
-    
+
     public static final String findAllMembersOfLeadership = "AssociationMember.findAllMembersOfLeadership";
-    
+
     @OneToOne(mappedBy = "member")
     private LeadershipMember leadershipMember;
-       
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotNull
-    @Size(min = 3,max = 40)
+    @Size(min = 3, max = 40)
     private String firstName;
-    
+
     @NotNull
-    @Size(min = 3,max = 40)
+    @Size(min = 3, max = 40)
     private String lastName;
-    
+
     @NotNull
     @Temporal(TemporalType.DATE)
     private Date since;
-    
+
     @NotNull
     private Boolean active;
-    
+
     @OneToMany(mappedBy = "associationMember")
     private List<Report> reports;
 
@@ -108,7 +108,7 @@ public class AssociationMember implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -121,9 +121,10 @@ public class AssociationMember implements Serializable {
             return false;
         }
         final AssociationMember other = (AssociationMember) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         return true;
     }
-
-   
 
 }
