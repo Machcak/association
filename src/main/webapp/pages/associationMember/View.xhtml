@@ -8,22 +8,22 @@
 
     <ui:composition>
 
-        <p:dialog id="AssociationMemberViewDlg" widgetVar="AssociationMemberViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAssociationMemberTitle}">
+        <p:dialog id="AssociationMemberViewDlg" widgetVar="AssociationMemberViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.View}">
             <h:form id="AssociationMemberViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{associationMemberController.selected != null}">
-                        <h:outputText value="#{bundle.ViewAssociationMemberLabel_firstName}"/>
-                        <h:outputText value="#{associationMemberController.selected.firstName}" title="#{bundle.ViewAssociationMemberTitle_firstName}"/>
-                        <h:outputText value="#{bundle.ViewAssociationMemberLabel_lastName}"/>
-                        <h:outputText value="#{associationMemberController.selected.lastName}" title="#{bundle.ViewAssociationMemberTitle_lastName}"/>
-                        <h:outputText value="#{bundle.ViewAssociationMemberLabel_since}"/>
-                        <h:outputText value="#{associationMemberController.selected.since}" title="#{bundle.ViewAssociationMemberTitle_since}">
+                        <h:outputText value="#{text.first_name}"/>
+                        <h:outputText value="#{associationMemberController.selected.firstName}" title="#{text.ViewAssociationMemberTitle_firstName}"/>
+                        <h:outputText value="#{text.last_name}"/>
+                        <h:outputText value="#{associationMemberController.selected.lastName}" title="#{text.ViewAssociationMemberTitle_lastName}"/>
+                        <h:outputText value="#{text.since}"/>
+                        <h:outputText value="#{associationMemberController.selected.since}" title="#{text.ViewAssociationMemberTitle_since}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewAssociationMemberLabel_active}"/>
+                        <h:outputText value="#{text.active}"/>
                         <p:selectBooleanCheckbox value="#{associationMemberController.selected.active}" disabled="true"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="AssociationMemberViewDialog.hide()"/>
+                    <p:commandButton value="#{text.Close}" onclick="AssociationMemberViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

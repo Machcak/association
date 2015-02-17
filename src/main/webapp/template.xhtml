@@ -6,9 +6,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
         
-    <f:loadBundle basename="/langs/i18n" var="text" />
     
     <h:head>
+        <f:loadBundle basename="/langs/i18n" var="text" />
         <title><ui:insert name="title">Default Title</ui:insert></title>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
@@ -27,10 +27,15 @@
                             <p:menuitem value="#{text.menu_association_member}" outcome="/pages/associationMember/List.xhtml" />
                             <p:menuitem value="#{text.menu_association_leaderships}" outcome="/pages/leadership/List.xhtml" />
                         </p:submenu>
-                        <p:menuitem value="#{text.menu_events}" outcome="/pages/event/List.xhtml" />
-                        <p:menuitem value="#{text.menu_meetings}" outcome="/pages/meeting/List.xhtml" />
-                        <p:menuitem value="#{text.menu_reports}" outcome="/pages/report/List.xhtml" />
-                        <p:menuitem value="#{text.menu_resolutions}" outcome="/pages/resolution/List.xhtml" />
+                        <p:submenu label="#{text.menu_managment}">
+                            <p:menuitem value="#{text.menu_meetings}" outcome="/pages/meeting/List.xhtml" />
+                            <p:menuitem value="#{text.menu_resolutions}" outcome="/pages/resolution/List.xhtml" />
+                            <p:menuitem value="#{text.menu_reports}" outcome="/pages/report/List.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="#{text.menu_organize}">
+                            <p:menuitem value="#{text.menu_events}" outcome="/pages/event/List.xhtml" />
+                        </p:submenu>
+                        
                     </p:menubar>
                 </h:form>
             </p:layoutUnit>

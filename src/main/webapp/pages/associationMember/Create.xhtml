@@ -8,21 +8,21 @@
 
     <ui:composition>
 
-        <p:dialog id="AssociationMemberCreateDlg" widgetVar="AssociationMemberCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAssociationMemberTitle}">
+        <p:dialog id="AssociationMemberCreateDlg" widgetVar="AssociationMemberCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.Create}">
             <h:form id="AssociationMemberCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{associationMemberController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateAssociationMemberLabel_firstName}" for="firstName" />
-                        <p:inputText id="firstName" value="#{associationMemberController.selected.firstName}" title="#{bundle.CreateAssociationMemberTitle_firstName}" />
-                        <p:outputLabel value="#{bundle.CreateAssociationMemberLabel_lastName}" for="lastName" />
-                        <p:inputText id="lastName" value="#{associationMemberController.selected.lastName}" title="#{bundle.CreateAssociationMemberTitle_lastName}" />
-                        <p:outputLabel value="#{bundle.CreateAssociationMemberLabel_since}" for="since" />
-                        <p:calendar id="since" pattern="MM/dd/yyyy" value="#{associationMemberController.selected.since}" title="#{bundle.EditAssociationMemberTitle_since}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateAssociationMemberLabel_active}" for="active" />
+                        <p:outputLabel value="#{text.first_name}" for="firstName" />
+                        <p:inputText id="firstName" value="#{associationMemberController.selected.firstName}" title="#{text.CreateAssociationMemberTitle_firstName}" />
+                        <p:outputLabel value="#{text.last_name}" for="lastName" />
+                        <p:inputText id="lastName" value="#{associationMemberController.selected.lastName}" title="#{text.CreateAssociationMemberTitle_lastName}" />
+                        <p:outputLabel value="#{text.since}" for="since" />
+                        <p:calendar id="since" pattern="MM/dd/yyyy" value="#{associationMemberController.selected.since}" title="#{text.EditAssociationMemberTitle_since}"  showOn="button"/>
+                        <p:outputLabel value="#{text.active}" for="active" />
                         <p:selectBooleanCheckbox id="active" value="#{associationMemberController.selected.active}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{associationMemberController.create}" value="#{bundle.Save}" update="display,:AssociationMemberListForm:datalist,:growl" oncomplete="handleSubmit(args,'AssociationMemberCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="AssociationMemberCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{associationMemberController.create}" value="#{text.Save}" update="display,:AssociationMemberListForm:datalist,:growl" oncomplete="handleSubmit(args,'AssociationMemberCreateDialog');"/>
+                    <p:commandButton value="#{text.Cancel}" onclick="AssociationMemberCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

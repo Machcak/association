@@ -8,7 +8,7 @@
 
     <ui:composition>
 
-        <p:dialog id="LeadershipAddMemberDlg" widgetVar="LeadershipAddMemberDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLeadershipTitle}">
+        <p:dialog id="LeadershipAddMemberDlg" widgetVar="LeadershipAddMemberDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.add_leadership_members}">
             <h:form id="LeadershipAddMemberForm">
                 <h:panelGroup id="display">
                     <p:pickList id="PojoPickList" value="#{leadershipController.leadershipMembers}" var="member" effect="bounce"
@@ -26,8 +26,8 @@
                         </p:column>
                     </p:pickList>
 
-                    <p:commandButton actionListener="#{leadershipController.saveLeadershipMembers}" value="#{bundle.Save}" update="display,:LeadershipListForm:datalist,:growl" oncomplete="handleSubmit(args,'LeadershipAddMemberDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="LeadershipAddMemberDialog.hide()"/>
+                    <p:commandButton actionListener="#{leadershipController.saveLeadershipMembers}" value="#{text.Save}" update="display,:LeadershipListForm:datalist,:growl" oncomplete="handleSubmit(args,'LeadershipAddMemberDialog');"/>
+                    <p:commandButton value="#{text.Cancel}" onclick="LeadershipAddMemberDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
