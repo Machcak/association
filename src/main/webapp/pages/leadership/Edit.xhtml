@@ -13,7 +13,9 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{leadershipController.selected != null}">
                         <p:outputLabel value="#{text.leadership_type}" for="type" />
-                        <p:inputText id="type" value="#{leadershipController.selected.type}" title="#{text.EditLeadershipTitle_type}" />
+                        <p:selectOneMenu id="type" value="#{leadershipController.selected.leadershipType}" >
+                            <f:selectItems value="#{leadershipController.leadershipTypes}" var="type" itemLabel="#{type.type}"  />
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{text.leadership_term_number}" for="number" />
                         <p:inputText id="number" value="#{leadershipController.selected.number}" title="#{text.EditLeadershipTitle_number}" />
                         <p:outputLabel value="#{text.since}" for="since" />

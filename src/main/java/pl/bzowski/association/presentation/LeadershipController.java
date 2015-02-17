@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -21,7 +22,9 @@ import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 import org.primefaces.model.DualListModel;
 import pl.bzowski.association.business.boundary.AssociationMemberFacade;
+import pl.bzowski.association.business.boundary.LeadershipTypeFacade;
 import pl.bzowski.association.business.entity.AssociationMember;
+import pl.bzowski.association.business.entity.LeadershipType;
 
 
 @Named("leadershipController")
@@ -31,13 +34,20 @@ public class LeadershipController implements Serializable {
 
     @Inject private LeadershipFacade ejbFacade;
     @Inject private AssociationMemberFacade associationMemberFacade; 
+    @Inject private LeadershipTypeFacade leadershipTypeFacade;
     
     private List<Leadership> items = null;
     private Leadership selected;
     
     private DualListModel<AssociationMember> leadershipMembers = new DualListModel<>(new ArrayList<AssociationMember>(), new ArrayList<AssociationMember>());    
     
-
+    private List<LeadershipType> leadershipTypes;
+    
+    @PostConstruct
+    public void init(){
+        leadershipTypes = leadershipTypeFacade.findAll();
+    }
+    
     public LeadershipController() {
     }
 
@@ -191,4 +201,9 @@ public class LeadershipController implements Serializable {
         List<AssociationMember> target = leadershipMembers.getTarget();
         associationMemberFacade.saveLeadershipMembers(selected, source, target);
     }
+
+    public List<LeadershipType> getLeadershipTypes() {
+        return leadershipTypes;
+    }
+    
 }

@@ -8,5 +8,9 @@
             <default-locale>en</default-locale>
             <supported-locale>pl</supported-locale>
         </locale-config>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
     </application>
 </faces-config>

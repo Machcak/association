@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,10 +23,9 @@ public class Leadership implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private String type;
-    
-    private Integer membersCount;
-    
+    @ManyToOne
+    private LeadershipType leadershipType;
+        
     private String number;
     
     @Temporal(TemporalType.DATE)
@@ -49,20 +49,12 @@ public class Leadership implements Serializable {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public LeadershipType getLeadershipType() {
+        return leadershipType;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Integer getMembersCount() {
-        return membersCount;
-    }
-
-    public void setMembersCount(Integer membersCount) {
-        this.membersCount = membersCount;
+    public void setLeadershipType(LeadershipType leadershipType) {
+        this.leadershipType = leadershipType;
     }
 
     public String getNumber() {
