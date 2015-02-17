@@ -12,8 +12,6 @@
             <h:form id="AssociationMemberViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{associationMemberController.selected != null}">
-                        <h:outputText value="#{bundle.ViewAssociationMemberLabel_id}"/>
-                        <h:outputText value="#{associationMemberController.selected.id}" title="#{bundle.ViewAssociationMemberTitle_id}"/>
                         <h:outputText value="#{bundle.ViewAssociationMemberLabel_firstName}"/>
                         <h:outputText value="#{associationMemberController.selected.firstName}" title="#{bundle.ViewAssociationMemberTitle_firstName}"/>
                         <h:outputText value="#{bundle.ViewAssociationMemberLabel_lastName}"/>

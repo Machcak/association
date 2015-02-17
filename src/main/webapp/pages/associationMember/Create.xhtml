@@ -12,8 +12,6 @@
             <h:form id="AssociationMemberCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{associationMemberController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateAssociationMemberLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{associationMemberController.selected.id}" title="#{bundle.CreateAssociationMemberTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateAssociationMemberLabel_firstName}" for="firstName" />
                         <p:inputText id="firstName" value="#{associationMemberController.selected.firstName}" title="#{bundle.CreateAssociationMemberTitle_firstName}" />
                         <p:outputLabel value="#{bundle.CreateAssociationMemberLabel_lastName}" for="lastName" />

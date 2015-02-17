@@ -12,8 +12,6 @@
             <h:form id="AssociationMemberEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{associationMemberController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditAssociationMemberLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{associationMemberController.selected.id}" title="#{bundle.EditAssociationMemberTitle_id}" />
                         <p:outputLabel value="#{bundle.EditAssociationMemberLabel_firstName}" for="firstName" />
                         <p:inputText id="firstName" value="#{associationMemberController.selected.firstName}" title="#{bundle.EditAssociationMemberTitle_firstName}" />
                         <p:outputLabel value="#{bundle.EditAssociationMemberLabel_lastName}" for="lastName" />
