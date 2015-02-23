@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:machcak="http://xmlns.jcp.org/jsf/composite/machcak">
     
     <ui:composition template="/template.xhtml">
 
@@ -15,7 +16,7 @@
 
         <ui:define name="body">
             
-            <h:form id="LeadershipListForm">
+            <h:form id="LeadershipListForm" styleClass="odswiez_po_dodaniu_osob">
                 <p:panel header="#{text.list_leadership_title}">
                     <p:dataTable id="datalist" value="#{leadershipController.items}" var="item"
                                  selectionMode="single" selection="#{leadershipController.selected}"
@@ -59,13 +60,16 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{text.View}" update=":LeadershipViewForm" oncomplete="PF('LeadershipViewDialog').show()" disabled="#{empty leadershipController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{text.Edit}" update=":LeadershipEditForm" oncomplete="PF('LeadershipEditDialog').show()" disabled="#{empty leadershipController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{text.Delete}" actionListener="#{leadershipController.destroy}" update=":growl,datalist" disabled="#{empty leadershipController.selected}"/>
-                            <p:commandButton id="addMemberButton" icon="ui-icon-plus" value="#{text.Members}" actionListener="#{leadershipController.prepareAddMember}" update=":LeadershipAddMemberForm" oncomplete="PF('LeadershipAddMemberDialog').show()" disabled="#{empty leadershipController.selected}"/>
+                            <p:commandButton id="addMemberButton" icon="ui-icon-plus" value="#{text.Members}" actionListener="#{leadershipController.prepareAddMember}" update=":#{p:component('LeadershipAddMemberForm')}" oncomplete="PF('AddMemberDialog').show()" disabled="#{empty leadershipController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
             </h:form>
 
-            <ui:include src="AddMember.xhtml"/>
+           
+            <machcak:manageMembers 
+                leadershipMembers="#{leadershipController.leadershipMembers}" 
+                saveMembers="#{leadershipController.saveMembers()}"/>
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>

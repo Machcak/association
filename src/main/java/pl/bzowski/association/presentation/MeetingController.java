@@ -6,6 +6,7 @@ import pl.bzowski.association.presentation.util.JsfUtil.PersistAction;
 import pl.bzowski.association.business.boundary.MeetingFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -36,8 +37,8 @@ public class MeetingController implements Serializable {
     
     private List<Meeting> items = null;
     private Meeting selected;
-    private DualListModel<AssociationMember> leadershipMembers;
-
+    private DualListModel<AssociationMember> leadershipMembers = new DualListModel<>(new ArrayList<AssociationMember>(), new ArrayList<AssociationMember>()); 
+    
     public MeetingController() {
     }
 
