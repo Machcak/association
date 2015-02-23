@@ -6,14 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import pl.bzowski.association.presentation.util.MemberAdder;
 
 /**
  *
  * @author Machcak
  */
 @Entity
-public class Meeting implements Serializable{
+public class Meeting implements Serializable, MemberAdder.HaveingId{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +24,13 @@ public class Meeting implements Serializable{
     
     private String description;
     
+    @ManyToMany
+    private Collection<AssociationMember> associationMembers;
+    
     public Meeting() {
     }
 
+    @Override
     public Long getId() {
         return id;
     }
@@ -49,4 +54,12 @@ public class Meeting implements Serializable{
     public void setDescription(String description) {
         this.description = description;
     }    
+
+    public Collection<AssociationMember> getAssociationMembers() {
+        return associationMembers;
+    }
+
+    public void setAssociationMembers(Collection<AssociationMember> associationMembers) {
+        this.associationMembers = associationMembers;
+    }
 }

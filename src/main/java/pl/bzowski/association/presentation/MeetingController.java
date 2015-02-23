@@ -18,16 +18,20 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-
+import org.primefaces.model.DualListModel;
+import pl.bzowski.association.business.entity.AssociationMember;
+import pl.bzowski.association.business.entity.Leadership;
+import pl.bzowski.association.presentation.util.MemberAdder;
 
 @Named("meetingController")
 @SessionScoped
 public class MeetingController implements Serializable {
 
-
-    @EJB private pl.bzowski.association.business.boundary.MeetingFacade ejbFacade;
+    @EJB
+    private pl.bzowski.association.business.boundary.MeetingFacade ejbFacade;
     private List<Meeting> items = null;
     private Meeting selected;
+    private DualListModel<AssociationMember> leadershipMembers;
 
     public MeetingController() {
     }
@@ -57,18 +61,18 @@ public class MeetingController implements Serializable {
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("MeetingCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/langs/i18n").getString("created"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("MeetingUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/langs/i18n").getString("updated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("MeetingDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/langs/i18n").getString("deleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
@@ -101,11 +105,11 @@ public class MeetingController implements Serializable {
                 if (msg.length() > 0) {
                     JsfUtil.addErrorMessage(msg);
                 } else {
-                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/langs/i18n").getString("PersistenceErrorOccured"));
                 }
             } catch (Exception ex) {
                 Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/langs/i18n").getString("PersistenceErrorOccured"));
             }
         }
     }
@@ -122,7 +126,27 @@ public class MeetingController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass=Meeting.class)
+    public void prepareAddMember() {
+        MemberAdder ma = new MemberAdder();
+        leadershipMembers = ma.prepareAddMember(selected);
+    }
+
+    public void saveMembers() {
+        List<AssociationMember> source = leadershipMembers.getSource();
+        List<AssociationMember> target = leadershipMembers.getTarget();
+        MemberAdder ma = new MemberAdder();
+        ma.saveMeetingMembers(selected, source, target);
+    }
+
+    public DualListModel<AssociationMember> getLeadershipMembers() {
+        return leadershipMembers;
+    }
+
+    public void setLeadershipMembers(DualListModel<AssociationMember> leadershipMembers) {
+        this.leadershipMembers = leadershipMembers;
+    }
+
+    @FacesConverter(forClass = Meeting.class)
     public static class MeetingControllerConverter implements Converter {
 
         @Override
@@ -130,7 +154,7 @@ public class MeetingController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            MeetingController controller = (MeetingController)facesContext.getApplication().getELResolver().
+            MeetingController controller = (MeetingController) facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "meetingController");
             return controller.getMeeting(getKey(value));
         }

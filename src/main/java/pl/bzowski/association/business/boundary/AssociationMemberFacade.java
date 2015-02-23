@@ -8,6 +8,8 @@ import javax.persistence.PersistenceContext;
 import pl.bzowski.association.business.entity.AssociationMember;
 import pl.bzowski.association.business.entity.Leadership;
 import pl.bzowski.association.business.entity.LeadershipMember;
+import pl.bzowski.association.business.entity.Meeting;
+import pl.bzowski.association.business.entity.MeetingMember;
 
 /**
  *
@@ -20,6 +22,9 @@ public class AssociationMemberFacade extends AbstractFacade<AssociationMember> {
     
     @Inject
     private LeadershipMemberFacade leadershipMemberFacade;
+    
+    @Inject
+    private MeetingMemberFacade meetingMemberFacade;
 
     @Override
     protected EntityManager getEntityManager() {
@@ -44,6 +49,17 @@ public class AssociationMemberFacade extends AbstractFacade<AssociationMember> {
         for(AssociationMember t : target){
             LeadershipMember lm = new LeadershipMember(leadership, t);
             leadershipMemberFacade.create(lm);
+        }
+    }
+
+    public void saveMeetingMembers(Meeting meeting, List<AssociationMember> source, List<AssociationMember> target) {
+                getEntityManager()
+                .createQuery("DELETE FROM MeetingMember mm WHERE mm.meeting = :meeting")
+                .setParameter("meeting", meeting)
+                .executeUpdate();
+        for(AssociationMember t : target){
+            MeetingMember lm = new MeetingMember(meeting, t);
+            meetingMemberFacade.create(lm);
         }
     }
 

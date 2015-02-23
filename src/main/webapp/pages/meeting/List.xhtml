@@ -50,6 +50,7 @@
                                 <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MeetingViewForm" oncomplete="PF('MeetingViewDialog').show()" disabled="#{empty meetingController.selected}"/>
                                 <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MeetingEditForm" oncomplete="PF('MeetingEditDialog').show()" disabled="#{empty meetingController.selected}"/>
                                 <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{meetingController.destroy}" update=":growl,datalist" disabled="#{empty meetingController.selected}"/>
+                                <p:commandButton id="addMemberButton" icon="ui-icon-plus" value="#{text.Members}" actionListener="#{meetingController.prepareAddMember}" update=":LeadershipAddMemberForm" oncomplete="PF('LeadershipAddMemberDialog').show()" disabled="#{empty meetingController.selected}"/>
                             </f:facet>
                         </p:dataTable>
                     </p:panel>
@@ -58,6 +59,7 @@
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
+            <ui:include src="../leadership/AddMember.xhtml" />
         </ui:define>
     </ui:composition>
 

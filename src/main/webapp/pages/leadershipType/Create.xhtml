@@ -12,8 +12,6 @@
             <h:form id="LeadershipTypeCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{leadershipTypeController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateLeadershipTypeLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{leadershipTypeController.selected.id}" title="#{bundle.CreateLeadershipTypeTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateLeadershipTypeLabel_type}" for="type" />
                         <p:inputText id="type" value="#{leadershipTypeController.selected.type}" title="#{bundle.CreateLeadershipTypeTitle_type}" />
                     </p:panelGrid>

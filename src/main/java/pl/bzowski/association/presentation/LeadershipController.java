@@ -7,7 +7,6 @@ import pl.bzowski.association.business.boundary.LeadershipFacade;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -22,10 +21,10 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 import org.primefaces.model.DualListModel;
-import pl.bzowski.association.business.boundary.AssociationMemberFacade;
 import pl.bzowski.association.business.boundary.LeadershipTypeFacade;
 import pl.bzowski.association.business.entity.AssociationMember;
 import pl.bzowski.association.business.entity.LeadershipType;
+import pl.bzowski.association.presentation.util.MemberAdder;
 
 
 @Named("leadershipController")
@@ -34,7 +33,6 @@ public class LeadershipController implements Serializable {
 
 
     @Inject private LeadershipFacade ejbFacade;
-    @Inject private AssociationMemberFacade associationMemberFacade; 
     @Inject private LeadershipTypeFacade leadershipTypeFacade;
     
     private List<Leadership> items = null;
@@ -142,17 +140,6 @@ public class LeadershipController implements Serializable {
         return getFacade().findAll();
     }
 
-    private void wywalZSourceZapisyZTarget(List<AssociationMember> source, List<AssociationMember> target) {
-        Iterator<AssociationMember> iterator = source.iterator();
-        while (iterator.hasNext()) {
-            AssociationMember next = iterator.next();
-            boolean contains = target.contains(next);
-            if(contains){
-                iterator.remove();
-            }
-        }
-    }
-
     @FacesConverter(forClass=Leadership.class)
     public static class LeadershipControllerConverter implements Converter {
 
@@ -202,17 +189,15 @@ public class LeadershipController implements Serializable {
     }
     
     public void prepareAddMember(){
-        List<AssociationMember> source = associationMemberFacade.findAll();
-        Long leadershipId = selected.getId();
-        List<AssociationMember> target = associationMemberFacade.findAllMembersOfLeadership(leadershipId);
-        wywalZSourceZapisyZTarget(source, target);
-        leadershipMembers = new DualListModel<>(source, target);
+        MemberAdder ma = new MemberAdder();
+        leadershipMembers = ma.prepareAddMember(selected);
     }
     
-    public void saveLeadershipMembers(){
+    public void saveMembers(){
         List<AssociationMember> source = leadershipMembers.getSource();
         List<AssociationMember> target = leadershipMembers.getTarget();
-        associationMemberFacade.saveLeadershipMembers(selected, source, target);
+        MemberAdder ma = new  MemberAdder();
+        ma.saveLeadershipMembers(selected, source, target);
     }
 
     public List<LeadershipType> getLeadershipTypes() {

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +29,7 @@ import javax.validation.constraints.Size;
 })
 @Entity
 public class AssociationMember implements Serializable {
-
+    
     public static final String findAllMembersOfLeadership = "AssociationMember.findAllMembersOfLeadership";
 
     @OneToOne(mappedBy = "member")
@@ -54,8 +55,8 @@ public class AssociationMember implements Serializable {
     @NotNull
     private Boolean active;
 
-    @OneToMany(mappedBy = "associationMember")
-    private List<Report> reports;
+    @ManyToMany(mappedBy = "associationMembers")
+    private List<Meeting> meetings;
 
     public Long getId() {
         return id;
@@ -97,14 +98,22 @@ public class AssociationMember implements Serializable {
         this.active = active;
     }
 
-    public List<Report> getReports() {
-        return reports;
+    public LeadershipMember getLeadershipMember() {
+        return leadershipMember;
     }
 
-    public void setReports(List<Report> reports) {
-        this.reports = reports;
+    public void setLeadershipMember(LeadershipMember leadershipMember) {
+        this.leadershipMember = leadershipMember;
     }
 
+    public List<Meeting> getMeetings() {
+        return meetings;
+    }
+
+    public void setMeetings(List<Meeting> meetings) {
+        this.meetings = meetings;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 3;
