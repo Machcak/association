@@ -13,8 +13,8 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{leadershipController.selected != null}">
                         <p:outputLabel value="#{text.leadership_type}" for="type" />
-                        <p:selectOneMenu id="type" value="#{leadershipController.selected.leadershipType}" var="leadershipType" >
-                            <f:selectItems value="#{leadershipController.leadershipTypes}" var="type"  />
+                        <p:selectOneMenu id="type" value="#{leadershipController.selected.leadershipType}" >
+                            <f:selectItems value="#{leadershipController.leadershipTypes}" var="type" itemLabel="#{type.type}"  />
                         </p:selectOneMenu>
                         <p:outputLabel value="#{text.leadership_term_number}" for="number" />
                         <p:inputText id="number" value="#{leadershipController.selected.number}" title="#{text.CreateLeadershipTitle_number}" />
