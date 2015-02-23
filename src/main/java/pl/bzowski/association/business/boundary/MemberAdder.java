@@ -1,8 +1,10 @@
-package pl.bzowski.association.presentation.util;
+package pl.bzowski.association.business.boundary;
 
 import java.util.Iterator;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.inject.Named;
 import org.primefaces.model.DualListModel;
 import pl.bzowski.association.business.boundary.AssociationMemberFacade;
 import pl.bzowski.association.business.entity.AssociationMember;
@@ -13,14 +15,19 @@ import pl.bzowski.association.business.entity.Meeting;
  *
  * @author Machcak
  */
+@Stateless
 public class MemberAdder {
     
     public interface HaveingId {
         Long getId();
     }
     
-    @Inject private AssociationMemberFacade associationMemberFacade; 
+    @Inject 
+    private AssociationMemberFacade associationMemberFacade; 
 
+    public MemberAdder() {
+    }
+    
     public DualListModel<AssociationMember> prepareAddMember(HaveingId selected) {
         List<AssociationMember> source = associationMemberFacade.findAll();
         Long leadershipId = selected.getId();

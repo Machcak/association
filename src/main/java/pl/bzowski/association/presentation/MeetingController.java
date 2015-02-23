@@ -18,10 +18,11 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
 import org.primefaces.model.DualListModel;
 import pl.bzowski.association.business.entity.AssociationMember;
 import pl.bzowski.association.business.entity.Leadership;
-import pl.bzowski.association.presentation.util.MemberAdder;
+import pl.bzowski.association.business.boundary.MemberAdder;
 
 @Named("meetingController")
 @SessionScoped
@@ -29,6 +30,10 @@ public class MeetingController implements Serializable {
 
     @EJB
     private pl.bzowski.association.business.boundary.MeetingFacade ejbFacade;
+    
+    @Inject
+    private MemberAdder ma;
+    
     private List<Meeting> items = null;
     private Meeting selected;
     private DualListModel<AssociationMember> leadershipMembers;
@@ -127,14 +132,12 @@ public class MeetingController implements Serializable {
     }
 
     public void prepareAddMember() {
-        MemberAdder ma = new MemberAdder();
         leadershipMembers = ma.prepareAddMember(selected);
     }
 
     public void saveMembers() {
         List<AssociationMember> source = leadershipMembers.getSource();
         List<AssociationMember> target = leadershipMembers.getTarget();
-        MemberAdder ma = new MemberAdder();
         ma.saveMeetingMembers(selected, source, target);
     }
 

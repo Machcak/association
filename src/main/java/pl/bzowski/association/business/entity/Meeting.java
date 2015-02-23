@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import pl.bzowski.association.presentation.util.MemberAdder;
+import pl.bzowski.association.business.boundary.MemberAdder;
 
 /**
  *

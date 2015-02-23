@@ -24,7 +24,7 @@ import org.primefaces.model.DualListModel;
 import pl.bzowski.association.business.boundary.LeadershipTypeFacade;
 import pl.bzowski.association.business.entity.AssociationMember;
 import pl.bzowski.association.business.entity.LeadershipType;
-import pl.bzowski.association.presentation.util.MemberAdder;
+import pl.bzowski.association.business.boundary.MemberAdder;
 
 
 @Named("leadershipController")
@@ -32,8 +32,14 @@ import pl.bzowski.association.presentation.util.MemberAdder;
 public class LeadershipController implements Serializable {
 
 
-    @Inject private LeadershipFacade ejbFacade;
-    @Inject private LeadershipTypeFacade leadershipTypeFacade;
+    @Inject 
+    private LeadershipFacade ejbFacade;
+    
+    @Inject 
+    private LeadershipTypeFacade leadershipTypeFacade;
+    
+    @Inject
+    private MemberAdder ma;
     
     private List<Leadership> items = null;
     private Leadership selected;
@@ -189,14 +195,12 @@ public class LeadershipController implements Serializable {
     }
     
     public void prepareAddMember(){
-        MemberAdder ma = new MemberAdder();
         leadershipMembers = ma.prepareAddMember(selected);
     }
     
     public void saveMembers(){
         List<AssociationMember> source = leadershipMembers.getSource();
         List<AssociationMember> target = leadershipMembers.getTarget();
-        MemberAdder ma = new  MemberAdder();
         ma.saveLeadershipMembers(selected, source, target);
     }
 
