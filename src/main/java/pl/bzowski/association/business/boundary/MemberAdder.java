@@ -4,12 +4,11 @@ import java.util.Iterator;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.inject.Named;
 import org.primefaces.model.DualListModel;
-import pl.bzowski.association.business.boundary.AssociationMemberFacade;
 import pl.bzowski.association.business.entity.AssociationMember;
 import pl.bzowski.association.business.entity.Leadership;
 import pl.bzowski.association.business.entity.Meeting;
+import pl.bzowski.association.business.entity.MeetingMember;
 
 /**
  *
@@ -23,7 +22,10 @@ public class MemberAdder {
     }
     
     @Inject 
-    private AssociationMemberFacade associationMemberFacade; 
+    private AssociationMemberFacade associationMemberFacade;
+    
+    @Inject
+    private MeetingMemberFacade meetingMemberFacade;
 
     public MemberAdder() {
     }
@@ -36,10 +38,18 @@ public class MemberAdder {
         return new DualListModel<>(source, target);
     }
     
-    private void wywalZSourceZapisyZTarget(List<AssociationMember> source, List<AssociationMember> target) {
-        Iterator<AssociationMember> iterator = source.iterator();
+    public DualListModel<AssociationMember> prepareAddMeeatingMember(HaveingId selected) {
+        List<AssociationMember> source = associationMemberFacade.findAll();
+        Long meetingId = selected.getId();
+        List<AssociationMember> target = meetingMemberFacade.findAllMembersOfMeeting(meetingId);
+        wywalZSourceZapisyZTarget(source, target);
+        return new DualListModel<>(source, target);
+    }
+    
+    private void wywalZSourceZapisyZTarget(List<? extends HaveingId> source, List<? extends HaveingId> target) {
+        Iterator<? extends HaveingId> iterator = source.iterator();
         while (iterator.hasNext()) {
-            AssociationMember next = iterator.next();
+            HaveingId next = iterator.next();
             boolean contains = target.contains(next);
             if(contains){
                 iterator.remove();

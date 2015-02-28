@@ -38,7 +38,7 @@ public class AssociationMemberFacade extends AbstractFacade<AssociationMember> {
     public List<AssociationMember> findAllMembersOfLeadership(Long leadershipId) {
         return getEntityManager()
                 .createNamedQuery(AssociationMember.findAllMembersOfLeadership, AssociationMember.class)
-                .setParameter("leadershipId", leadershipId).getResultList();
+                .setParameter("leadershipId", leadershipId).getResultList();//TODO: Czy to jest napewno dobra fasada? Może lepiej Dodać do fasady leadershipmembersfacade
     }
 
     public void saveLeadershipMembers(Leadership leadership, List<AssociationMember> source, List<AssociationMember> target) {

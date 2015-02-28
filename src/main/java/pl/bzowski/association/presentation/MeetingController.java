@@ -24,6 +24,7 @@ import org.primefaces.model.DualListModel;
 import pl.bzowski.association.business.entity.AssociationMember;
 import pl.bzowski.association.business.entity.Leadership;
 import pl.bzowski.association.business.boundary.MemberAdder;
+import pl.bzowski.association.business.entity.MeetingMember;
 
 @Named("meetingController")
 @SessionScoped
@@ -37,7 +38,7 @@ public class MeetingController implements Serializable {
     
     private List<Meeting> items = null;
     private Meeting selected;
-    private DualListModel<AssociationMember> leadershipMembers = new DualListModel<>(new ArrayList<AssociationMember>(), new ArrayList<AssociationMember>()); 
+    private DualListModel<AssociationMember> meetingMembers = new DualListModel<>(new ArrayList<AssociationMember>(), new ArrayList<AssociationMember>()); 
     
     public MeetingController() {
     }
@@ -133,21 +134,21 @@ public class MeetingController implements Serializable {
     }
 
     public void prepareAddMember() {
-        leadershipMembers = ma.prepareAddMember(selected);
+        meetingMembers = ma.prepareAddMeeatingMember((MemberAdder.HaveingId)selected);
     }
 
     public void saveMembers() {
-        List<AssociationMember> source = leadershipMembers.getSource();
-        List<AssociationMember> target = leadershipMembers.getTarget();
+        List<AssociationMember> source = meetingMembers.getSource();
+        List<AssociationMember> target = meetingMembers.getTarget();
         ma.saveMeetingMembers(selected, source, target);
     }
 
-    public DualListModel<AssociationMember> getLeadershipMembers() {
-        return leadershipMembers;
+    public DualListModel<AssociationMember> getMeetingMembers() {
+        return meetingMembers;
     }
 
-    public void setLeadershipMembers(DualListModel<AssociationMember> leadershipMembers) {
-        this.leadershipMembers = leadershipMembers;
+    public void setMeetingMembers(DualListModel<AssociationMember> meetingMembers) {
+        this.meetingMembers = meetingMembers;
     }
 
     @FacesConverter(forClass = Meeting.class)

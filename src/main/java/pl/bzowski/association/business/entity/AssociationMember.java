@@ -18,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import pl.bzowski.association.business.boundary.MemberAdder;
 
 /**
  *
@@ -28,7 +29,7 @@ import javax.validation.constraints.Size;
             query = "SELECT lm.member FROM LeadershipMember lm WHERE lm.leadership.id = :leadershipId ")
 })
 @Entity
-public class AssociationMember implements Serializable {
+public class AssociationMember implements Serializable, MemberAdder.HaveingId {
     
     public static final String findAllMembersOfLeadership = "AssociationMember.findAllMembersOfLeadership";
 
@@ -58,6 +59,7 @@ public class AssociationMember implements Serializable {
     @ManyToMany(mappedBy = "associationMembers")
     private List<Meeting> meetings;
 
+    @Override
     public Long getId() {
         return id;
     }
