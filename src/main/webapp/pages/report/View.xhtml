@@ -8,24 +8,22 @@
 
     <ui:composition>
 
-        <p:dialog id="ReportViewDlg" widgetVar="ReportViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewReportTitle}">
+        <p:dialog id="ReportViewDlg" widgetVar="ReportViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.ViewReportTitle}">
             <h:form id="ReportViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{reportController.selected != null}">
-                        <h:outputText value="#{bundle.ViewReportLabel_id}"/>
-                        <h:outputText value="#{reportController.selected.id}" title="#{bundle.ViewReportTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewReportLabel_title}"/>
-                        <h:outputText value="#{reportController.selected.title}" title="#{bundle.ViewReportTitle_title}"/>
-                        <h:outputText value="#{bundle.ViewReportLabel_report}"/>
-                        <h:outputText value="#{reportController.selected.report}" title="#{bundle.ViewReportTitle_report}"/>
-                        <h:outputText value="#{bundle.ViewReportLabel_dateOf}"/>
-                        <h:outputText value="#{reportController.selected.dateOf}" title="#{bundle.ViewReportTitle_dateOf}">
+                        <h:outputText value="#{text.ViewReportLabel_title}"/>
+                        <h:outputText value="#{reportController.selected.title}" title="#{text.ViewReportTitle_title}"/>
+                        <h:outputText value="#{text.ViewReportLabel_report}"/>
+                        <h:outputText value="#{reportController.selected.report}" title="#{text.ViewReportTitle_report}"/>
+                        <h:outputText value="#{text.ViewReportLabel_dateOf}"/>
+                        <h:outputText value="#{reportController.selected.dateOf}" title="#{text.ViewReportTitle_dateOf}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewReportLabel_associationMember}"/>
-                        <h:outputText value="#{reportController.selected.associationMember}" title="#{bundle.ViewReportTitle_associationMember}"/>
+                        <h:outputText value="#{text.ViewReportLabel_associationMember}"/>
+                        <h:outputText value="#{reportController.selected.associationMember.lastName} #{reportController.selected.associationMember.firstName}" title="#{text.ViewReportTitle_associationMember}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="ReportViewDialog.hide()"/>
+                    <p:commandButton value="#{text.Close}" onclick="ReportViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

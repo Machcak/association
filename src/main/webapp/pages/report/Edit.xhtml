@@ -8,28 +8,27 @@
 
     <ui:composition>
 
-        <p:dialog id="ReportEditDlg" widgetVar="ReportEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditReportTitle}">
+        <p:dialog id="ReportEditDlg" widgetVar="ReportEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.EditReportTitle}">
             <h:form id="ReportEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{reportController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditReportLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{reportController.selected.id}" title="#{bundle.EditReportTitle_id}" />
-                        <p:outputLabel value="#{bundle.EditReportLabel_title}" for="title" />
-                        <p:inputText id="title" value="#{reportController.selected.title}" title="#{bundle.EditReportTitle_title}" />
-                        <p:outputLabel value="#{bundle.EditReportLabel_report}" for="report" />
-                        <p:inputText id="report" value="#{reportController.selected.report}" title="#{bundle.EditReportTitle_report}" />
-                        <p:outputLabel value="#{bundle.EditReportLabel_dateOf}" for="dateOf" />
-                        <p:calendar id="dateOf" pattern="MM/dd/yyyy" value="#{reportController.selected.dateOf}" title="#{bundle.EditReportTitle_dateOf}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.EditReportLabel_associationMember}" for="associationMember" />
+                        <p:outputLabel value="#{text.EditReportLabel_title}" for="title" />
+                        <p:inputText id="title" value="#{reportController.selected.title}" title="#{text.EditReportTitle_title}" />
+                        <p:outputLabel value="#{text.EditReportLabel_report}" for="report" />
+                        <p:inputText id="report" value="#{reportController.selected.report}" title="#{text.EditReportTitle_report}" />
+                        <p:outputLabel value="#{text.EditReportLabel_dateOf}" for="dateOf" />
+                        <p:calendar id="dateOf" pattern="MM/dd/yyyy" value="#{reportController.selected.dateOf}" title="#{text.EditReportTitle_dateOf}"  showOn="button"/>
+                        <p:outputLabel value="#{text.EditReportLabel_associationMember}" for="associationMember" />
                         <p:selectOneMenu id="associationMember" value="#{reportController.selected.associationMember}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem itemLabel="#{text.SelectOneMessage}"/>
                             <f:selectItems value="#{associationMemberController.itemsAvailableSelectOne}"
                                            var="associationMemberItem"
-                                           itemValue="#{associationMemberItem}"/>
+                                           itemValue="#{associationMemberItem}"
+                                           itemLabel="#{associationMemberItem.lastName} #{associationMemberItem.firstName} " />
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{reportController.update}" value="#{bundle.Save}" update="display,:ReportListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReportEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="ReportEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{reportController.update}" value="#{text.Save}" update="display,:ReportListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReportEditDialog');"/>
+                    <p:commandButton value="#{text.Cancel}" onclick="ReportEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
