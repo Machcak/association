@@ -136,6 +136,10 @@ public class MeetingController implements Serializable {
     public void prepareAddMember() {
         meetingMembers = ma.prepareAddMeeatingMember((MemberAdder.HaveingId)selected);
     }
+    
+    public void prepareReport(){
+//        report = reportWizard.prepareReport(selected);
+    }
 
     public void saveMembers() {
         List<AssociationMember> source = meetingMembers.getSource();
