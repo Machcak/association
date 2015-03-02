@@ -16,52 +16,56 @@
 
         <ui:define name="body">
             <h:form id="MeetingListForm" styleClass="odswiez_po_dodaniu_osob">
-                    <p:panel header="#{text.ListMeetingTitle}">
-                        <p:dataTable id="datalist" value="#{meetingController.items}" var="item"
-                            selectionMode="single" selection="#{meetingController.selected}"
-                            paginator="true"
-                            rowKey="#{item.id}"
-                            rows="10"
-                            rowsPerPageTemplate="10,20,30,40,50"
-                            >
+                <p:panel header="#{text.ListMeetingTitle}">
+                    <p:dataTable id="datalist" value="#{meetingController.items}" var="item"
+                                 selectionMode="single" selection="#{meetingController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
 
-                            <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton addMemberButton"/>
-                            <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton addMemberButton"/>
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton addMemberButton  reportButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton addMemberButton  reportButton"/>
 
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{text.ListMeetingTitle_number}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.number}"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{text.ListMeetingTitle_description}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.description}"/>
-                            </p:column>
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{text.meeting_date}" />
-                                </f:facet>
-                                <h:outputText value="#{item.dayOf}" >
-                                    <f:convertDateTime pattern="dd-MM-yyyy" />
-                                </h:outputText>
-                            </p:column>
-                            <f:facet name="footer">
-                                <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.Create}" actionListener="#{meetingController.prepareCreate}" update=":MeetingCreateForm" oncomplete="PF('MeetingCreateDialog').show()"/>
-                                <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{text.View}" update=":MeetingViewForm" oncomplete="PF('MeetingViewDialog').show()" disabled="#{empty meetingController.selected}"/>
-                                <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{text.Edit}" update=":MeetingEditForm" oncomplete="PF('MeetingEditDialog').show()" disabled="#{empty meetingController.selected}"/>
-                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{text.Delete}" actionListener="#{meetingController.destroy}" update=":growl,datalist" disabled="#{empty meetingController.selected}"/>
-                                <p:commandButton id="addMemberButton" icon="ui-icon-plus" value="#{text.Members}" actionListener="#{meetingController.prepareAddMember}" update=":#{p:component('LeadershipAddMemberForm')}" oncomplete="PF('AddMemberDialog').show()" disabled="#{empty meetingController.selected}"/>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{text.ListMeetingTitle_number}"/>
                             </f:facet>
-                        </p:dataTable>
-                    </p:panel>
-                </h:form>
-            
+                            <h:outputText value="#{item.number}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{text.ListMeetingTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{text.meeting_date}" />
+                            </f:facet>
+                            <h:outputText value="#{item.dayOf}" >
+                                <f:convertDateTime pattern="dd-MM-yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.Create}" actionListener="#{meetingController.prepareCreate}" update=":MeetingCreateForm" oncomplete="PF('MeetingCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{text.View}" update=":MeetingViewForm" oncomplete="PF('MeetingViewDialog').show()" disabled="#{empty meetingController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{text.Edit}" update=":MeetingEditForm" oncomplete="PF('MeetingEditDialog').show()" disabled="#{empty meetingController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{text.Delete}" actionListener="#{meetingController.destroy}" update=":growl,datalist" disabled="#{empty meetingController.selected}"/>
+                            <p:commandButton id="addMemberButton" icon="ui-icon-plus" value="#{text.Members}" actionListener="#{meetingController.prepareAddMember}" update=":#{p:component('LeadershipAddMemberForm')}" oncomplete="PF('AddMemberDialog').show()" disabled="#{empty meetingController.selected}"/>
+                            <p:commandButton id="reportButton" icon="ui-icon-plus" value="#{text.Report}" actionListener="#{meetingController.prepareReport}" update=":growl,datalist" oncomplete="PF('CKEditor').show()" disabled="#{empty meetingController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
             <machcak:manageMembers 
                 leadershipMembers="#{meetingController.meetingMembers}" 
                 saveMembers="#{meetingController.saveMembers()}"/>
+            <machcak:CKEditor
+                content="#{editorController.content}" 
+                saveListener="#{editorController.saveListener}"/>
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>

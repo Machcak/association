@@ -15,8 +15,8 @@
     <!-- IMPLEMENTATION -->
     <cc:implementation>
         
-        <h:form>
-            <p:growl id="editorgrowl" showDetail="true" /> 
+        <h:form id="CKEditorForm">
+            <p:growl id="editorgrowl" showDetail="true"  /> 
             <p:dialog id="editorDialog"  widgetVar="CKEditor">
                 <pe:ckEditor id="editor" 
                              value="#{cc.attrs.content}" >  

@@ -24,6 +24,7 @@ import org.primefaces.model.DualListModel;
 import pl.bzowski.association.business.entity.AssociationMember;
 import pl.bzowski.association.business.entity.Leadership;
 import pl.bzowski.association.business.boundary.MemberAdder;
+import pl.bzowski.association.business.boundary.ReportFacade;
 import pl.bzowski.association.business.entity.MeetingMember;
 
 @Named("meetingController")
@@ -35,6 +36,12 @@ public class MeetingController implements Serializable {
     
     @Inject
     private MemberAdder ma;
+    
+    @Inject 
+    private ReportFacade reportFacade;
+    
+    @Inject
+    private EditorController editorController;
     
     private List<Meeting> items = null;
     private Meeting selected;
@@ -138,7 +145,8 @@ public class MeetingController implements Serializable {
     }
     
     public void prepareReport(){
-//        report = reportWizard.prepareReport(selected);
+        String content = reportFacade.findReportForMeeting(selected);
+        editorController.setContent(content);
     }
 
     public void saveMembers() {

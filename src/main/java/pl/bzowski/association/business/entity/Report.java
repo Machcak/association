@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -15,8 +18,14 @@ import javax.validation.constraints.NotNull;
  *
  * @author Machcak
  */
+@NamedQueries({
+    @NamedQuery(name = Report.findReportContentForMeeting,
+            query=" SELECT r.report FROM Report r WHERE r.meeting = :meeting ")
+})
 @Entity
 public class Report implements Serializable {
+    
+    public static final String findReportContentForMeeting = "Report.findReportForMeeting";
    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +44,10 @@ public class Report implements Serializable {
     @NotNull
     @ManyToOne
     private AssociationMember associationMember;
+    
+    
+    @OneToOne
+    private Meeting meeting;
 
     public Long getId() {
         return id;
@@ -74,6 +87,14 @@ public class Report implements Serializable {
 
     public AssociationMember getAssociationMember() {
         return associationMember;
+    }
+
+    public Meeting getMeeting() {
+        return meeting;
+    }
+
+    public void setMeeting(Meeting meeting) {
+        this.meeting = meeting;
     }
     
 }
