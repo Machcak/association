@@ -2,11 +2,14 @@ package pl.bzowski.association.business.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import pl.bzowski.association.business.boundary.MemberAdder;
 
 /**
@@ -24,6 +27,9 @@ public class Meeting implements Serializable, MemberAdder.HaveingId{
     
     private String description;
     
+    @Temporal(TemporalType.DATE)
+    private Date dayOf;
+   
     @ManyToMany
     private Collection<AssociationMember> associationMembers;
     
@@ -54,6 +60,14 @@ public class Meeting implements Serializable, MemberAdder.HaveingId{
     public void setDescription(String description) {
         this.description = description;
     }    
+
+    public Date getDayOf() {
+        return dayOf;
+    }
+
+    public void setDayOf(Date dayOf) {
+        this.dayOf = dayOf;
+    }
 
     public Collection<AssociationMember> getAssociationMembers() {
         return associationMembers;

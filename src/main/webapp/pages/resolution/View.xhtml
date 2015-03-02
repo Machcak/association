@@ -8,22 +8,20 @@
 
     <ui:composition>
 
-        <p:dialog id="ResolutionViewDlg" widgetVar="ResolutionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewResolutionTitle}">
+        <p:dialog id="ResolutionViewDlg" widgetVar="ResolutionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.ViewResolutionTitle}">
             <h:form id="ResolutionViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{resolutionController.selected != null}">
-                        <h:outputText value="#{bundle.ViewResolutionLabel_id}"/>
-                        <h:outputText value="#{resolutionController.selected.id}" title="#{bundle.ViewResolutionTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewResolutionLabel_number}"/>
-                        <h:outputText value="#{resolutionController.selected.number}" title="#{bundle.ViewResolutionTitle_number}"/>
-                        <h:outputText value="#{bundle.ViewResolutionLabel_content}"/>
-                        <h:outputText value="#{resolutionController.selected.content}" title="#{bundle.ViewResolutionTitle_content}"/>
-                        <h:outputText value="#{bundle.ViewResolutionLabel_dayOfResolution}"/>
-                        <h:outputText value="#{resolutionController.selected.dayOfResolution}" title="#{bundle.ViewResolutionTitle_dayOfResolution}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        <h:outputText value="#{text.ViewResolutionLabel_number}"/>
+                        <h:outputText value="#{resolutionController.selected.number}" title="#{text.ViewResolutionTitle_number}"/>
+                        <h:outputText value="#{text.ViewResolutionLabel_content}"/>
+                        <h:outputText value="#{resolutionController.selected.content}" title="#{text.ViewResolutionTitle_content}"/>
+                        <h:outputText value="#{text.ViewResolutionLabel_dayOfResolution}"/>
+                        <h:outputText value="#{resolutionController.selected.dayOfResolution}" title="#{text.ViewResolutionTitle_dayOfResolution}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
                         </h:outputText>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="ResolutionViewDialog.hide()"/>
+                    <p:commandButton value="#{text.Close}" onclick="ResolutionViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

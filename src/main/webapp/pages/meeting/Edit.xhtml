@@ -8,19 +8,21 @@
 
     <ui:composition>
 
-        <p:dialog id="MeetingEditDlg" widgetVar="MeetingEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMeetingTitle}">
+        <p:dialog id="MeetingEditDlg" widgetVar="MeetingEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.EditMeetingTitle}">
             <h:form id="MeetingEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{meetingController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditMeetingLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{meetingController.selected.id}" title="#{bundle.EditMeetingTitle_id}" />
-                        <p:outputLabel value="#{bundle.EditMeetingLabel_number}" for="number" />
-                        <p:inputText id="number" value="#{meetingController.selected.number}" title="#{bundle.EditMeetingTitle_number}" />
-                        <p:outputLabel value="#{bundle.EditMeetingLabel_description}" for="description" />
-                        <p:inputText id="description" value="#{meetingController.selected.description}" title="#{bundle.EditMeetingTitle_description}" />
+                        <p:outputLabel value="#{text.EditMeetingLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{meetingController.selected.id}" title="#{text.EditMeetingTitle_id}" />
+                        <p:outputLabel value="#{text.EditMeetingLabel_number}" for="number" />
+                        <p:inputText id="number" value="#{meetingController.selected.number}" title="#{text.EditMeetingTitle_number}" />
+                        <p:outputLabel value="#{text.EditMeetingLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{meetingController.selected.description}" title="#{text.EditMeetingTitle_description}" />
+                        <p:outputLabel value="#{text.EditResolutionLabel_dayOfResolution}" for="dayOf" />
+                        <p:calendar id="dayOf" pattern="dd-MM-yyyy" value="#{meetingController.selected.dayOf}" title="#{text.dayOf}"  showOn="button"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{meetingController.update}" value="#{bundle.Save}" update="display,:MeetingListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MeetingEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="MeetingEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{meetingController.update}" value="#{text.Save}" update="display,:MeetingListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MeetingEditDialog');"/>
+                    <p:commandButton value="#{text.Cancel}" onclick="MeetingEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

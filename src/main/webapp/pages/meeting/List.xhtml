@@ -40,6 +40,14 @@
                                 </f:facet>
                                 <h:outputText value="#{item.description}"/>
                             </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{text.meeting_date}"
+                                </f:facet>
+                                <h:outputText value="#{item.dayOf}" >
+                                    <f:convertDateTime pattern="dd-MM-yyyy" />
+                                </h:outputText>
+                            </p:column>
                             <f:facet name="footer">
                                 <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.Create}" actionListener="#{meetingController.prepareCreate}" update=":MeetingCreateForm" oncomplete="PF('MeetingCreateDialog').show()"/>
                                 <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{text.View}" update=":MeetingViewForm" oncomplete="PF('MeetingViewDialog').show()" disabled="#{empty meetingController.selected}"/>

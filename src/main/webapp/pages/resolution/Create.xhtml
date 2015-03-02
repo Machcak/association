@@ -8,21 +8,19 @@
 
     <ui:composition>
 
-        <p:dialog id="ResolutionCreateDlg" widgetVar="ResolutionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateResolutionTitle}">
+        <p:dialog id="ResolutionCreateDlg" widgetVar="ResolutionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.CreateResolutionTitle}">
             <h:form id="ResolutionCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{resolutionController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateResolutionLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{resolutionController.selected.id}" title="#{bundle.CreateResolutionTitle_id}" />
-                        <p:outputLabel value="#{bundle.CreateResolutionLabel_number}" for="number" />
-                        <p:inputText id="number" value="#{resolutionController.selected.number}" title="#{bundle.CreateResolutionTitle_number}" />
-                        <p:outputLabel value="#{bundle.CreateResolutionLabel_content}" for="content" />
-                        <p:inputText id="content" value="#{resolutionController.selected.content}" title="#{bundle.CreateResolutionTitle_content}" />
-                        <p:outputLabel value="#{bundle.CreateResolutionLabel_dayOfResolution}" for="dayOfResolution" />
-                        <p:calendar id="dayOfResolution" pattern="MM/dd/yyyy" value="#{resolutionController.selected.dayOfResolution}" title="#{bundle.EditResolutionTitle_dayOfResolution}"  showOn="button"/>
+                        <p:outputLabel value="#{text.CreateResolutionLabel_number}" for="number" />
+                        <p:inputText id="number" value="#{resolutionController.selected.number}" title="#{text.CreateResolutionTitle_number}" />
+                        <p:outputLabel value="#{text.CreateResolutionLabel_content}" for="content" />
+                        <p:inputText id="content" value="#{resolutionController.selected.content}" title="#{text.CreateResolutionTitle_content}" />
+                        <p:outputLabel value="#{text.CreateResolutionLabel_dayOfResolution}" for="dayOfResolution" />
+                        <p:calendar id="dayOfResolution" pattern="dd-MM-yyyy" value="#{resolutionController.selected.dayOfResolution}" title="#{text.EditResolutionTitle_dayOfResolution}"  showOn="button"/>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{resolutionController.create}" value="#{bundle.Save}" update="display,:ResolutionListForm:datalist,:growl" oncomplete="handleSubmit(args,'ResolutionCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="ResolutionCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{resolutionController.create}" value="#{text.Save}" update="display,:ResolutionListForm:datalist,:growl" oncomplete="handleSubmit(args,'ResolutionCreateDialog');"/>
+                    <p:commandButton value="#{text.Cancel}" onclick="ResolutionCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
