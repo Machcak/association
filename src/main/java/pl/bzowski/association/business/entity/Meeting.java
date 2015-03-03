@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import pl.bzowski.association.business.boundary.MemberAdder;
@@ -32,6 +33,9 @@ public class Meeting implements Serializable, MemberAdder.HaveingId{
    
     @ManyToMany
     private Collection<AssociationMember> associationMembers;
+    
+    @OneToOne(mappedBy = "meeting")
+    private Report report;
     
     public Meeting() {
     }
@@ -75,5 +79,13 @@ public class Meeting implements Serializable, MemberAdder.HaveingId{
 
     public void setAssociationMembers(Collection<AssociationMember> associationMembers) {
         this.associationMembers = associationMembers;
+    }
+
+    public void setReport(Report report) {
+        this.report = report;
+    }
+
+    public Report getReport() {
+        return report;
     }
 }

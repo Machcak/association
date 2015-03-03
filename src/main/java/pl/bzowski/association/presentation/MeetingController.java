@@ -15,17 +15,21 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import org.primefaces.model.DualListModel;
+import pl.bzowski.association.business.boundary.AssociationMemberFacade;
 import pl.bzowski.association.business.entity.AssociationMember;
 import pl.bzowski.association.business.entity.Leadership;
 import pl.bzowski.association.business.boundary.MemberAdder;
 import pl.bzowski.association.business.boundary.ReportFacade;
 import pl.bzowski.association.business.entity.MeetingMember;
+import pl.bzowski.association.business.entity.Report;
 
 @Named("meetingController")
 @SessionScoped
@@ -33,20 +37,21 @@ public class MeetingController implements Serializable {
 
     @EJB
     private pl.bzowski.association.business.boundary.MeetingFacade ejbFacade;
-    
+
     @Inject
     private MemberAdder ma;
-    
-    @Inject 
+
+    @Inject
     private ReportFacade reportFacade;
     
-    @Inject
-    private EditorController editorController;
-    
+    @Inject 
+    private AssociationMemberFacade associationMemberFacade;
+
     private List<Meeting> items = null;
     private Meeting selected;
-    private DualListModel<AssociationMember> meetingMembers = new DualListModel<>(new ArrayList<AssociationMember>(), new ArrayList<AssociationMember>()); 
-    
+    private DualListModel<AssociationMember> meetingMembers = new DualListModel<>(new ArrayList<AssociationMember>(), new ArrayList<AssociationMember>());
+    private Report report = new Report();
+
     public MeetingController() {
     }
 
@@ -141,12 +146,11 @@ public class MeetingController implements Serializable {
     }
 
     public void prepareAddMember() {
-        meetingMembers = ma.prepareAddMeeatingMember((MemberAdder.HaveingId)selected);
+        meetingMembers = ma.prepareAddMeeatingMember((MemberAdder.HaveingId) selected);
     }
-    
-    public void prepareReport(){
-        String content = reportFacade.findReportForMeeting(selected);
-        editorController.setContent(content);
+
+    public void prepareReport() {
+        report = reportFacade.findReportForMeeting(selected);
     }
 
     public void saveMembers() {
@@ -161,6 +165,42 @@ public class MeetingController implements Serializable {
 
     public void setMeetingMembers(DualListModel<AssociationMember> meetingMembers) {
         this.meetingMembers = meetingMembers;
+    }
+
+    public String getContent() {
+        return report.getReport();
+    }
+
+    public void setContent(String content) {
+        this.report.setReport(content);
+    }
+
+    public void saveListener() {
+        report.setMeeting(selected);
+        report.setDateOf(selected.getDayOf());
+        report.setTitle(selected.getNumber());
+        if(report.getId()==null){
+            reportFacade.create(report);
+        }else{
+            reportFacade.edit(report);
+        }
+    }
+    
+    public void reportCreatorChange(javax.faces.event.ValueChangeEvent e){
+        AssociationMember newValue = (AssociationMember) e.getNewValue();
+        report.setAssociationMember(newValue);
+    }
+    
+    public Report getReport() {
+        return report;
+    }
+
+    public void setReport(Report report) {
+        this.report = report;
+    }
+    
+    public List<AssociationMember> getAssociationMembers() {
+        return associationMemberFacade.findAll();
     }
 
     @FacesConverter(forClass = Meeting.class)

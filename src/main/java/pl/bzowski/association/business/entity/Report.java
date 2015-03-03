@@ -19,13 +19,13 @@ import javax.validation.constraints.NotNull;
  * @author Machcak
  */
 @NamedQueries({
-    @NamedQuery(name = Report.findReportContentForMeeting,
-            query=" SELECT r.report FROM Report r WHERE r.meeting = :meeting ")
+    @NamedQuery(name = Report.findReportForMeeting,
+            query=" SELECT r FROM Report r WHERE r.meeting = :meeting ")
 })
 @Entity
 public class Report implements Serializable {
     
-    public static final String findReportContentForMeeting = "Report.findReportForMeeting";
+    public static final String findReportForMeeting = "Report.findReportForMeeting";
    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +44,7 @@ public class Report implements Serializable {
     @NotNull
     @ManyToOne
     private AssociationMember associationMember;
+    
     
     
     @OneToOne

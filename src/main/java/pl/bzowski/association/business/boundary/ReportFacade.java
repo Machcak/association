@@ -29,12 +29,12 @@ public class ReportFacade extends AbstractFacade<Report> {
         super(Report.class);
     }
 
-    public String findReportForMeeting(Meeting selected) {
+    public Report findReportForMeeting(Meeting selected) {
         try{
-        String singleResult = em.createNamedQuery(Report.findReportContentForMeeting, String.class)
+        Report report = em.createNamedQuery(Report.findReportForMeeting, Report.class)
                 .setParameter("meeting", selected)
                 .getSingleResult();
-        return singleResult;
+        return report;
         }catch(NoResultException ex){
             Report r = new Report();
 //            r.setDateOf(new Date());
@@ -44,7 +44,7 @@ public class ReportFacade extends AbstractFacade<Report> {
 //            AssociationMember merge = em.merge(new AssociationMember(1L));
 //            r.setAssociationMember(merge);
 //            em.persist(r);
-            return r.getReport();
+            return r;
         }
     }
 
