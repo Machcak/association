@@ -12,8 +12,6 @@
             <h:form id="MeetingEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{meetingController.selected != null}">
-                        <p:outputLabel value="#{text.EditMeetingLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{meetingController.selected.id}" title="#{text.EditMeetingTitle_id}" />
                         <p:outputLabel value="#{text.EditMeetingLabel_number}" for="number" />
                         <p:inputText id="number" value="#{meetingController.selected.number}" title="#{text.EditMeetingTitle_number}" />
                         <p:outputLabel value="#{text.EditMeetingLabel_description}" for="description" />

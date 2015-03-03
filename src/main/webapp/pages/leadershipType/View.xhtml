@@ -8,16 +8,16 @@
 
     <ui:composition>
 
-        <p:dialog id="LeadershipTypeViewDlg" widgetVar="LeadershipTypeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewLeadershipTypeTitle}">
+        <p:dialog id="LeadershipTypeViewDlg" widgetVar="LeadershipTypeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.ViewLeadershipTypeTitle}">
             <h:form id="LeadershipTypeViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{leadershipTypeController.selected != null}">
-                        <h:outputText value="#{bundle.ViewLeadershipTypeLabel_id}"/>
-                        <h:outputText value="#{leadershipTypeController.selected.id}" title="#{bundle.ViewLeadershipTypeTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewLeadershipTypeLabel_type}"/>
-                        <h:outputText value="#{leadershipTypeController.selected.type}" title="#{bundle.ViewLeadershipTypeTitle_type}"/>
+                        <h:outputText value="#{text.ViewLeadershipTypeLabel_id}"/>
+                        <h:outputText value="#{leadershipTypeController.selected.id}" title="#{text.ViewLeadershipTypeTitle_id}"/>
+                        <h:outputText value="#{text.ViewLeadershipTypeLabel_type}"/>
+                        <h:outputText value="#{leadershipTypeController.selected.type}" title="#{text.ViewLeadershipTypeTitle_type}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="LeadershipTypeViewDialog.hide()"/>
+                    <p:commandButton value="#{text.Close}" onclick="LeadershipTypeViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

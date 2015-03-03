@@ -8,18 +8,16 @@
 
     <ui:composition>
 
-        <p:dialog id="MeetingViewDlg" widgetVar="MeetingViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMeetingTitle}">
+        <p:dialog id="MeetingViewDlg" widgetVar="MeetingViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.ViewMeetingTitle}">
             <h:form id="MeetingViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{meetingController.selected != null}">
-                        <h:outputText value="#{bundle.ViewMeetingLabel_id}"/>
-                        <h:outputText value="#{meetingController.selected.id}" title="#{bundle.ViewMeetingTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewMeetingLabel_number}"/>
-                        <h:outputText value="#{meetingController.selected.number}" title="#{bundle.ViewMeetingTitle_number}"/>
-                        <h:outputText value="#{bundle.ViewMeetingLabel_description}"/>
-                        <h:outputText value="#{meetingController.selected.description}" title="#{bundle.ViewMeetingTitle_description}"/>
+                        <h:outputText value="#{text.ViewMeetingLabel_number}"/>
+                        <h:outputText value="#{meetingController.selected.number}" title="#{text.Number}"/>
+                        <h:outputText value="#{text.ViewMeetingLabel_description}"/>
+                        <h:outputText value="#{meetingController.selected.description}" title="#{text.Description}"/>
                     </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="MeetingViewDialog.hide()"/>
+                    <p:commandButton value="#{text.Close}" onclick="MeetingViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

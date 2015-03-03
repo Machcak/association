@@ -8,17 +8,17 @@
 
     <ui:composition>
 
-        <p:dialog id="LeadershipTypeEditDlg" widgetVar="LeadershipTypeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLeadershipTypeTitle}">
+        <p:dialog id="LeadershipTypeEditDlg" widgetVar="LeadershipTypeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.EditLeadershipTypeTitle}">
             <h:form id="LeadershipTypeEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{leadershipTypeController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditLeadershipTypeLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{leadershipTypeController.selected.id}" title="#{bundle.EditLeadershipTypeTitle_id}" />
-                        <p:outputLabel value="#{bundle.EditLeadershipTypeLabel_type}" for="type" />
-                        <p:inputText id="type" value="#{leadershipTypeController.selected.type}" title="#{bundle.EditLeadershipTypeTitle_type}" />
+                        <p:outputLabel value="#{text.EditLeadershipTypeLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{leadershipTypeController.selected.id}" title="#{text.EditLeadershipTypeTitle_id}" />
+                        <p:outputLabel value="#{text.EditLeadershipTypeLabel_type}" for="type" />
+                        <p:inputText id="type" value="#{leadershipTypeController.selected.type}" title="#{text.EditLeadershipTypeTitle_type}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{leadershipTypeController.update}" value="#{bundle.Save}" update="display,:LeadershipTypeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LeadershipTypeEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="LeadershipTypeEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{leadershipTypeController.update}" value="#{text.Save}" update="display,:LeadershipTypeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LeadershipTypeEditDialog');"/>
+                    <p:commandButton value="#{text.Cancel}" onclick="LeadershipTypeEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
