@@ -16,6 +16,10 @@
                         <p:selectOneMenu id="leadershipType" value="#{meetingController.selected.leadershipType}">
                             <f:selectItems value="#{meetingController.leadershipTypes}" var="type" itemLabel="#{type.type}"  />
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{text.Leadership}" for="leadership" />
+                        <p:selectOneMenu id="leadership" value="#{meetingController.selected.leadership}">
+                            <f:selectItems value="#{meetingController.leaderships}" var="leadership" itemLabel="#{leadership.leadershipType.type} #{leadership.number}"  />
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{text.EditMeetingLabel_number}" for="number" />
                         <p:inputText id="number" value="#{meetingController.selected.number}" title="#{text.EditMeetingTitle_number}" />
                         <p:outputLabel value="#{text.EditMeetingLabel_description}" for="description" />

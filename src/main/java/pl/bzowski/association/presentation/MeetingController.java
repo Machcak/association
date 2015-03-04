@@ -25,6 +25,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import org.primefaces.model.DualListModel;
 import pl.bzowski.association.business.boundary.AssociationMemberFacade;
+import pl.bzowski.association.business.boundary.LeadershipFacade;
 import pl.bzowski.association.business.boundary.LeadershipTypeFacade;
 import pl.bzowski.association.business.entity.AssociationMember;
 import pl.bzowski.association.business.entity.Leadership;
@@ -52,12 +53,16 @@ public class MeetingController implements Serializable {
     
     @Inject
     private LeadershipTypeFacade leadershipTypeFacade;
+    
+    @Inject
+    private LeadershipFacade leadershipFacade;
 
     private List<Meeting> items = null;
     private Meeting selected;
     private DualListModel<AssociationMember> meetingMembers = new DualListModel<>(new ArrayList<AssociationMember>(), new ArrayList<AssociationMember>());
     private Report report = new Report();
     private List<LeadershipType> leadershipTypes;
+    private List<Leadership> leaderships;
 
     public MeetingController() {
         
@@ -66,6 +71,7 @@ public class MeetingController implements Serializable {
     @PostConstruct
     public void init(){
         leadershipTypes = leadershipTypeFacade.findAll();
+        leaderships = leadershipFacade.findAll();
     }
 
     public Meeting getSelected() {
@@ -222,6 +228,14 @@ public class MeetingController implements Serializable {
 
     public void setLeadershipTypes(List<LeadershipType> leadershipTypes) {
         this.leadershipTypes = leadershipTypes;
+    }
+
+    public List<Leadership> getLeaderships() {
+        return leaderships;
+    }
+
+    public void setLeaderships(List<Leadership> leaderships) {
+        this.leaderships = leaderships;
     }
     
     

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,8 +42,11 @@ public class Meeting implements Serializable, MemberAdder.HaveingId{
     private Report report;
     
     
-    @OneToOne
+    @ManyToOne
     private LeadershipType leadershipType;
+    
+    @ManyToOne
+    private Leadership leadership;
     
     public Meeting() {
     }
@@ -103,6 +107,12 @@ public class Meeting implements Serializable, MemberAdder.HaveingId{
     public void setLeadershipType(LeadershipType leadershipType) {
         this.leadershipType = leadershipType;
     }
-    
-    
+
+    public Leadership getLeadership() {
+        return leadership;
+    }
+
+    public void setLeadership(Leadership leadership) {
+        this.leadership = leadership;
+    }    
 }
