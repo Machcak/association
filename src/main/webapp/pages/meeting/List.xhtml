@@ -30,6 +30,12 @@
 
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{text.LeadershipType}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.leadershipType.type}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{text.ListMeetingTitle_number}"/>
                             </f:facet>
                             <h:outputText value="#{item.number}"/>

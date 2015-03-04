@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
@@ -24,10 +25,12 @@ import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import org.primefaces.model.DualListModel;
 import pl.bzowski.association.business.boundary.AssociationMemberFacade;
+import pl.bzowski.association.business.boundary.LeadershipTypeFacade;
 import pl.bzowski.association.business.entity.AssociationMember;
 import pl.bzowski.association.business.entity.Leadership;
 import pl.bzowski.association.business.boundary.MemberAdder;
 import pl.bzowski.association.business.boundary.ReportFacade;
+import pl.bzowski.association.business.entity.LeadershipType;
 import pl.bzowski.association.business.entity.MeetingMember;
 import pl.bzowski.association.business.entity.Report;
 
@@ -46,13 +49,23 @@ public class MeetingController implements Serializable {
     
     @Inject 
     private AssociationMemberFacade associationMemberFacade;
+    
+    @Inject
+    private LeadershipTypeFacade leadershipTypeFacade;
 
     private List<Meeting> items = null;
     private Meeting selected;
     private DualListModel<AssociationMember> meetingMembers = new DualListModel<>(new ArrayList<AssociationMember>(), new ArrayList<AssociationMember>());
     private Report report = new Report();
+    private List<LeadershipType> leadershipTypes;
 
     public MeetingController() {
+        
+    }
+    
+    @PostConstruct
+    public void init(){
+        leadershipTypes = leadershipTypeFacade.findAll();
     }
 
     public Meeting getSelected() {
@@ -202,6 +215,16 @@ public class MeetingController implements Serializable {
     public List<AssociationMember> getAssociationMembers() {
         return associationMemberFacade.findAll();
     }
+
+    public List<LeadershipType> getLeadershipTypes() {
+        return leadershipTypes;
+    }
+
+    public void setLeadershipTypes(List<LeadershipType> leadershipTypes) {
+        this.leadershipTypes = leadershipTypes;
+    }
+    
+    
 
     @FacesConverter(forClass = Meeting.class)
     public static class MeetingControllerConverter implements Converter {

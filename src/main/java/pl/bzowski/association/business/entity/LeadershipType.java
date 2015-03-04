@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -12,12 +14,18 @@ import javax.persistence.Id;
  */
 @Entity
 public class LeadershipType implements Serializable {
+       
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @NotNull
     private String type;
+    
+    @OneToOne(mappedBy = "leadershipType")
+    private Meeting meeting;
 
     public Long getId() {
         return id;
@@ -57,4 +65,11 @@ public class LeadershipType implements Serializable {
         return "pl.bzowski.association.business.entity.LeadershipType[ id=" + id + " ]";
     }
 
+    public Meeting getMeeting() {
+        return meeting;
+    }
+
+    public void setMeeting(Meeting meeting) {
+        this.meeting = meeting;
+    }
 }

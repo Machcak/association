@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import pl.bzowski.association.business.boundary.MemberAdder;
 
 /**
@@ -24,10 +25,12 @@ public class Meeting implements Serializable, MemberAdder.HaveingId{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @NotNull
     private String number;
     
     private String description;
     
+    @NotNull
     @Temporal(TemporalType.DATE)
     private Date dayOf;
    
@@ -36,6 +39,10 @@ public class Meeting implements Serializable, MemberAdder.HaveingId{
     
     @OneToOne(mappedBy = "meeting")
     private Report report;
+    
+    
+    @OneToOne
+    private LeadershipType leadershipType;
     
     public Meeting() {
     }
@@ -88,4 +95,14 @@ public class Meeting implements Serializable, MemberAdder.HaveingId{
     public Report getReport() {
         return report;
     }
+
+    public LeadershipType getLeadershipType() {
+        return leadershipType;
+    }
+
+    public void setLeadershipType(LeadershipType leadershipType) {
+        this.leadershipType = leadershipType;
+    }
+    
+    
 }
