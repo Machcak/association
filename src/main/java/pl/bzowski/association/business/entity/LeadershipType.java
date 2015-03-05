@@ -27,9 +27,6 @@ public class LeadershipType implements Serializable {
     @NotNull
     private String type;
    
-    @OneToMany(mappedBy = "leadershipType")
-    private List<Meeting> meetings;
-
     public Long getId() {
         return id;
     }
@@ -66,15 +63,5 @@ public class LeadershipType implements Serializable {
     @Override
     public String toString() {
         return "pl.bzowski.association.business.entity.LeadershipType[ id=" + id + " ]";
-    }
-
-    public List<Meeting> getMeetings() {
-        return meetings;
-    }
-
-    public void setMeetings(List<Meeting> meetings) {
-        this.meetings = meetings;
-    }
-
-  
+    }  
 }

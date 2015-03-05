@@ -12,10 +12,6 @@
             <h:form id="MeetingEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{meetingController.selected != null}">
-                        <p:outputLabel value="#{text.LeadershipType}" for="leadershipType" />
-                        <p:selectOneMenu id="leadershipType" value="#{meetingController.selected.leadershipType}">
-                            <f:selectItems value="#{meetingController.leadershipTypes}" var="type" itemLabel="#{type.type}"  />
-                        </p:selectOneMenu>
                         <p:outputLabel value="#{text.Leadership}" for="leadership" />
                         <p:selectOneMenu id="leadership" value="#{meetingController.selected.leadership}">
                             <f:selectItems value="#{meetingController.leaderships}" var="leadership" itemLabel="#{leadership.leadershipType.type} #{leadership.number}"  />

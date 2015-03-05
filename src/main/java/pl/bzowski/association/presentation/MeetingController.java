@@ -50,10 +50,7 @@ public class MeetingController implements Serializable {
     
     @Inject 
     private AssociationMemberFacade associationMemberFacade;
-    
-    @Inject
-    private LeadershipTypeFacade leadershipTypeFacade;
-    
+        
     @Inject
     private LeadershipFacade leadershipFacade;
 
@@ -61,7 +58,6 @@ public class MeetingController implements Serializable {
     private Meeting selected;
     private DualListModel<AssociationMember> meetingMembers = new DualListModel<>(new ArrayList<AssociationMember>(), new ArrayList<AssociationMember>());
     private Report report = new Report();
-    private List<LeadershipType> leadershipTypes;
     private List<Leadership> leaderships;
 
     public MeetingController() {
@@ -70,7 +66,6 @@ public class MeetingController implements Serializable {
     
     @PostConstruct
     public void init(){
-        leadershipTypes = leadershipTypeFacade.findAll();
         leaderships = leadershipFacade.findAll();
     }
 
@@ -220,14 +215,6 @@ public class MeetingController implements Serializable {
     
     public List<AssociationMember> getAssociationMembers() {
         return associationMemberFacade.findAll();
-    }
-
-    public List<LeadershipType> getLeadershipTypes() {
-        return leadershipTypes;
-    }
-
-    public void setLeadershipTypes(List<LeadershipType> leadershipTypes) {
-        this.leadershipTypes = leadershipTypes;
     }
 
     public List<Leadership> getLeaderships() {

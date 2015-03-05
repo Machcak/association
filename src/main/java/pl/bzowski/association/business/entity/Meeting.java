@@ -40,11 +40,7 @@ public class Meeting implements Serializable, MemberAdder.HaveingId{
     
     @OneToOne(mappedBy = "meeting")
     private Report report;
-    
-    
-    @ManyToOne
-    private LeadershipType leadershipType;
-    
+        
     @ManyToOne
     private Leadership leadership;
     
@@ -98,14 +94,6 @@ public class Meeting implements Serializable, MemberAdder.HaveingId{
 
     public Report getReport() {
         return report;
-    }
-
-    public LeadershipType getLeadershipType() {
-        return leadershipType;
-    }
-
-    public void setLeadershipType(LeadershipType leadershipType) {
-        this.leadershipType = leadershipType;
     }
 
     public Leadership getLeadership() {

@@ -17,6 +17,14 @@
                                  referencedTableName="leadership"
                                  referencedColumnNames="id" />
     </changeSet>
-     
-   
+    
+    <changeSet id="003" author="mbzowski">
+        <dropForeignKeyConstraint baseTableName="meeting" constraintName="fk_meeting_leadershiptype" />
+    </changeSet>
+    
+    <changeSet id="004" author="mbzowski">
+        <dropColumn tableName="meeting" columnName="leadershiptype_id" />
+    </changeSet>
+    
+  
 </databaseChangeLog>
