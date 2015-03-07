@@ -12,8 +12,6 @@
             <h:form id="LeadershipTypeEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{leadershipTypeController.selected != null}">
-                        <p:outputLabel value="#{text.EditLeadershipTypeLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{leadershipTypeController.selected.id}" title="#{text.EditLeadershipTypeTitle_id}" />
                         <p:outputLabel value="#{text.EditLeadershipTypeLabel_type}" for="type" />
                         <p:inputText id="type" value="#{leadershipTypeController.selected.type}" title="#{text.EditLeadershipTypeTitle_type}" />
                     </p:panelGrid>
