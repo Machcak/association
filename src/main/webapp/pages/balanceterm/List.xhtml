@@ -38,7 +38,7 @@
                                 <h:outputText value="#{text.ListBalancetermTitle_datefrom}"/>
                             </f:facet>
                             <h:outputText value="#{item.datefrom}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="dd-MM-yyyy" />
                             </h:outputText>
                         </p:column>
                         <p:column>
@@ -46,7 +46,7 @@
                                 <h:outputText value="#{text.ListBalancetermTitle_dateto}"/>
                             </f:facet>
                             <h:outputText value="#{item.dateto}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="dd-MM-yyyy" />
                             </h:outputText>
                         </p:column>
                         <f:facet name="footer">

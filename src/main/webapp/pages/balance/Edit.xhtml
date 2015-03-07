@@ -12,18 +12,16 @@
             <h:form id="BalanceEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{balanceController.selected != null}">
-                        <p:outputLabel value="#{text.EditBalanceLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{balanceController.selected.id}" title="#{text.EditBalanceTitle_id}" required="true" requiredMessage="#{text.EditBalanceRequiredMessage_id}"/>
                         <p:outputLabel value="#{text.EditBalanceLabel_incomingdate}" for="incomingdate" />
                         <p:calendar id="incomingdate" pattern="MM/dd/yyyy" value="#{balanceController.selected.incomingdate}" title="#{text.EditBalanceTitle_incomingdate}" required="true" requiredMessage="#{text.EditBalanceRequiredMessage_incomingdate}" showOn="button"/>
                         <p:outputLabel value="#{text.EditBalanceLabel_balanceeventId}" for="balanceeventId" />
-                        <p:inputText id="balanceeventId" value="#{balanceController.selected.balanceeventId}" title="#{text.EditBalanceTitle_balanceeventId}" required="true" requiredMessage="#{text.EditBalanceRequiredMessage_balanceeventId}"/>
+                        <p:inputText id="balanceeventId" value="#{balanceController.selected.balanceevent}" title="#{text.EditBalanceTitle_balanceeventId}" required="true" requiredMessage="#{text.EditBalanceRequiredMessage_balanceeventId}"/>
                         <p:outputLabel value="#{text.EditBalanceLabel_amount}" for="amount" />
                         <p:inputText id="amount" value="#{balanceController.selected.amount}" title="#{text.EditBalanceTitle_amount}" required="true" requiredMessage="#{text.EditBalanceRequiredMessage_amount}"/>
                         <p:outputLabel value="#{text.EditBalanceLabel_accountbalance}" for="accountbalance" />
                         <p:inputText id="accountbalance" value="#{balanceController.selected.accountbalance}" title="#{text.EditBalanceTitle_accountbalance}" required="true" requiredMessage="#{text.EditBalanceRequiredMessage_accountbalance}"/>
                         <p:outputLabel value="#{text.EditBalanceLabel_memberId}" for="memberId" />
-                        <p:selectOneMenu id="memberId" value="#{balanceController.selected.memberId}" >
+                        <p:selectOneMenu id="memberId" value="#{balanceController.selected.member}" >
                             <f:selectItem itemLabel="#{text.SelectOneMessage}"/>
                             <f:selectItems value="#{associationMemberController.itemsAvailableSelectOne}"
                                            var="memberIdItem"

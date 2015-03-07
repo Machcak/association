@@ -60,7 +60,7 @@ public class AssociationMember implements Serializable, MemberAdder.HaveingId {
     @ManyToMany(mappedBy = "associationMembers")
     private List<Meeting> meetings;
     
-    @OneToMany(mappedBy = "memberId")
+    @OneToMany(mappedBy = "member")
     private Collection<Balance> balanceCollection;
 
     @Override
@@ -119,6 +119,16 @@ public class AssociationMember implements Serializable, MemberAdder.HaveingId {
     public void setMeetings(List<Meeting> meetings) {
         this.meetings = meetings;
     }
+
+    public Collection<Balance> getBalanceCollection() {
+        return balanceCollection;
+    }
+
+    public void setBalanceCollection(Collection<Balance> balanceCollection) {
+        this.balanceCollection = balanceCollection;
+    }
+    
+    
     
     @Override
     public int hashCode() {

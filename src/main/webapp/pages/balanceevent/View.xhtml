@@ -12,8 +12,6 @@
             <h:form id="BalanceeventViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{balanceeventController.selected != null}">
-                        <h:outputText value="#{text.ViewBalanceeventLabel_id}"/>
-                        <h:outputText value="#{balanceeventController.selected.id}" title="#{text.ViewBalanceeventTitle_id}"/>
                         <h:outputText value="#{text.ViewBalanceeventLabel_eventname}"/>
                         <h:outputText value="#{balanceeventController.selected.eventname}" title="#{text.ViewBalanceeventTitle_eventname}"/>
                     </p:panelGrid>

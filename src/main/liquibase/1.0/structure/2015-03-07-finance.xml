@@ -136,4 +136,22 @@
                               columnDataType="DATE"/>
     </changeSet>
     
+    <changeSet id="025" author="mbzowski">
+        <dropNotNullConstraint tableName="balanceevent" 
+                                    columnName="eventname"
+                                    columnDataType="BIGINT"      />
+    </changeSet>
+    
+    <changeSet id="026" author="mbzowski">
+        <modifyDataType tableName="balanceevent" 
+                        columnName="eventname" 
+                        newDataType="VARCHAR(50)" />
+    </changeSet>
+    
+    <changeSet id="027" author="mbzowski">
+        <addNotNullConstraint tableName="balanceevent" 
+                              columnName="eventname"
+                              columnDataType="VARCHAR(50)"        />
+    </changeSet>
+    
 </databaseChangeLog>

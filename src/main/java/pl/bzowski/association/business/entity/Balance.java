@@ -28,7 +28,7 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "Balance.findAll", query = "SELECT b FROM Balance b"),
     @NamedQuery(name = "Balance.findById", query = "SELECT b FROM Balance b WHERE b.id = :id"),
     @NamedQuery(name = "Balance.findByIncomingdate", query = "SELECT b FROM Balance b WHERE b.incomingdate = :incomingdate"),
-    @NamedQuery(name = "Balance.findByBalanceeventId", query = "SELECT b FROM Balance b WHERE b.balanceeventId = :balanceeventId"),
+    @NamedQuery(name = "Balance.findByBalanceeventId", query = "SELECT b FROM Balance b WHERE b.balanceevent = :balanceevent"),
     @NamedQuery(name = "Balance.findByAmount", query = "SELECT b FROM Balance b WHERE b.amount = :amount"),
     @NamedQuery(name = "Balance.findByAccountbalance", query = "SELECT b FROM Balance b WHERE b.accountbalance = :accountbalance")})
 public class Balance implements Serializable {
@@ -47,7 +47,7 @@ public class Balance implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "balanceevent_id")
-    private long balanceeventId;
+    private Balanceevent balanceevent;
     
     @Basic(optional = false)
     @NotNull
@@ -61,11 +61,13 @@ public class Balance implements Serializable {
     
     @JoinColumn(name = "member_id", referencedColumnName = "id")
     @ManyToOne
-    private AssociationMember memberId;
+    private AssociationMember member;
     
     @JoinColumn(name = "balanceterm_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Balanceterm balancetermId;
+    
+    
 
     public Balance() {
     }
@@ -74,10 +76,10 @@ public class Balance implements Serializable {
         this.id = id;
     }
 
-    public Balance(Long id, Date incomingdate, long balanceeventId, BigDecimal amount, BigDecimal accountbalance) {
+    public Balance(Long id, Date incomingdate, Balanceevent balanceevent, BigDecimal amount, BigDecimal accountbalance) {
         this.id = id;
         this.incomingdate = incomingdate;
-        this.balanceeventId = balanceeventId;
+        this.balanceevent = balanceevent;
         this.amount = amount;
         this.accountbalance = accountbalance;
     }
@@ -98,12 +100,12 @@ public class Balance implements Serializable {
         this.incomingdate = incomingdate;
     }
 
-    public long getBalanceeventId() {
-        return balanceeventId;
+    public Balanceevent getBalanceevent() {
+        return balanceevent;
     }
 
-    public void setBalanceeventId(long balanceeventId) {
-        this.balanceeventId = balanceeventId;
+    public void setBalanceevent(Balanceevent balanceevent) {
+        this.balanceevent = balanceevent;
     }
 
     public BigDecimal getAmount() {
@@ -122,12 +124,12 @@ public class Balance implements Serializable {
         this.accountbalance = accountbalance;
     }
 
-    public AssociationMember getMemberId() {
-        return memberId;
+    public AssociationMember getMember() {
+        return member;
     }
 
-    public void setMemberId(AssociationMember memberId) {
-        this.memberId = memberId;
+    public void setMember(AssociationMember member) {
+        this.member = member;
     }
 
     public Balanceterm getBalancetermId() {

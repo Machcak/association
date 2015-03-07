@@ -33,7 +33,7 @@ public class Balanceevent implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "eventname")
-    private long eventname;
+    private String eventname;
 
     public Balanceevent() {
     }
@@ -42,7 +42,7 @@ public class Balanceevent implements Serializable {
         this.id = id;
     }
 
-    public Balanceevent(Long id, long eventname) {
+    public Balanceevent(Long id, String eventname) {
         this.id = id;
         this.eventname = eventname;
     }
@@ -55,11 +55,11 @@ public class Balanceevent implements Serializable {
         this.id = id;
     }
 
-    public long getEventname() {
+    public String getEventname() {
         return eventname;
     }
 
-    public void setEventname(long eventname) {
+    public void setEventname(String eventname) {
         this.eventname = eventname;
     }
 
