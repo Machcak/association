@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BalanceCreateDlg" widgetVar="BalanceCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.CreateBalanceTitle}">
+            <h:form id="BalanceCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{balanceController.selected != null}">
+                        <p:outputLabel value="#{text.CreateBalanceLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{balanceController.selected.id}" title="#{text.CreateBalanceTitle_id}" required="true" requiredMessage="#{text.CreateBalanceRequiredMessage_id}"/>
+                        <p:outputLabel value="#{text.CreateBalanceLabel_incomingdate}" for="incomingdate" />
+                        <p:calendar id="incomingdate" pattern="MM/dd/yyyy" value="#{balanceController.selected.incomingdate}" title="#{text.EditBalanceTitle_incomingdate}" required="true" requiredMessage="#{text.EditBalanceRequiredMessage_incomingdate}" showOn="button"/>
+                        <p:outputLabel value="#{text.CreateBalanceLabel_balanceeventId}" for="balanceeventId" />
+                        <p:inputText id="balanceeventId" value="#{balanceController.selected.balanceeventId}" title="#{text.CreateBalanceTitle_balanceeventId}" required="true" requiredMessage="#{text.CreateBalanceRequiredMessage_balanceeventId}"/>
+                        <p:outputLabel value="#{text.CreateBalanceLabel_amount}" for="amount" />
+                        <p:inputText id="amount" value="#{balanceController.selected.amount}" title="#{text.CreateBalanceTitle_amount}" required="true" requiredMessage="#{text.CreateBalanceRequiredMessage_amount}"/>
+                        <p:outputLabel value="#{text.CreateBalanceLabel_accountbalance}" for="accountbalance" />
+                        <p:inputText id="accountbalance" value="#{balanceController.selected.accountbalance}" title="#{text.CreateBalanceTitle_accountbalance}" required="true" requiredMessage="#{text.CreateBalanceRequiredMessage_accountbalance}"/>
+                        <p:outputLabel value="#{text.CreateBalanceLabel_memberId}" for="memberId" />
+                        <p:selectOneMenu id="memberId" value="#{balanceController.selected.memberId}" >
+                            <f:selectItem itemLabel="Select One or None" itemValue="" />
+                            <f:selectItems value="#{associationMemberController.itemsAvailableSelectOne}"
+                                           var="memberIdItem"
+                                           itemValue="#{memberIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{text.CreateBalanceLabel_balancetermId}" for="balancetermId" />
+                        <p:selectOneMenu id="balancetermId" value="#{balanceController.selected.balancetermId}" required="true" requiredMessage="#{text.EditBalanceRequiredMessage_balancetermId}">
+                            <f:selectItems value="#{balancetermController.itemsAvailableSelectOne}"
+                                           var="balancetermIdItem"
+                                           itemValue="#{balancetermIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{balanceController.create}" value="#{text.Save}" update="display,:BalanceListForm:datalist,:growl" oncomplete="handleSubmit(args,'BalanceCreateDialog');"/>
+                    <p:commandButton value="#{text.Cancel}" onclick="BalanceCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

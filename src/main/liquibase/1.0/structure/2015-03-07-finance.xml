@@ -31,13 +31,7 @@
             <column name="dateto" type="DATE" />
         </createTable>
     </changeSet>
-        
-    <changeSet id="004" author="mbzowski">
-        <addNotNullConstraint tableName="balance" 
-                              columnName="id" 
-                              columnDataType="BIGINT" />
-    </changeSet>
-    
+           
     <changeSet id="005" author="mbzowski">
         <addNotNullConstraint tableName="balance" 
                               columnName="incomingdate"
@@ -76,7 +70,7 @@
                                  referencedColumnNames="id" />
     </changeSet>
     
-       <changeSet id="011" author="mbzowski">
+    <changeSet id="011" author="mbzowski">
         <addPrimaryKey tableName="balance" columnNames="id" />
     </changeSet>   
     
@@ -102,20 +96,14 @@
         <addAutoIncrement tableName="balanceterm" columnName="id" columnDataType="BIGINT" />
     </changeSet>
     
-<!--    <changeSet id="017" author="mbzowski">
+    <!--    <changeSet id="017" author="mbzowski">
         <addForeignKeyConstraint baseTableName="balance" 
                                  baseColumnNames="balanceevent_id" 
                                  constraintName="fk_balance_balance_event" 
                                  referencedTableName="balance_event"
                                  referencedColumnNames="id" />
     </changeSet>-->
-    
-    <changeSet id="018" author="mbzowski" >
-        <addNotNullConstraint tableName="balanceterm" 
-                              columnName="id"
-                              columnDataType="BIGINT"        />
-    </changeSet>
-    
+       
     <changeSet id="019" author="mbzowski">
         <addForeignKeyConstraint baseTableName="balance" 
                                  baseColumnNames="balanceterm_id" 
@@ -124,20 +112,12 @@
                                  referencedColumnNames="id" />
     </changeSet>
     
-    <changeSet id="020" author="mbzowski" >
-        <addNotNullConstraint tableName="balanceevent" 
-                              columnName="id" 
-                              columnDataType="BIGINT"/>
-    </changeSet>
-
     <changeSet id="021" author="mbzowski" >
         <addNotNullConstraint tableName="balanceevent" 
                               columnName="eventname"
                               columnDataType="BIGINT"        />
     </changeSet>
-        
-
-    
+     
     <changeSet id="022" author="mbzowski" >
         <addNotNullConstraint tableName="balanceterm" 
                               columnName="termname"

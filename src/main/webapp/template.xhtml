@@ -37,6 +37,11 @@
                         <p:submenu label="#{text.menu_organize}">
                             <p:menuitem value="#{text.menu_events}" outcome="/pages/event/List.xhtml" />
                         </p:submenu>
+                        <p:submenu label="#{text.menu_finance}">
+                            <p:menuitem value="#{text.balance}" outcome="/pages/balance/List.xhtml" />
+                            <p:menuitem value="#{text.balance_events}" outcome="/pages/balanceevent/List.xhtml" />
+                            <p:menuitem value="#{text.balance_terms}" outcome="/pages/balanceterm/List.xhtml" />
+                        </p:submenu>
                         
                     </p:menubar>
                 </h:form>
