@@ -18,6 +18,12 @@
                                  referencedColumnNames="id" />
     </changeSet>   
     
+     <changeSet id="003" author="mbzowski">
+        <addColumn tableName="meeting">
+            <column name="dayOf"
+                    type="DATE"/>
+        </addColumn>
+    </changeSet>   
       
    
 </databaseChangeLog>

@@ -25,11 +25,4 @@
         </addColumn>
     </changeSet>
     
-    <changeSet id="004" author="mbzowski">
-        <addForeignKeyConstraint baseTableName="resolution" 
-                                 baseColumnNames="meeting_id" 
-                                 constraintName="fk_meeting_leadership" 
-                                 referencedTableName="meeting"
-                                 referencedColumnNames="id" />
-    </changeSet>  
 </databaseChangeLog>
