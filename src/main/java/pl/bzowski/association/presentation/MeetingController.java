@@ -181,11 +181,11 @@ public class MeetingController implements Serializable {
         this.meetingMembers = meetingMembers;
     }
 
-    public String getContent() {
+    public String getMeetingReportContent() {
         return report.getReport();
     }
 
-    public void setContent(String content) {
+    public void setMeetingReportContent(String content) {
         this.report.setReport(content);
     }
 

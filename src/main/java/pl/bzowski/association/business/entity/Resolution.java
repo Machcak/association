@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -31,6 +32,14 @@ public class Resolution implements Serializable {
     @NotNull
     @Temporal(TemporalType.DATE)
     private Date dayOfResolution;
+    
+    
+    @ManyToOne
+    private Leadership leadership;
+    
+    
+    @ManyToOne
+    private Meeting meeting;
 
     public Long getId() {
         return id;
@@ -63,5 +72,20 @@ public class Resolution implements Serializable {
     public void setDayOfResolution(Date dayOfResolution) {
         this.dayOfResolution = dayOfResolution;
     }
-    
+
+    public Leadership getLeadership() {
+        return leadership;
+    }
+
+    public void setLeadership(Leadership leadership) {
+        this.leadership = leadership;
+    }
+
+    public Meeting getMeeting() {
+        return meeting;
+    }
+
+    public void setMeeting(Meeting meeting) {
+        this.meeting = meeting;
+    }
 }

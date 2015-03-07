@@ -42,6 +42,9 @@ public class Leadership implements Serializable, MemberAdder.HaveingId {
    
     @OneToMany(mappedBy = "leadership")
     private List<Meeting> meetings;
+
+    @OneToMany(mappedBy = "leadership")
+    private List<Resolution> resolutions;
     
     public Leadership(){
         
@@ -117,26 +120,20 @@ public class Leadership implements Serializable, MemberAdder.HaveingId {
         }
         return true;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    public List<Meeting> getMeetings() {
+        return meetings;
+    }
+
+    public void setMeetings(List<Meeting> meetings) {
+        this.meetings = meetings;
+    }
+
+    public List<Resolution> getResolutions() {
+        return resolutions;
+    }
+
+    public void setResolutions(List<Resolution> resolutions) {
+        this.resolutions = resolutions;
+    }   
 }

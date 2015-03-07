@@ -28,6 +28,8 @@ public class ResolutionController implements Serializable {
     @EJB private pl.bzowski.association.business.boundary.ResolutionFacade ejbFacade;
     private List<Resolution> items = null;
     private Resolution selected;
+    
+    
 
     public ResolutionController() {
     }
@@ -162,5 +164,23 @@ public class ResolutionController implements Serializable {
         }
 
     }
+    
 
+    
+    
+    public void resoluionContentSaveListener(){
+        getFacade().edit(selected);
+    }
+    
+    public String getResolutionContent(){
+        if (selected != null) {
+            return selected.getContent();
+        }
+        return "";
+    }
+    
+    public void setResolutionContent(String content) {
+        this.selected.setContent(content);
+        JsfUtil.addSuccessMessage("Zapisano:" + this.selected.getNumber());
+    }
 }
