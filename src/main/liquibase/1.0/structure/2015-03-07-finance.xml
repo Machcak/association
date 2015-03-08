@@ -154,4 +154,24 @@
                               columnDataType="VARCHAR(50)"        />
     </changeSet>
     
+    <changeSet id="028" author="mbzowski">
+        <addColumn tableName="balance" >
+            <column name="incometo_id" type="BIGINT" />
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="029" author="mbzowski">
+        <createTable tableName="incometo" >
+            <column name="id" type="BIGINT" />
+            <column name="tile" type="VARCHAR(50)" />
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="030" author="mbzowski">
+        <addPrimaryKey tableName="incometo" columnNames="id" />
+    </changeSet>   
+    
+    <changeSet id="031" author="mbzowski">
+        <addAutoIncrement tableName="incometo" columnName="id" columnDataType="BIGINT" />
+    </changeSet>
 </databaseChangeLog>
