@@ -12,8 +12,6 @@
             <h:form id="BalancetermCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{balancetermController.selected != null}">
-                        <p:outputLabel value="#{text.CreateBalancetermLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{balancetermController.selected.id}" title="#{text.CreateBalancetermTitle_id}" required="true" requiredMessage="#{text.CreateBalancetermRequiredMessage_id}"/>
                         <p:outputLabel value="#{text.CreateBalancetermLabel_termname}" for="termname" />
                         <p:inputText id="termname" value="#{balancetermController.selected.termname}" title="#{text.CreateBalancetermTitle_termname}" required="true" requiredMessage="#{text.CreateBalancetermRequiredMessage_termname}"/>
                         <p:outputLabel value="#{text.CreateBalancetermLabel_datefrom}" for="datefrom" />

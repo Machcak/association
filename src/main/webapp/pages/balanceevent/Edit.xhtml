@@ -12,8 +12,6 @@
             <h:form id="BalanceeventEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{balanceeventController.selected != null}">
-                        <p:outputLabel value="#{text.EditBalanceeventLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{balanceeventController.selected.id}" title="#{text.EditBalanceeventTitle_id}" required="true" requiredMessage="#{text.EditBalanceeventRequiredMessage_id}"/>
                         <p:outputLabel value="#{text.EditBalanceeventLabel_eventname}" for="eventname" />
                         <p:inputText id="eventname" value="#{balanceeventController.selected.eventname}" title="#{text.EditBalanceeventTitle_eventname}" required="true" requiredMessage="#{text.EditBalanceeventRequiredMessage_eventname}"/>
                     </p:panelGrid>
