@@ -182,4 +182,13 @@
                                  referencedTableName="balanceevent" 
                                  referencedColumnNames="id" />
     </changeSet>
+    
+        
+    <changeSet id="033" author="mbzowski">
+        <addForeignKeyConstraint baseTableName="balance" 
+                                 baseColumnNames="incometo_id" 
+                                 constraintName="fk_balance_incometo" 
+                                 referencedTableName="incometo" 
+                                 referencedColumnNames="id" />
+    </changeSet>
 </databaseChangeLog>
