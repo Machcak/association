@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -59,6 +60,9 @@ public class AssociationMember implements Serializable, MemberAdder.HaveingId {
 
     @ManyToMany(mappedBy = "associationMembers")
     private List<Meeting> meetings;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "associationMember")
+    private List<Balance> balanceList;
     
     @Override
     public Long getId() {
@@ -116,6 +120,14 @@ public class AssociationMember implements Serializable, MemberAdder.HaveingId {
     public void setMeetings(List<Meeting> meetings) {
         this.meetings = meetings;
     }   
+
+    public List<Balance> getBalanceList() {
+        return balanceList;
+    }
+
+    public void setBalanceList(List<Balance> balanceList) {
+        this.balanceList = balanceList;
+    }
     
     @Override
     public int hashCode() {

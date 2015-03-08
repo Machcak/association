@@ -191,4 +191,12 @@
                                  referencedTableName="incometo" 
                                  referencedColumnNames="id" />
     </changeSet>
+    
+    <changeSet id="034" author="mbzowski">
+       <dropNotNullConstraint tableName="balance" columnName="accountbalance" columnDataType="NUMBER(19,2)" />
+    </changeSet>
+    
+    <changeSet id="035" author="mbzowski">
+        <dropColumn tableName="balance" columnName="accountbalance" />
+    </changeSet>
 </databaseChangeLog>
