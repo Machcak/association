@@ -1,6 +1,8 @@
 package pl.bzowski.association.business.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -19,9 +22,10 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "balanceevent")
 @NamedQueries({
-    @NamedQuery(name = "Balanceevent.findAll", query = "SELECT b FROM Balanceevent b"),
-    @NamedQuery(name = "Balanceevent.findById", query = "SELECT b FROM Balanceevent b WHERE b.id = :id"),
-    @NamedQuery(name = "Balanceevent.findByEventname", query = "SELECT b FROM Balanceevent b WHERE b.eventname = :eventname")})
+    @NamedQuery(name = "Balanceevent.findAll", query = "SELECT b FROM Balanceevent b")
+//    @NamedQuery(name = "Balanceevent.findById", query = "SELECT b FROM Balanceevent b WHERE b.id = :id"),
+//    @NamedQuery(name = "Balanceevent.findByEventname", query = "SELECT b FROM Balanceevent b WHERE b.eventname = :eventname")
+})
 public class Balanceevent implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,6 +38,8 @@ public class Balanceevent implements Serializable {
     @NotNull
     @Column(name = "eventname")
     private String eventname;
+ 
+ 
 
     public Balanceevent() {
     }

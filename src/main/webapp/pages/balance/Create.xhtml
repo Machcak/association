@@ -12,8 +12,15 @@
             <h:form id="BalanceCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{balanceController.selected != null}">
+                        <p:outputLabel value="#{text.CreateBalanceLanel_incomingto}" for="incomingto" />
+                        <p:selectOneMenu id="incomingto" value="#{balanceController.selected.incometo}">
+                            <f:selectItems value="#{incometoController.itemsAvailableSelectOne}"
+                                           var="incometo"
+                                           itemValue="#{incometo}"
+                                           itemLabel="#{incometo.tile}" />
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{text.CreateBalanceLabel_incomingdate}" for="incomingdate" />
-                        <p:calendar id="incomingdate" pattern="dd-MM-yyyy" value="#{balanceController.selected.incomingdate}" title="#{text.EditBalanceTitle_incomingdate}" required="true" requiredMessage="#{text.EditBalanceRequiredMessage_incomingdate}" showOn="button"/>
+                        <p:calendar id="incomingdate" pattern="dd-MM-yyyy" value="#{balanceController.selected.incomingdate}" title="#{text.EditBalanceTitle_incomingdate}" required="true" requiredMessage="#{text.EditBalanceRequiredMessage_incomingdate}" showOn="button" mask="true" />
                         <p:outputLabel value="#{text.CreateBalanceLabel_balanceeventId}" for="balanceevent" />
                         <p:selectOneMenu id="balanceevent" value="#{balanceController.selected.balanceevent}" >
                             <f:selectItems value="#{balanceeventController.itemsAvailableSelectOne}"

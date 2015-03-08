@@ -174,4 +174,12 @@
     <changeSet id="031" author="mbzowski">
         <addAutoIncrement tableName="incometo" columnName="id" columnDataType="BIGINT" />
     </changeSet>
+    
+    <changeSet id="032" author="mbzowski">
+        <addForeignKeyConstraint baseTableName="balance" 
+                                 baseColumnNames="balanceevent_id" 
+                                 constraintName="fk_balance_balanceevent" 
+                                 referencedTableName="balanceevent" 
+                                 referencedColumnNames="id" />
+    </changeSet>
 </databaseChangeLog>

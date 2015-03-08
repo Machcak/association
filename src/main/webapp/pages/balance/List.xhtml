@@ -29,6 +29,12 @@
 
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{text.ListBalanceTitle_incometo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.incometo.tile}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{text.ListBalanceTitle_incomingdate}"/>
                             </f:facet>
                             <h:outputText value="#{item.incomingdate}">
@@ -39,7 +45,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{text.ListBalanceTitle_balanceeventId}"/>
                             </f:facet>
-                            <h:outputText value="#{item.balanceevent}"/>
+                            <h:outputText value="#{item.balanceevent.eventname}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

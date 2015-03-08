@@ -25,12 +25,13 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "balance")
 @NamedQueries({
-    @NamedQuery(name = "Balance.findAll", query = "SELECT b FROM Balance b"),
-    @NamedQuery(name = "Balance.findById", query = "SELECT b FROM Balance b WHERE b.id = :id"),
-    @NamedQuery(name = "Balance.findByIncomingdate", query = "SELECT b FROM Balance b WHERE b.incomingdate = :incomingdate"),
-    @NamedQuery(name = "Balance.findByBalanceeventId", query = "SELECT b FROM Balance b WHERE b.balanceevent = :balanceevent"),
-    @NamedQuery(name = "Balance.findByAmount", query = "SELECT b FROM Balance b WHERE b.amount = :amount"),
-    @NamedQuery(name = "Balance.findByAccountbalance", query = "SELECT b FROM Balance b WHERE b.accountbalance = :accountbalance")})
+    @NamedQuery(name = "Balance.findAll", query = "SELECT b FROM Balance b")
+//    @NamedQuery(name = "Balance.findById", query = "SELECT b FROM Balance b WHERE b.id = :id"),
+//    @NamedQuery(name = "Balance.findByIncomingdate", query = "SELECT b FROM Balance b WHERE b.incomingdate = :incomingdate"),
+//    @NamedQuery(name = "Balance.findByBalanceeventId", query = "SELECT b FROM Balance b WHERE b.balanceevent = :balanceevent"),
+//    @NamedQuery(name = "Balance.findByAmount", query = "SELECT b FROM Balance b WHERE b.amount = :amount"),
+//    @NamedQuery(name = "Balance.findByAccountbalance", query = "SELECT b FROM Balance b WHERE b.accountbalance = :accountbalance")
+})
 public class Balance implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,6 +47,7 @@ public class Balance implements Serializable {
 
     @Basic(optional = false)
     @NotNull
+    @ManyToOne
     @Column(name = "balanceevent_id")
     private Balanceevent balanceevent;
     
@@ -67,7 +69,8 @@ public class Balance implements Serializable {
     @ManyToOne(optional = false)
     private Balanceterm balancetermId;
     
-    
+    @ManyToOne
+    private Incometo incometo;
 
     public Balance() {
     }
@@ -140,6 +143,14 @@ public class Balance implements Serializable {
         this.balancetermId = balancetermId;
     }
 
+    public Incometo getIncometo() {
+        return incometo;
+    }
+
+    public void setIncometo(Incometo incometo) {
+        this.incometo = incometo;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
