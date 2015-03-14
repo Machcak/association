@@ -45,6 +45,8 @@
                                            itemValue="#{associationMemberItem}"
                                            itemLabel="#{associationMemberItem.lastName} #{associationMemberItem.firstName}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{text.Description}" for="balancedescription" />
+                        <p:inputTextarea id="balancedescription" rows="6" cols="33" value="#{balanceController.selected.description}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{balanceController.create}" value="#{text.Save}" update="display,:BalanceListForm:datalist,:growl,:#{p:component('accountbalance')}" oncomplete="handleSubmit(args,'BalanceCreateDialog');"/>
                     <p:commandButton value="#{text.Cancel}" onclick="BalanceCreateDialog.hide()"/>
