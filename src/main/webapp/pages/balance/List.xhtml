@@ -65,6 +65,12 @@
                             </f:facet>
                             <h:outputText value="#{item.associationMember.lastName} #{item.associationMember.firstName}"/>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{text.ListBalanceTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </p:column>
                         <f:facet name="footer">
                             <h:outputLabel id="accountbalance" value="#{balanceController.accountBalance}" />
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.Create}" actionListener="#{balanceController.prepareCreate}" update=":BalanceCreateForm" oncomplete="PF('BalanceCreateDialog').show()"/>

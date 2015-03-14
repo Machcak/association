@@ -35,7 +35,7 @@ public class Balanceevent implements Serializable {
     private Long id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 1024)
     @Column(name = "eventname")
     private String eventname;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "balanceevent")

@@ -29,11 +29,15 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "Balance.findById", query = "SELECT b FROM Balance b WHERE b.id = :id"),
     @NamedQuery(name = "Balance.findByIncomingdate", query = "SELECT b FROM Balance b WHERE b.incomingdate = :incomingdate"),
     @NamedQuery(name = "Balance.findByAmount", query = "SELECT b FROM Balance b WHERE b.amount = :amount"),
-    @NamedQuery(name = Balance.ACCOUNT_BALANCE, query = "SELECT SUM(b.amount) FROM Balance b")
+    @NamedQuery(name = Balance.ACCOUNT_BALANCE, query = "SELECT SUM(b.amount) FROM Balance b"),
+    @NamedQuery(name = Balance.FIND_ALL_ORDER_BY_INCOMINGDATE_DESC,
+            query = "SELECT b FROM Balance b ORDER BY b.incomingdate DESC")
 })
 public class Balance implements Serializable {
     
     public static final String ACCOUNT_BALANCE = "Balance.ACCOUNT_BALANCE";
+    
+    public static final String FIND_ALL_ORDER_BY_INCOMINGDATE_DESC = "Balance.FIND_ALL_ORDER_BY_INCOMINGDATE_DESC";
     
     private static final long serialVersionUID = 1L;
     
@@ -58,6 +62,9 @@ public class Balance implements Serializable {
     @JoinColumn(name = "incometo_id", referencedColumnName = "id")
     @ManyToOne
     private Incometo incometo;
+    
+    @Column(name = "description")
+    private String description;
   
     @JoinColumn(name = "balanceevent_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
@@ -163,6 +170,14 @@ public class Balance implements Serializable {
     @Override
     public String toString() {
         return "pl.bzowski.association.business.entity.Balance[ id=" + id + " ]";
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }

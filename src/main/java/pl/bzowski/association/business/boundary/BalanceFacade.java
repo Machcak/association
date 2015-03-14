@@ -1,6 +1,7 @@
 package pl.bzowski.association.business.boundary;
 
 import java.math.BigDecimal;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,10 @@ public class BalanceFacade extends AbstractFacade<Balance> {
     public BigDecimal getAccountBalance() {
         return em.createNamedQuery(Balance.ACCOUNT_BALANCE, BigDecimal.class)
                 .getSingleResult();
+    }
+
+    public List<Balance> findAllOrderByIncomingdateDesc() {
+        return em.createNamedQuery(Balance.FIND_ALL_ORDER_BY_INCOMINGDATE_DESC, Balance.class).getResultList();
     }
 
 }

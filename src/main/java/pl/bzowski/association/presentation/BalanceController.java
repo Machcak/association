@@ -19,9 +19,10 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.view.ViewScoped;
 
 @Named("balanceController")
-@SessionScoped
+@ViewScoped
 public class BalanceController implements Serializable {
 
     @EJB
@@ -77,7 +78,7 @@ public class BalanceController implements Serializable {
 
     public List<Balance> getItems() {
         if (items == null) {
-            items = getFacade().findAll();
+            items = getFacade().findAllOrderByIncomingdateDesc();
         }
         return items;
     }
