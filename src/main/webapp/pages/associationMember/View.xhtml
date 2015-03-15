@@ -16,12 +16,6 @@
                         <h:outputText value="#{associationMemberController.selected.firstName}" title="#{text.ViewAssociationMemberTitle_firstName}"/>
                         <h:outputText value="#{text.last_name}"/>
                         <h:outputText value="#{associationMemberController.selected.lastName}" title="#{text.ViewAssociationMemberTitle_lastName}"/>
-                        <h:outputText value="#{text.since}"/>
-                        <h:outputText value="#{associationMemberController.selected.since}" title="#{text.ViewAssociationMemberTitle_since}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                        <h:outputText value="#{text.active}"/>
-                        <p:selectBooleanCheckbox value="#{associationMemberController.selected.active}" disabled="true"/>
                     </p:panelGrid>
                     <p:commandButton value="#{text.Close}" onclick="AssociationMemberViewDialog.hide()"/>
                 </h:panelGroup>

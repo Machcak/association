@@ -12,5 +12,9 @@
             <base-name>/langs/i18n</base-name>
             <var>i18n</var>
         </resource-bundle>
+        <resource-bundle>
+            <base-name>/text/i18n</base-name>
+            <var>i18n</var>
+        </resource-bundle>
     </application>
 </faces-config>

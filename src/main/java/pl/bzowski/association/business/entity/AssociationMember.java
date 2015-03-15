@@ -28,12 +28,18 @@ import pl.bzowski.association.business.boundary.MemberAdder;
  */
 @NamedQueries({
     @NamedQuery(name = AssociationMember.findAllMembersOfLeadership,
-            query = "SELECT lm.member FROM LeadershipMember lm WHERE lm.leadership.id = :leadershipId ")
+            query = "SELECT lm.member FROM LeadershipMember lm WHERE lm.leadership.id = :leadershipId "),
+    @NamedQuery(name = AssociationMember.FIND_ALL_TODAY_ACTIVE_MEMBERS,
+            query = "SELECT mh.member FROM Membershiphistory mh "
+                    + " WHERE :curentDate  between mh.datefrom and CASE WHEN (mh.dateto is null) THEN '9999-12-31' ELSE mh.dateto END "
+                    )
 })
 @Entity
 public class AssociationMember implements Serializable, MemberAdder.HaveingId {
-    
+
     public static final String findAllMembersOfLeadership = "AssociationMember.findAllMembersOfLeadership";
+    
+    public static final String FIND_ALL_TODAY_ACTIVE_MEMBERS = "AssociationMember.FIND_ALL_TODAY_ACTIVE_MEMBERS";
 
     @OneToOne(mappedBy = "member")
     private LeadershipMember leadershipMember;
@@ -51,19 +57,15 @@ public class AssociationMember implements Serializable, MemberAdder.HaveingId {
     @Size(min = 3, max = 40)
     private String lastName;
 
-    @NotNull
-    @Temporal(TemporalType.DATE)
-    private Date since;
-
-    @NotNull
-    private Boolean active;
-
     @ManyToMany(mappedBy = "associationMembers")
     private List<Meeting> meetings;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "associationMember")
     private List<Balance> balanceList;
-    
+
+    @OneToMany(mappedBy = "member")
+    private List<Membershiphistory> membershiphistorys;
+
     @Override
     public Long getId() {
         return id;
@@ -89,22 +91,6 @@ public class AssociationMember implements Serializable, MemberAdder.HaveingId {
         this.lastName = lastName;
     }
 
-    public Date getSince() {
-        return since;
-    }
-
-    public void setSince(Date since) {
-        this.since = since;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
     public LeadershipMember getLeadershipMember() {
         return leadershipMember;
     }
@@ -119,7 +105,7 @@ public class AssociationMember implements Serializable, MemberAdder.HaveingId {
 
     public void setMeetings(List<Meeting> meetings) {
         this.meetings = meetings;
-    }   
+    }
 
     public List<Balance> getBalanceList() {
         return balanceList;
@@ -128,7 +114,7 @@ public class AssociationMember implements Serializable, MemberAdder.HaveingId {
     public void setBalanceList(List<Balance> balanceList) {
         this.balanceList = balanceList;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -149,6 +135,19 @@ public class AssociationMember implements Serializable, MemberAdder.HaveingId {
             return false;
         }
         return true;
+    }
+
+    public List<Membershiphistory> getMembershiphistorys() {
+        return membershiphistorys;
+    }
+
+    public void setMembershiphistorys(List<Membershiphistory> membershiphistorys) {
+        this.membershiphistorys = membershiphistorys;
+    }
+
+    @Override
+    public String toString() {
+        return lastName + " " + firstName;
     }
 
 }

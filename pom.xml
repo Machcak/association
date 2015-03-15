@@ -65,7 +65,7 @@
                 <configuration>          
                     <changeLogFile>/src/main/liquibase/master.xml</changeLogFile>
                     <driver>com.mysql.jdbc.Driver</driver>
-                    <url>jdbc:mysql://localhost:3306/association?zeroDateTimeBehavior=convertToNull&amp;useUnicode=yes&amp;characterEncoding=UTF-8</url>
+                    <url>jdbc:mysql://localhost:3306/association?zeroDateTimeBehavior=convertToNull</url>
                     <username>root</username>
                     <password>root</password>
                     

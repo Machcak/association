@@ -31,13 +31,17 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "Balance.findByAmount", query = "SELECT b FROM Balance b WHERE b.amount = :amount"),
     @NamedQuery(name = Balance.ACCOUNT_BALANCE, query = "SELECT SUM(b.amount) FROM Balance b"),
     @NamedQuery(name = Balance.FIND_ALL_ORDER_BY_INCOMINGDATE_DESC,
-            query = "SELECT b FROM Balance b ORDER BY b.incomingdate DESC")
+            query = "SELECT b FROM Balance b ORDER BY b.incomingdate DESC"),
+    @NamedQuery(name = Balance.FIND_LAST_INCOME_FROM_MEMBER,
+            query = "SELECT b FROM Balance b WHERE b.associationMember = :member ORDER BY b.balanceterm.dateto desc")
 })
 public class Balance implements Serializable {
     
     public static final String ACCOUNT_BALANCE = "Balance.ACCOUNT_BALANCE";
     
     public static final String FIND_ALL_ORDER_BY_INCOMINGDATE_DESC = "Balance.FIND_ALL_ORDER_BY_INCOMINGDATE_DESC";
+    
+    public static final String FIND_LAST_INCOME_FROM_MEMBER = "Balance.FIND_LAST_INCOME_FROM_MEMBER";
     
     private static final long serialVersionUID = 1L;
     
