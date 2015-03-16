@@ -83,4 +83,14 @@ public class BalanceFacade extends AbstractFacade<Balance> {
         return membersPaiedInThisTerms;
     }
 
+    public BigDecimal getAccount() {
+        return em.createNamedQuery(Balance.ACCOUNT, BigDecimal.class)
+                .getSingleResult();
+    }
+    
+    public BigDecimal getKasa() {
+        return em.createNamedQuery(Balance.KASA, BigDecimal.class)
+                .getSingleResult();
+    }
+
 }

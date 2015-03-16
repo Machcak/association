@@ -126,6 +126,16 @@ public class BalanceController implements Serializable {
     public BigDecimal getAccountBalance(){
         return getFacade().getAccountBalance();
     }
+    
+    public BigDecimal getAccount(){
+        return getFacade().getAccount();
+    }
+    
+    public BigDecimal getKasa(){
+        return getFacade().getKasa();
+    }
+    
+    
 
     @FacesConverter(forClass = Balance.class)
     public static class BalanceControllerConverter implements Converter {

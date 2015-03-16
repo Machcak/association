@@ -26,7 +26,19 @@
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-
+                        <f:facet name="header">
+                            <h:panelGroup id="display">
+                                <p:panelGrid columns="2" >
+                                    <h:outputLabel id="accountlabel" for="account" value="#{text.suma_konto}" />
+                                    <h:outputLabel id="account" value="#{balanceController.account}" />
+                                    <h:outputLabel id="kasalabel" for="kasa" value="#{text.suma_kasa}" />
+                                    <h:outputLabel id="kasa" value="#{balanceController.kasa}" />
+                                    <h:outputLabel id="accountbalancelabel" for="accountbalance" value="#{text.suma_konto_i_kasa}" />
+                                    <h:outputLabel id="accountbalance" value="#{balanceController.accountBalance}" />
+                                    
+                                </p:panelGrid>
+                            </h:panelGroup>
+                        </f:facet>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{text.ListBalanceTitle_incomingdate}"/>
@@ -71,8 +83,7 @@
                             </f:facet>
                             <h:outputText value="#{item.description}"/>
                         </p:column>
-                        <f:facet name="footer">
-                            <h:outputLabel id="accountbalance" value="#{balanceController.accountBalance}" />
+                        <f:facet name="footer">                            
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.Create}" actionListener="#{balanceController.prepareCreate}" update=":BalanceCreateForm" oncomplete="PF('BalanceCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{text.View}" update=":BalanceViewForm" oncomplete="PF('BalanceViewDialog').show()" disabled="#{empty balanceController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{text.Edit}" update=":BalanceEditForm" oncomplete="PF('BalanceEditDialog').show()" disabled="#{empty balanceController.selected}"/>
