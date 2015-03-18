@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Set;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import pl.bzowski.association.business.entity.AssociationMember;
 import pl.bzowski.association.business.entity.Balance;
@@ -52,12 +53,19 @@ public class BalanceFacade extends AbstractFacade<Balance> {
                 .getResultList();
         Map<Balanceterm, Collection<AssociationMember>> membersInTerm = new HashMap<>();
         for(AssociationMember am : activeMembers){
-            Balance lastMemberIncome = em.createNamedQuery(Balance.FIND_LAST_INCOME_FROM_MEMBER, Balance.class)                    
-                    .setParameter("member", am)
-                    .setFirstResult(0)
-                    .setMaxResults(1)
-                    .getSingleResult();
-            Balanceterm balanceterm = lastMemberIncome.getBalanceterm();
+            Balance lastMemberIncome = null;
+            Balanceterm balanceterm = null;
+            try{
+                lastMemberIncome = em.createNamedQuery(Balance.FIND_LAST_INCOME_FROM_MEMBER, Balance.class)                    
+                        .setParameter("member", am)
+                        .setFirstResult(0)
+                        .setMaxResults(1)
+                        .getSingleResult();
+                balanceterm = lastMemberIncome.getBalanceterm();
+            }catch(NoResultException ex){
+                balanceterm = new Balanceterm(-1L, "Nowy członek", new Date(), new Date());
+            }    
+            
             if(!membersInTerm.containsKey(balanceterm)){
                 Collection<AssociationMember> collection = new ArrayList<>();
                 membersInTerm.put(balanceterm, collection);
