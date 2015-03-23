@@ -13,9 +13,9 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{membershiphistoryController.selected != null}">
                         <p:outputLabel value="#{i18n.CreateMembershiphistoryLabel_datefrom}" for="datefrom" />
-                        <p:calendar id="datefrom" pattern="MM/dd/yyyy" value="#{membershiphistoryController.selected.datefrom}" title="#{i18n.EditMembershiphistoryTitle_datefrom}" required="true" requiredMessage="#{i18n.EditMembershiphistoryRequiredMessage_datefrom}" showOn="button"/>
+                        <p:calendar id="datefrom" pattern="dd-MM-yyyy" mask="true" value="#{membershiphistoryController.selected.datefrom}" title="#{i18n.EditMembershiphistoryTitle_datefrom}" required="true" requiredMessage="#{i18n.EditMembershiphistoryRequiredMessage_datefrom}" showOn="button"/>
                         <p:outputLabel value="#{i18n.CreateMembershiphistoryLabel_dateto}" for="dateto" />
-                        <p:calendar id="dateto" pattern="MM/dd/yyyy" value="#{membershiphistoryController.selected.dateto}" title="#{i18n.EditMembershiphistoryTitle_dateto}"  showOn="button"/>
+                        <p:calendar id="dateto" pattern="dd-MM-yyyy" mask="true" value="#{membershiphistoryController.selected.dateto}" title="#{i18n.EditMembershiphistoryTitle_dateto}"  showOn="button"/>
                         <p:outputLabel value="#{i18n.CreateMembershiphistoryLabel_member}" for="member" />
                         <p:selectOneMenu id="member" value="#{membershiphistoryController.selected.member}" >
                             <f:selectItems value="#{associationMemberController.itemsAvailableSelectOne}"

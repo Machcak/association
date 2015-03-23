@@ -18,11 +18,11 @@
                         <h:outputText value="#{leadershipController.selected.number}" title="#{text.ViewLeadershipTitle_number}"/>
                         <h:outputText value="#{text.since}"/>
                         <h:outputText value="#{leadershipController.selected.since}" title="#{text.ViewLeadershipTitle_since}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
                         </h:outputText>
                         <h:outputText value="#{text.continues_to}"/>
                         <h:outputText value="#{leadershipController.selected.continuesTo}" title="#{text.ViewLeadershipTitle_continuesTo}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
                         </h:outputText>
                     </p:panelGrid>
                     <p:commandButton value="#{text.Close}" onclick="LeadershipViewDialog.hide()"/>
