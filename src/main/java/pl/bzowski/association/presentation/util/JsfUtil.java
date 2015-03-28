@@ -1,13 +1,20 @@
 package pl.bzowski.association.presentation.util;
 
 import java.util.List;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.model.SelectItem;
+import pl.bzowski.association.business.boundary.AbstractFacade;
 
 public class JsfUtil {
+    
+    private static final Logger LOG = Logger.getLogger(JsfUtil.class.getName());
 
     public static SelectItem[] getSelectItems(List<?> entities, boolean selectOne) {
         int size = selectOne ? entities.size() + 1 : entities.size();
@@ -66,5 +73,33 @@ public class JsfUtil {
         CREATE,
         DELETE,
         UPDATE
+    }
+    
+    public static void persist(PersistAction persistAction, String successMessage, AbstractFacade facade, Object objectToPersist) {
+    if (objectToPersist != null) {
+//TODO:            setEmbeddableKeys(); 
+            try {
+                if (persistAction != PersistAction.DELETE) {
+                    facade.edit(objectToPersist);
+                } else {
+                    facade.remove(objectToPersist);
+                }
+                JsfUtil.addSuccessMessage(successMessage);
+            } catch (EJBException ex) {
+                String msg = "";
+                Throwable cause = ex.getCause();
+                if (cause != null) {
+                    msg = cause.getLocalizedMessage();
+                }
+                if (msg.length() > 0) {
+                    JsfUtil.addErrorMessage(msg);
+                } else {
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/langs/i18n").getString("PersistenceErrorOccured"));
+                }
+            } catch (Exception ex) {
+                LOG.log(Level.SEVERE, null, ex);
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/langs/i18n").getString("PersistenceErrorOccured"));
+            }
+        }
     }
 }

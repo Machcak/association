@@ -22,6 +22,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.faces.event.ValueChangeEvent;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import org.primefaces.model.DualListModel;
 import pl.bzowski.association.business.boundary.AssociationMemberFacade;
@@ -36,17 +37,20 @@ import pl.bzowski.association.business.entity.MeetingMember;
 import pl.bzowski.association.business.entity.Report;
 
 @Named("meetingController")
-@SessionScoped
+@ViewScoped
 public class MeetingController implements Serializable {
 
-    @EJB
-    private pl.bzowski.association.business.boundary.MeetingFacade ejbFacade;
+    @Inject
+    private pl.bzowski.association.business.boundary.MeetingFacade meetingFacade;
 
     @Inject
     private MemberAdder ma;
 
     @Inject
     private ReportFacade reportFacade;
+    
+    @Inject
+    private ReportController reportController;
     
     @Inject 
     private AssociationMemberFacade associationMemberFacade;
@@ -84,7 +88,7 @@ public class MeetingController implements Serializable {
     }
 
     private MeetingFacade getFacade() {
-        return ejbFacade;
+        return meetingFacade;
     }
 
     public Meeting prepareCreate() {
@@ -193,11 +197,12 @@ public class MeetingController implements Serializable {
         report.setMeeting(selected);
         report.setDateOf(selected.getDayOf());
         report.setTitle(selected.getNumber());
-        if(report.getId()==null){
-            reportFacade.create(report);
-        }else{
-            reportFacade.edit(report);
-        }
+        JsfUtil.persist(PersistAction.CREATE, "Udało się zapisać sprawozdanie", reportFacade, report);
+//        if(report.getId()==null){
+//            reportFacade.create(report);
+//        }else{
+//            reportFacade.edit(report);
+//        }
     }
     
     public void reportCreatorChange(javax.faces.event.ValueChangeEvent e){
