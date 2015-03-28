@@ -21,7 +21,7 @@
                         <p:outputLabel value="#{text.EditMeetingLabel_description}" for="description" />
                         <p:inputText id="description" value="#{meetingController.selected.description}" title="#{text.EditMeetingTitle_description}" />
                         <p:outputLabel value="#{text.EditResolutionLabel_dayOfResolution}" for="dayOf" />
-                        <p:calendar id="dayOf" pattern="dd-MM-yyyy" value="#{meetingController.selected.dayOf}" title="#{text.dayOf}"  showOn="button"/>
+                        <p:calendar id="dayOf" pattern="dd.MM.yyyy"  mask="true" value="#{meetingController.selected.dayOf}" title="#{text.dayOf}"  showOn="button"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{meetingController.update}" value="#{text.Save}" update="display,:MeetingListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MeetingEditDialog');"/>
                     <p:commandButton value="#{text.Cancel}" onclick="MeetingEditDialog.hide()"/>

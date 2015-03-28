@@ -17,7 +17,7 @@
                         <p:outputLabel value="#{text.CreateReportLabel_report}" for="report" />
                         <p:inputText id="report" value="#{reportController.selected.report}" title="#{text.CreateReportTitle_report}" />
                         <p:outputLabel value="#{text.CreateReportLabel_dateOf}" for="dateOf" />
-                        <p:calendar id="dateOf" pattern="MM/dd/yyyy" value="#{reportController.selected.dateOf}" title="#{text.EditReportTitle_dateOf}"  showOn="button"/>
+                        <p:calendar id="dateOf" pattern="dd.MM.yyyy"  mask="true" value="#{reportController.selected.dateOf}" title="#{text.EditReportTitle_dateOf}"  showOn="button"/>
                         <p:outputLabel value="#{text.CreateReportLabel_associationMember}" for="associationMember" />
                         <p:selectOneMenu id="associationMember" value="#{reportController.selected.associationMember}" >
                             <f:selectItems value="#{associationMemberController.itemsAvailableSelectOne}"

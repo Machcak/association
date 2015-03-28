@@ -15,9 +15,9 @@
                         <p:outputLabel value="#{text.CreateBalancetermLabel_termname}" for="termname" />
                         <p:inputText id="termname" value="#{balancetermController.selected.termname}" title="#{text.CreateBalancetermTitle_termname}" required="true" requiredMessage="#{text.CreateBalancetermRequiredMessage_termname}"/>
                         <p:outputLabel value="#{text.CreateBalancetermLabel_datefrom}" for="datefrom" />
-                        <p:calendar id="datefrom" pattern="MM/dd/yyyy" value="#{balancetermController.selected.datefrom}" title="#{text.EditBalancetermTitle_datefrom}" required="true" requiredMessage="#{text.EditBalancetermRequiredMessage_datefrom}" showOn="button"/>
+                        <p:calendar id="datefrom" pattern="dd.MM.yyyy"  mask="true" value="#{balancetermController.selected.datefrom}" title="#{text.EditBalancetermTitle_datefrom}" required="true" requiredMessage="#{text.EditBalancetermRequiredMessage_datefrom}" showOn="button"/>
                         <p:outputLabel value="#{text.CreateBalancetermLabel_dateto}" for="dateto" />
-                        <p:calendar id="dateto" pattern="MM/dd/yyyy" value="#{balancetermController.selected.dateto}" title="#{text.EditBalancetermTitle_dateto}" required="true" requiredMessage="#{text.EditBalancetermRequiredMessage_dateto}" showOn="button"/>
+                        <p:calendar id="dateto" pattern="dd.MM.yyyy"  mask="true" value="#{balancetermController.selected.dateto}" title="#{text.EditBalancetermTitle_dateto}" required="true" requiredMessage="#{text.EditBalancetermRequiredMessage_dateto}" showOn="button"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{balancetermController.create}" value="#{text.Save}" update="display,:BalancetermListForm:datalist,:growl" oncomplete="handleSubmit(args,'BalancetermCreateDialog');"/>
                     <p:commandButton value="#{text.Cancel}" onclick="BalancetermCreateDialog.hide()"/>

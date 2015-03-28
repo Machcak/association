@@ -18,11 +18,11 @@
                         <h:outputText value="#{balancetermController.selected.termname}" title="#{text.ViewBalancetermTitle_termname}"/>
                         <h:outputText value="#{text.ViewBalancetermLabel_datefrom}"/>
                         <h:outputText value="#{balancetermController.selected.datefrom}" title="#{text.ViewBalancetermTitle_datefrom}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd.MM.yyyy" />
                         </h:outputText>
                         <h:outputText value="#{text.ViewBalancetermLabel_dateto}"/>
                         <h:outputText value="#{balancetermController.selected.dateto}" title="#{text.ViewBalancetermTitle_dateto}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <f:convertDateTime pattern="dd.MM.yyyy" />
                         </h:outputText>
                     </p:panelGrid>
                     <p:commandButton value="#{text.Close}" onclick="BalancetermViewDialog.hide()"/>

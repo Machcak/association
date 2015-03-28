@@ -19,9 +19,9 @@
                         <p:outputLabel value="#{text.leadership_term_number}" for="number" />
                         <p:inputText id="number" value="#{leadershipController.selected.number}" title="#{text.CreateLeadershipTitle_number}" />
                         <p:outputLabel value="#{text.since}" for="since" />
-                        <p:calendar id="since" pattern="dd-MM-yyyy" mask="true" value="#{leadershipController.selected.since}" title="#{text.EditLeadershipTitle_since}"  showOn="button"/>
+                        <p:calendar id="since" pattern="dd.MM.yyyy" mask="true" value="#{leadershipController.selected.since}" title="#{text.EditLeadershipTitle_since}"  showOn="button"/>
                         <p:outputLabel value="#{text.continues_to}" for="continuesTo" />
-                        <p:calendar id="continuesTo" pattern="dd-MM-yyyy" mask="true" value="#{leadershipController.selected.continuesTo}" title="#{text.EditLeadershipTitle_continuesTo}"  showOn="button"/>
+                        <p:calendar id="continuesTo" pattern="dd.MM.yyyy" mask="true" value="#{leadershipController.selected.continuesTo}" title="#{text.EditLeadershipTitle_continuesTo}"  showOn="button"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{leadershipController.create}" value="#{text.Save}" update="display,:LeadershipListForm:datalist,:growl" oncomplete="handleSubmit(args,'LeadershipCreateDialog');"/>
                     <p:commandButton value="#{text.Cancel}" onclick="LeadershipCreateDialog.hide()"/>

@@ -63,8 +63,11 @@
 
                 <goals>build</goals>
                 <configuration>          
-                 
-                    
+                    <changeLogFile>/src/main/liquibase/master.xml</changeLogFile>
+                    <driver>com.mysql.jdbc.Driver</driver>
+                    <url>jdbc:mysql://localhost:3306/association?zeroDateTimeBehavior=convertToNull</url>
+                    <username>root</username>
+                    <password>root</password>
                 </configuration>
             </plugin>
         </plugins>

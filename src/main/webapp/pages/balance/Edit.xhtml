@@ -13,7 +13,7 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{balanceController.selected != null}">
                         <p:outputLabel value="#{text.EditBalanceLabel_incomingdate}" for="incomingdate" />
-                        <p:calendar id="incomingdate" pattern="dd-MM-yyyy" mask="true" value="#{balanceController.selected.incomingdate}" title="#{text.EditBalanceTitle_incomingdate}" required="true" requiredMessage="#{text.EditBalanceRequiredMessage_incomingdate}" showOn="button"/>
+                        <p:calendar id="incomingdate" pattern="dd.MM.yyyy" mask="true" value="#{balanceController.selected.incomingdate}" title="#{text.EditBalanceTitle_incomingdate}" required="true" requiredMessage="#{text.EditBalanceRequiredMessage_incomingdate}" showOn="button"/>
                         <p:outputLabel value="#{text.EditBalanceLabel_amount}" for="amount" />
                         <p:inputText id="amount" value="#{balanceController.selected.amount}" title="#{text.EditBalanceTitle_amount}" required="true" requiredMessage="#{text.EditBalanceRequiredMessage_amount}"/>
                         <p:outputLabel value="#{text.EditBalanceLabel_incometo}" for="incometo" />

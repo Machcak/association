@@ -14,11 +14,11 @@
                     <p:panelGrid columns="2" rendered="#{membershiphistoryController.selected != null}">
                         <h:outputText value="#{i18n.ViewMembershiphistoryLabel_datefrom}"/>
                         <h:outputText value="#{membershiphistoryController.selected.datefrom}" title="#{i18n.ViewMembershiphistoryTitle_datefrom}">
-                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                            <f:convertDateTime pattern="dd.MM.yyyy" />
                         </h:outputText>
                         <h:outputText value="#{i18n.ViewMembershiphistoryLabel_dateto}"/>
                         <h:outputText value="#{membershiphistoryController.selected.dateto}" title="#{i18n.ViewMembershiphistoryTitle_dateto}">
-                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                            <f:convertDateTime pattern="dd.MM.yyyy" />
                         </h:outputText>
                         <h:outputText value="#{i18n.ViewMembershiphistoryLabel_member}"/>
                         <h:outputText value="#{membershiphistoryController.selected.member}" title="#{i18n.ViewMembershiphistoryTitle_member}"/>

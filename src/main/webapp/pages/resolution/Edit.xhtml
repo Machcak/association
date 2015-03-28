@@ -17,7 +17,7 @@
                         <p:outputLabel value="#{text.EditResolutionLabel_content}" for="content" />
                         <p:inputText id="content" value="#{resolutionController.selected.content}" title="#{text.EditResolutionTitle_content}" />
                         <p:outputLabel value="#{text.EditResolutionLabel_dayOfResolution}" for="dayOfResolution" />
-                        <p:calendar id="dayOfResolution" pattern="dd-MM-yyyy" value="#{resolutionController.selected.dayOfResolution}" title="#{text.EditResolutionTitle_dayOfResolution}"  showOn="button"/>
+                        <p:calendar id="dayOfResolution" pattern="dd.MM.yyyy"  mask="true" value="#{resolutionController.selected.dayOfResolution}" title="#{text.EditResolutionTitle_dayOfResolution}"  showOn="button"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{resolutionController.update}" value="#{text.Save}" update="display,:ResolutionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ResolutionEditDialog');"/>
                     <p:commandButton value="#{text.Cancel}" onclick="ResolutionEditDialog.hide()"/>

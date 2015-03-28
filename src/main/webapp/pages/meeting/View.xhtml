@@ -8,7 +8,7 @@
 
     <ui:composition>
 
-        <p:dialog id="MeetingViewDlg" widgetVar="MeetingViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.ViewMeetingTitle}">
+        <p:dialog id="MeetingViewDlg" widgetVar="MeetingViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.View}">
             <h:form id="MeetingViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{meetingController.selected != null}">
