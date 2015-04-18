@@ -23,7 +23,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Incometo.findAll", query = "SELECT i FROM Incometo i"),
     @NamedQuery(name = "Incometo.findById", query = "SELECT i FROM Incometo i WHERE i.id = :id"),
-    @NamedQuery(name = "Incometo.findByTile", query = "SELECT i FROM Incometo i WHERE i.tile = :tile")})
+    @NamedQuery(name = "Incometo.findByTitle", query = "SELECT i FROM Incometo i WHERE i.title = :title")})
 public class Incometo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -32,8 +32,8 @@ public class Incometo implements Serializable {
     @Column(name = "id")
     private Long id;
     @Size(max = 50)
-    @Column(name = "tile")
-    private String tile;
+    @Column(name = "title")
+    private String title;
     @OneToMany(mappedBy = "incometo")
     private List<Balance> balanceList;
 
@@ -52,12 +52,12 @@ public class Incometo implements Serializable {
         this.id = id;
     }
 
-    public String getTile() {
-        return tile;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTile(String tile) {
-        this.tile = tile;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public List<Balance> getBalanceList() {

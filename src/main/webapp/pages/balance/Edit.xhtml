@@ -22,7 +22,7 @@
                             <f:selectItems value="#{incometoController.itemsAvailableSelectOne}"
                                            var="incometoItem"
                                            itemValue="#{incometoItem}"
-                                           itemLabel="#{incometoItem.tile}"/>
+                                           itemLabel="#{incometoItem.title}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{text.EditBalanceLabel_balanceevent}" for="balanceevent" />
                         <p:selectOneMenu id="balanceevent" value="#{balanceController.selected.balanceevent}" required="true" requiredMessage="#{text.EditBalanceRequiredMessage_balanceevent}">

@@ -6,7 +6,7 @@
     <changeSet id="001" author="mbzowski">
          <renameColumn columnDataType="varchar(50)"
                        newColumnName="title"
-                        oldColumnName="tile"
+                        oldColumnName="title"
                         tableName="incometo"/>
 
     </changeSet>   

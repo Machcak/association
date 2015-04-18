@@ -7,7 +7,7 @@
         <property name="databaseName" value="association"/>
         <property name="User" value="root"/>
         <property name="Password" value="root"/>
-        <property name="URL" value="jdbc:mysql://localhost:3306/association?zeroDateTimeBehavior=convertToNull&amp;useUnicode=yes;&amp;characterEncoding=utf-8;" />
+        <property name="URL" value="jdbc:mysql://localhost:3306/association?zeroDateTimeBehavior=convertToNull" />
         <property name="connectionProperties" value="" />
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>

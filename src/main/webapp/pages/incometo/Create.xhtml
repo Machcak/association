@@ -14,8 +14,8 @@
                     <p:panelGrid columns="2" rendered="#{incometoController.selected != null}">
                         <p:outputLabel value="#{text.CreateIncometoLabel_id}" for="id" />
                         <p:inputText id="id" value="#{incometoController.selected.id}" title="#{text.CreateIncometoTitle_id}" required="true" requiredMessage="#{text.CreateIncometoRequiredMessage_id}"/>
-                        <p:outputLabel value="#{text.CreateIncometoLabel_tile}" for="tile" />
-                        <p:inputText id="tile" value="#{incometoController.selected.tile}" title="#{text.CreateIncometoTitle_tile}" />
+                        <p:outputLabel value="#{text.CreateIncometoLabel_title}" for="title" />
+                        <p:inputText id="title" value="#{incometoController.selected.title}" title="#{text.CreateIncometoTitle_title}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{incometoController.create}" value="#{text.Save}" update="display,:IncometoListForm:datalist,:growl" oncomplete="handleSubmit(args,'IncometoCreateDialog');"/>
                     <p:commandButton value="#{text.Cancel}" onclick="IncometoCreateDialog.hide()"/>

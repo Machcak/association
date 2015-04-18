@@ -163,7 +163,7 @@
     <changeSet id="029" author="mbzowski">
         <createTable tableName="incometo" >
             <column name="id" type="BIGINT" />
-            <column name="tile" type="VARCHAR(50)" />
+            <column name="title" type="VARCHAR(50)" />
         </createTable>
     </changeSet>
     

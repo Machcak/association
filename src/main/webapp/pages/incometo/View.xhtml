@@ -14,8 +14,8 @@
                     <p:panelGrid columns="2" rendered="#{incometoController.selected != null}">
                         <h:outputText value="#{text.ViewIncometoLabel_id}"/>
                         <h:outputText value="#{incometoController.selected.id}" title="#{text.ViewIncometoTitle_id}"/>
-                        <h:outputText value="#{text.ViewIncometoLabel_tile}"/>
-                        <h:outputText value="#{incometoController.selected.tile}" title="#{text.ViewIncometoTitle_tile}"/>
+                        <h:outputText value="#{text.ViewIncometoLabel_title}"/>
+                        <h:outputText value="#{incometoController.selected.title}" title="#{text.ViewIncometoTitle_title}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{text.Close}" onclick="IncometoViewDialog.hide()"/>
                 </h:panelGroup>

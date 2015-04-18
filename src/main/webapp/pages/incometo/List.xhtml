@@ -35,9 +35,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{text.ListIncometoTitle_tile}"/>
+                                <h:outputText value="#{text.ListIncometoTitle_title}"/>
                             </f:facet>
-                            <h:outputText value="#{item.tile}"/>
+                            <h:outputText value="#{item.title}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.Create}" actionListener="#{incometoController.prepareCreate}" update=":IncometoCreateForm" oncomplete="PF('IncometoCreateDialog').show()"/>
