@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,10 +17,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import pl.bzowski.association.business.boundary.MemberAdder;
 
 /**
@@ -35,6 +38,7 @@ import pl.bzowski.association.business.boundary.MemberAdder;
                     )
 })
 @Entity
+@Table(name = "associationmember")
 public class AssociationMember implements Serializable, MemberAdder.HaveingId {
 
     public static final String findAllMembersOfLeadership = "AssociationMember.findAllMembersOfLeadership";

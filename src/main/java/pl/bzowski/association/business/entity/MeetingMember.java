@@ -1,6 +1,7 @@
 package pl.bzowski.association.business.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import pl.bzowski.association.business.boundary.MemberAdder;
 
 /**
@@ -20,6 +23,7 @@ import pl.bzowski.association.business.boundary.MemberAdder;
             )
 })
 @Entity
+@Table(name = "meetingmember")
 public class MeetingMember implements Serializable, MemberAdder.HaveingId {
     
     public static final String findAllMembersOfMeeting = "MeetingMember.findAllMembersOfMeeting";

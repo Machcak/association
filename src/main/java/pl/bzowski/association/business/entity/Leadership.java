@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,8 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 import pl.bzowski.association.business.boundary.MemberAdder;
 
 /**
@@ -20,6 +23,7 @@ import pl.bzowski.association.business.boundary.MemberAdder;
  * @author Machcak
  */
 @Entity
+@Table(name = "leadership")
 public class Leadership implements Serializable, MemberAdder.HaveingId {
 
     @Id
