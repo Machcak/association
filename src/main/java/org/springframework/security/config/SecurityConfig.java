@@ -15,6 +15,6 @@ public class SecurityConfig {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");
+                .withUser("spectrum").password("2015//Stowarzyszenie//").roles("USER");
     }
 }
