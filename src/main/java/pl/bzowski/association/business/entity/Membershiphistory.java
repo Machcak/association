@@ -2,12 +2,14 @@ package pl.bzowski.association.business.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -26,8 +28,15 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "Membershiphistory.findAll", query = "SELECT m FROM Membershiphistory m"),
     @NamedQuery(name = "Membershiphistory.findById", query = "SELECT m FROM Membershiphistory m WHERE m.id = :id"),
     @NamedQuery(name = "Membershiphistory.findByDatefrom", query = "SELECT m FROM Membershiphistory m WHERE m.datefrom = :datefrom"),
-    @NamedQuery(name = "Membershiphistory.findByDateto", query = "SELECT m FROM Membershiphistory m WHERE m.dateto = :dateto")})
+    @NamedQuery(name = "Membershiphistory.findByDateto", query = "SELECT m FROM Membershiphistory m WHERE m.dateto = :dateto"),
+    @NamedQuery(name = Membershiphistory.FIND_ALL_TODAY_ACTIVE_MEMBERS,
+    query = "SELECT mh.member FROM Membershiphistory mh "
+            + " WHERE :curentDate  between mh.datefrom and CASE WHEN (mh.dateto is null) THEN '9999-12-31' ELSE mh.dateto END "
+            )
+})
 public class Membershiphistory implements Serializable {
+	
+	public static final String FIND_ALL_TODAY_ACTIVE_MEMBERS = "AssociationMember.FIND_ALL_TODAY_ACTIVE_MEMBERS";
     
     private static final long serialVersionUID = 1L;
     
@@ -38,6 +47,7 @@ public class Membershiphistory implements Serializable {
     private Long id;
     
     @ManyToOne
+    @JoinColumn(name="member_id")
     private AssociationMember member;
     
     @Basic(optional = false)

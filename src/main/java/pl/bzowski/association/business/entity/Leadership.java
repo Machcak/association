@@ -41,7 +41,7 @@ public class Leadership implements Serializable, MemberAdder.HaveingId {
     @Temporal(TemporalType.DATE)
     private Date continuesTo;
     
-    @OneToOne(mappedBy = "leadership")
+    @ManyToOne
     private LeadershipMember leadershipMember;
    
     @OneToMany(mappedBy = "leadership")

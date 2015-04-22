@@ -11,13 +11,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+
 import pl.bzowski.association.business.entity.AssociationMember;
 import pl.bzowski.association.business.entity.Balance;
 import pl.bzowski.association.business.entity.Balanceterm;
+import pl.bzowski.association.business.entity.Membershiphistory;
 import pl.bzowski.association.presentation.MembersPaiedInThisTerm;
 
 /**
@@ -48,7 +51,7 @@ public class BalanceFacade extends AbstractFacade<Balance> {
     }
 
     public Collection<MembersPaiedInThisTerm> getLastPaidContribution() {
-        List<AssociationMember> activeMembers = em.createNamedQuery(AssociationMember.FIND_ALL_TODAY_ACTIVE_MEMBERS, AssociationMember.class)
+        List<AssociationMember> activeMembers = em.createNamedQuery(Membershiphistory.FIND_ALL_TODAY_ACTIVE_MEMBERS, AssociationMember.class)
                 .setParameter("curentDate", new Date())
                 .getResultList();
         Map<Balanceterm, Collection<AssociationMember>> membersInTerm = new HashMap<>();

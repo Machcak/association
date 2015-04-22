@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -31,22 +32,13 @@ import pl.bzowski.association.business.boundary.MemberAdder;
  */
 @NamedQueries({
     @NamedQuery(name = AssociationMember.findAllMembersOfLeadership,
-            query = "SELECT lm.member FROM LeadershipMember lm WHERE lm.leadership.id = :leadershipId "),
-    @NamedQuery(name = AssociationMember.FIND_ALL_TODAY_ACTIVE_MEMBERS,
-            query = "SELECT mh.member FROM Membershiphistory mh "
-                    + " WHERE :curentDate  between mh.datefrom and CASE WHEN (mh.dateto is null) THEN '9999-12-31' ELSE mh.dateto END "
-                    )
+            query = "SELECT lm.member FROM LeadershipMember lm WHERE lm.leadership.id = :leadershipId ")
 })
 @Entity
 @Table(name = "associationmember")
 public class AssociationMember implements Serializable, MemberAdder.HaveingId {
 
     public static final String findAllMembersOfLeadership = "AssociationMember.findAllMembersOfLeadership";
-    
-    public static final String FIND_ALL_TODAY_ACTIVE_MEMBERS = "AssociationMember.FIND_ALL_TODAY_ACTIVE_MEMBERS";
-
-    @OneToOne(mappedBy = "member")
-    private LeadershipMember leadershipMember;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -93,14 +85,6 @@ public class AssociationMember implements Serializable, MemberAdder.HaveingId {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public LeadershipMember getLeadershipMember() {
-        return leadershipMember;
-    }
-
-    public void setLeadershipMember(LeadershipMember leadershipMember) {
-        this.leadershipMember = leadershipMember;
     }
 
     public List<Meeting> getMeetings() {
