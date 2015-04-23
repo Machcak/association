@@ -56,6 +56,18 @@
                                 <h:outputText value="Politics Content" />
                             </p:panel>
                         </p:dashboard>
+                        <f:view>          
+				            <h:form id="form" target="_blank">
+				                <h:outputLabel>Export Report</h:outputLabel>
+				                <h:selectOneRadio value="#{reportsBean.exportOption}">
+				                    <f:selectItem itemValue="PDF" itemLabel="PDF"/>
+				                    <f:selectItem itemValue="HTML" itemLabel="HTML"/>
+				                    <f:selectItem itemValue="EXCEL" itemLabel="EXCEL"/>
+				                    <f:selectItem itemValue="RTF" itemLabel="RTF"/>
+				                </h:selectOneRadio>
+				                <h:commandButton  action="#{reportsBean.execute}" value="Get Report" />
+				            </h:form>
+				        </f:view>
 
                         <div style="clear:both" />
                     </h:form>
