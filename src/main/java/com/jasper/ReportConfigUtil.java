@@ -36,17 +36,22 @@ public class ReportConfigUtil {
      * PUBLIC METHODS
      */
     public static boolean compileReport(ServletContext context, String compileDir, String filename) throws JRException {
-        String jasperFileName = context.getRealPath(compileDir + filename + ".jasper");
-        File jasperFile = new File(jasperFileName);
+    	String relatywnaSciezkaDoSkompilowanegoRaportu = compileDir + filename ;
+        String jasperFileName = context.getRealPath(relatywnaSciezkaDoSkompilowanegoRaportu + ".jasper");
+        if(jasperFileName != null){
+        	File jasperFile = new File(jasperFileName);
  
-        if (jasperFile.exists()) {
-            return true; // jasper file already exists, do not compile again
+        	if (jasperFile.exists()) {
+            	return true; // jasper file already exists, do not compile again
+        	}
+        }else{
+        	jasperFileName = context.getRealPath(relatywnaSciezkaDoSkompilowanegoRaportu + ".jrxml");
         }
         try {
             // jasper file has not been constructed yet, so compile the xml file
             setCompileTempDir(context, compileDir);
  
-            String xmlFileName = jasperFileName.substring(0, jasperFileName.indexOf(".jasper")) + ".jrxml";
+            String xmlFileName = jasperFileName;
             JasperCompileManager.compileReportToFile(xmlFileName);
  
             return true;

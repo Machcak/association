@@ -58,6 +58,7 @@
                         </p:dashboard>
                         <f:view>          
 				            <h:form id="form" target="_blank">
+				            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				                <h:outputLabel>Export Report</h:outputLabel>
 				                <h:selectOneRadio value="#{reportsBean.exportOption}">
 				                    <f:selectItem itemValue="PDF" itemLabel="PDF"/>

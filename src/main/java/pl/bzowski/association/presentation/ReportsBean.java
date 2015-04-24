@@ -3,16 +3,19 @@ package pl.bzowski.association.presentation;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-
-import com.jasper.AbstractReportBean;
+import java.io.Serializable;
  
-@Named("reportsBean")
+@Named
 @SessionScoped
-public class ReportsBean extends AbstractReportBean {
+public class ReportsBean extends AbstractReportBean implements Serializable {
  
-    private final String COMPILE_FILE_NAME = "productlist";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5960378929459855033L;
+	private final String COMPILE_FILE_NAME = "bilans_miesieczny_fizyczny";
  
     @Override
     protected String getCompileFileName() {

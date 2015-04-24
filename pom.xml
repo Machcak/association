@@ -38,6 +38,16 @@
             <version>6.0.3</version>
         </dependency>
         <dependency>
+        	<groupId>net.sf.jasperreports</groupId>
+        	<artifactId>jasperreports-functions</artifactId>
+        	<version>6.0.0</version>
+    	</dependency>
+    	<dependency>
+	        <groupId>joda-time</groupId>
+        	<artifactId>joda-time</artifactId>
+        	<version>2.1</version>
+    	</dependency>
+        <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>4.0.0.RELEASE</version>
@@ -79,7 +89,11 @@
             <id>PrimeFaces-maven-lib</id>
             <layout>default</layout>
             <name>Repository for library PrimeFaces-maven-lib</name>
-        </repository>
+        </repository>        
+	    <repository>
+	        <id>jr-ce-releases</id>
+	        <url>http://jaspersoft.artifactoryonline.com/jaspersoft/jr-ce-releases</url>
+	    </repository>        
     </repositories>
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>

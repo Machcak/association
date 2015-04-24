@@ -1,4 +1,4 @@
-package com.jasper;
+package pl.bzowski.association.presentation;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +29,7 @@ public abstract class AbstractReportBean {
         PDF, HTML, EXCEL, RTF
     }
     private ExportOption exportOption;
-    private final String COMPILE_DIR = "/report/design/";
+    private final String COMPILE_DIR = "/resources/reports/";
     //private String compileFileName = "productlist";//name of your compiled report file
     private String message;
  
