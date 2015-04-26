@@ -10,6 +10,7 @@
 
         <p:dialog id="AssociationMemberCreateDlg" widgetVar="AssociationMemberCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.Create}">
             <h:form id="AssociationMemberCreateForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{associationMemberController.selected != null}">
                         <p:outputLabel value="#{text.first_name}" for="firstName" />

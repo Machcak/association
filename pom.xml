@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>pl.bzowski</groupId>
-    <artifactId>association</artifactId>
+    <artifactId>z</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <dependencies>
@@ -62,6 +62,11 @@
             <artifactId>spring-security-taglibs</artifactId>
             <version>4.0.0.RELEASE</version>
         </dependency>
+        <dependency>
+    		<groupId>net.sf.jasperreports</groupId>
+    		<artifactId>jasperreports-fonts</artifactId>
+    		<version>6.0.0</version>
+		</dependency>
     </dependencies>
     <build>
         <plugins>
@@ -105,7 +110,7 @@
     <profile>
     <id>openshift</id>
     <build>
-        <finalName>association</finalName>
+        <finalName>z</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -123,7 +128,7 @@
     <profile>
     <id>local</id>
     <build>
-        <finalName>association</finalName>
+        <finalName>z</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

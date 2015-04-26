@@ -10,6 +10,7 @@
 
         <p:dialog id="BalancetermCreateDlg" widgetVar="BalancetermCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.CreateBalancetermTitle}">
             <h:form id="BalancetermCreateForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{balancetermController.selected != null}">
                         <p:outputLabel value="#{text.CreateBalancetermLabel_termname}" for="termname" />

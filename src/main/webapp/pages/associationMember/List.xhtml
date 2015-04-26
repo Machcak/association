@@ -15,6 +15,7 @@
 
         <ui:define name="body">
             <h:form id="AssociationMemberListForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <p:panel header="#{text.ListAssociationMemberTitle}">
                     <p:dataTable id="datalist" value="#{associationMemberController.items}" var="item"
                                  selectionMode="single" selection="#{associationMemberController.selected}"

@@ -1,16 +1,19 @@
 package pl.bzowski.association.business.boundary;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
  
 public class Database {
  
     public static Connection getConnection() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/dbname",
-                    "root", "dbpass");
-            return con;
+        	InitialContext initialContext = new InitialContext();
+        	DataSource dataSource = (DataSource)initialContext.lookup("java:jboss/datasources/MySQLDS");
+        	Connection con = dataSource.getConnection();
+        	return con;
         } catch (Exception ex) {
             System.out.println("Database.getConnection() Error -->" + ex.getMessage());
             return null;

@@ -15,6 +15,7 @@
 
         <ui:define name="body">
             <h:form id="BalanceListForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <p:panel header="#{text.ListBalanceTitle}">
                     <p:dataTable id="datalist" value="#{balanceController.items}" var="item"
                                  selectionMode="single" selection="#{balanceController.selected}"

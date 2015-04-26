@@ -10,6 +10,7 @@
 
         <p:dialog id="LeadershipMemberEditDlg" widgetVar="LeadershipMemberEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLeadershipMemberTitle}">
             <h:form id="LeadershipMemberEditForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{leadershipMemberController.selected != null}">
                         <p:outputLabel value="#{bundle.EditLeadershipMemberLabel_leadership}" for="leadership" />

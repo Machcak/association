@@ -10,6 +10,7 @@
 
         <p:dialog id="EventCreateDlg" widgetVar="EventCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEventTitle}">
             <h:form id="EventCreateForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{eventController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateEventLabel_id}" for="id" />

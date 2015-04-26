@@ -10,6 +10,7 @@
 
         <p:dialog id="IncometoCreateDlg" widgetVar="IncometoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.CreateIncometoTitle}">
             <h:form id="IncometoCreateForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{incometoController.selected != null}">
                         <p:outputLabel value="#{text.CreateIncometoLabel_id}" for="id" />

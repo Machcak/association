@@ -15,6 +15,7 @@
 
         <ui:define name="body">
             <h:form id="IncometoListForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <p:panel header="#{text.ListIncometoTitle}">
                     <p:dataTable id="datalist" value="#{incometoController.items}" var="item"
                                  selectionMode="single" selection="#{incometoController.selected}"

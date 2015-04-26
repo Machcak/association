@@ -10,6 +10,7 @@
 
         <p:dialog id="AssociationMemberViewDlg" widgetVar="AssociationMemberViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.View}">
             <h:form id="AssociationMemberViewForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{associationMemberController.selected != null}">
                         <h:outputText value="#{text.first_name}"/>

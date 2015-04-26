@@ -10,6 +10,7 @@
 
         <p:dialog id="BalanceeventViewDlg" widgetVar="BalanceeventViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.ViewBalanceeventTitle}">
             <h:form id="BalanceeventViewForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{balanceeventController.selected != null}">
                         <h:outputText value="#{text.ViewBalanceeventLabel_id}"/>

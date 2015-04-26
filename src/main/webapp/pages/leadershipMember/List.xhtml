@@ -15,6 +15,7 @@
 
         <ui:define name="body">
                 <h:form id="LeadershipMemberListForm">
+                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <p:panel header="#{bundle.ListLeadershipMemberTitle}">
                         <p:dataTable id="datalist" value="#{leadershipMemberController.items}" var="item"
                             selectionMode="single" selection="#{leadershipMemberController.selected}"

@@ -10,6 +10,7 @@
 
         <p:dialog id="LeadershipMemberViewDlg" widgetVar="LeadershipMemberViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewLeadershipMemberTitle}">
             <h:form id="LeadershipMemberViewForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{leadershipMemberController.selected != null}">
                         <h:outputText value="#{bundle.ViewLeadershipMemberLabel_leadership}"/>

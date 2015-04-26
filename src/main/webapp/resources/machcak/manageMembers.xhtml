@@ -18,6 +18,7 @@
         
         <p:dialog id="LeadershipAddMemberDlg" widgetVar="AddMemberDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.add_leadership_members}">
             <h:form id="LeadershipAddMemberForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:pickList id="PojoPickList" value="#{cc.attrs.leadershipMembers}" var="member" effect="bounce"
                                 itemValue="#{member}" itemLabel="#{member.lastName}" showSourceControls="true" showTargetControls="true" showCheckbox="true"

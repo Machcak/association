@@ -16,6 +16,7 @@
 
         <ui:define name="body">
             <h:form id="MeetingListForm" styleClass="odswiez_po_dodaniu_osob">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <p:panel header="#{text.ListMeetingTitle}">
                     <p:dataTable id="datalist" value="#{meetingController.items}" var="item"
                                  selectionMode="single" selection="#{meetingController.selected}"

@@ -10,6 +10,7 @@
 
         <p:dialog id="BalanceEditDlg" widgetVar="BalanceEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.EditBalanceTitle}">
             <h:form id="BalanceEditForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{balanceController.selected != null}">
                         <p:outputLabel value="#{text.EditBalanceLabel_incomingdate}" for="incomingdate" />

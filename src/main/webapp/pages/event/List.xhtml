@@ -15,6 +15,7 @@
 
         <ui:define name="body">
                 <h:form id="EventListForm">
+                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <p:panel header="#{bundle.ListEventTitle}">
                         <p:dataTable id="datalist" value="#{eventController.items}" var="item"
                             selectionMode="single" selection="#{eventController.selected}"

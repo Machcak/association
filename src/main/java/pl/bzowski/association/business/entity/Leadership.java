@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -41,9 +42,6 @@ public class Leadership implements Serializable, MemberAdder.HaveingId {
     @Temporal(TemporalType.DATE)
     private Date continuesTo;
     
-    @ManyToOne
-    private LeadershipMember leadershipMember;
-   
     @OneToMany(mappedBy = "leadership")
     private List<Meeting> meetings;
 
@@ -93,14 +91,6 @@ public class Leadership implements Serializable, MemberAdder.HaveingId {
 
     public Date getContinuesTo() {
         return continuesTo;
-    }
-
-    public LeadershipMember getLeadershipMember() {
-        return leadershipMember;
-    }
-
-    public void setLeadershipMember(LeadershipMember leadershipMember) {
-        this.leadershipMember = leadershipMember;
     }
 
     @Override

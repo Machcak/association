@@ -10,6 +10,7 @@
 
         <p:dialog id="MeetingEditDlg" widgetVar="MeetingEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.EditMeetingTitle}">
             <h:form id="MeetingEditForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{meetingController.selected != null}">
                         <p:outputLabel value="#{text.Leadership}" for="leadership" />

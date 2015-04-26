@@ -10,6 +10,7 @@
 
         <p:dialog id="EventEditDlg" widgetVar="EventEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEventTitle}">
             <h:form id="EventEditForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{eventController.selected != null}">
                         <p:outputLabel value="#{bundle.EditEventLabel_id}" for="id" />

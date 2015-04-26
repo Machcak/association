@@ -10,6 +10,7 @@
 
         <p:dialog id="ReportCreateDlg" widgetVar="ReportCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.CreateReportTitle}">
             <h:form id="ReportCreateForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{reportController.selected != null}">
                         <p:outputLabel value="#{text.CreateReportLabel_title}" for="title" />

@@ -17,6 +17,7 @@
 
         <ui:define name="body">
             <h:form id="ReportListForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <p:panel header="#{text.ListReportTitle}">
                     <p:dataTable id="datalist" value="#{reportController.items}" var="item"
                                  selectionMode="single" selection="#{reportController.selected}"

@@ -9,6 +9,7 @@
 
         <p:dialog id="ReportTypeEditDlg" widgetVar="ReportTypeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.EditReportTypeTitle}">
             <h:form id="ReportTypeEditForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{reportTypeController.selected != null}">
                         <p:outputLabel value="#{text.report_type_title}" for="type" />

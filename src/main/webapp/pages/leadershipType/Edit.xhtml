@@ -10,6 +10,7 @@
 
         <p:dialog id="LeadershipTypeEditDlg" widgetVar="LeadershipTypeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.EditLeadershipTypeTitle}">
             <h:form id="LeadershipTypeEditForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{leadershipTypeController.selected != null}">
                         <p:outputLabel value="#{text.EditLeadershipTypeLabel_type}" for="type" />

@@ -10,6 +10,7 @@
 
         <p:dialog id="MembershiphistoryCreateDlg" widgetVar="MembershiphistoryCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{i18n.CreateMembershiphistoryTitle}">
             <h:form id="MembershiphistoryCreateForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{membershiphistoryController.selected != null}">
                         <p:outputLabel value="#{i18n.CreateMembershiphistoryLabel_datefrom}" for="datefrom" />

@@ -27,6 +27,7 @@ public class LeadershipMember implements Serializable {
     
     @ManyToOne
     private AssociationMember member;
+    
 
     public LeadershipMember() {
     }

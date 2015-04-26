@@ -1,40 +1,35 @@
 package pl.bzowski.association.presentation;
 
-import pl.bzowski.association.business.entity.Meeting;
-import pl.bzowski.association.presentation.util.JsfUtil;
-import pl.bzowski.association.presentation.util.JsfUtil.PersistAction;
-import pl.bzowski.association.business.boundary.MeetingFacade;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.faces.event.ValueChangeEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
+
 import org.primefaces.model.DualListModel;
+
 import pl.bzowski.association.business.boundary.AssociationMemberFacade;
 import pl.bzowski.association.business.boundary.LeadershipFacade;
-import pl.bzowski.association.business.boundary.LeadershipTypeFacade;
-import pl.bzowski.association.business.entity.AssociationMember;
-import pl.bzowski.association.business.entity.Leadership;
+import pl.bzowski.association.business.boundary.MeetingFacade;
 import pl.bzowski.association.business.boundary.MemberAdder;
 import pl.bzowski.association.business.boundary.ReportFacade;
-import pl.bzowski.association.business.entity.LeadershipType;
-import pl.bzowski.association.business.entity.MeetingMember;
+import pl.bzowski.association.business.entity.AssociationMember;
+import pl.bzowski.association.business.entity.Leadership;
+import pl.bzowski.association.business.entity.Meeting;
 import pl.bzowski.association.business.entity.Report;
+import pl.bzowski.association.presentation.util.JsfUtil;
+import pl.bzowski.association.presentation.util.JsfUtil.PersistAction;
 
 @Named("meetingController")
 @ViewScoped

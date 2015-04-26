@@ -10,6 +10,7 @@
 
         <p:dialog id="ResolutionViewDlg" widgetVar="ResolutionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.ViewResolutionTitle}">
             <h:form id="ResolutionViewForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{resolutionController.selected != null}">
                         <h:outputText value="#{text.ViewResolutionLabel_number}"/>

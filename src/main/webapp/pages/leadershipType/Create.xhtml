@@ -9,6 +9,7 @@
 
         <p:dialog id="LeadershipTypeCreateDlg" widgetVar="LeadershipTypeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.CreateLeadershipTypeTitle}">
             <h:form id="LeadershipTypeCreateForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{leadershipTypeController.selected != null}">
                         <p:outputLabel value="#{text.CreateLeadershipTypeLabel_type}" for="type" />

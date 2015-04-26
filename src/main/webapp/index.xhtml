@@ -18,10 +18,6 @@
                         <p:dashboard id="board" model="#{dashboardControll.model}">
                             <p:ajax event="reorder" listener="#{dashboardControll.handleReorder}" update="msgs" />
 
-                            <p:panel id="sports" header="Sports">
-                                <h:outputText value="Sports Content" />
-                            </p:panel>
-
                             <p:panel id="finance" header="Finance">
                                 <p:dataTable id="last_paid_contribution" 
                                              value="#{dashboardControll.lastPaidContribution}"
@@ -44,17 +40,6 @@
                                 </p:dataTable>
                             </p:panel>
 
-                            <p:panel id="lifestyle" header="Lifestyle">
-                                
-                            </p:panel>
-
-                            <p:panel id="weather" header="Weather">
-                                <h:outputText value="Weather Content" />
-                            </p:panel>
-
-                            <p:panel id="politics" header="Politics">
-                                <h:outputText value="Politics Content" />
-                            </p:panel>
                         </p:dashboard>
                         <f:view>          
 				            <h:form id="form" target="_blank">

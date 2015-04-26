@@ -9,6 +9,7 @@
 
         <p:dialog id="ReportTypeViewDlg" widgetVar="ReportTypeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.View}">
             <h:form id="ReportTypeViewForm">
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{reportTypeController.selected != null}">
                         <h:outputText value="#{text.ViewReportTypeLabel_type}"/>
