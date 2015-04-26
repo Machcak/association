@@ -17,6 +17,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.component.selectonemenu.SelectOneMenu;
 import org.primefaces.model.DualListModel;
 
 import pl.bzowski.association.business.boundary.AssociationMemberFacade;
@@ -35,17 +36,19 @@ import pl.bzowski.association.presentation.util.JsfUtil.PersistAction;
 @ViewScoped
 public class MeetingController implements Serializable {
 
-    @Inject
-    private pl.bzowski.association.business.boundary.MeetingFacade meetingFacade;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3366743965821147604L;
+
+	@Inject
+    private MeetingFacade meetingFacade;
 
     @Inject
     private MemberAdder ma;
 
     @Inject
     private ReportFacade reportFacade;
-    
-    @Inject
-    private ReportController reportController;
     
     @Inject 
     private AssociationMemberFacade associationMemberFacade;
@@ -200,8 +203,9 @@ public class MeetingController implements Serializable {
 //        }
     }
     
-    public void reportCreatorChange(javax.faces.event.ValueChangeEvent e){
-        AssociationMember newValue = (AssociationMember) e.getNewValue();
+    public void changeMember(javax.faces.event.AjaxBehaviorEvent e){
+    	SelectOneMenu selectOneMenu =(SelectOneMenu )e.getSource();
+        AssociationMember newValue = (AssociationMember) selectOneMenu.getValue();
         report.setAssociationMember(newValue);
     }
     

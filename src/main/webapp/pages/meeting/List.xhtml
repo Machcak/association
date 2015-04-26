@@ -131,7 +131,7 @@
                 saveListener="#{meetingController.saveListener}"
                 associationMember="#{meetingController.report.associationMember}"
                 associationMembers="#{meetingController.associationMembers}"
-                contentCreatorChange="#{meetingController.reportCreatorChange}"/>
+                myattributeUpdatedEventListener="#{meetingController.changeMember}"/>
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>

@@ -3,7 +3,7 @@ package pl.bzowski.association.business.entity;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +29,12 @@ import pl.bzowski.association.business.boundary.MemberAdder;
 @Table(name = "meeting")
 public class Meeting implements Serializable, MemberAdder.HaveingId{
     
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1161888420785802366L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
@@ -51,8 +56,8 @@ public class Meeting implements Serializable, MemberAdder.HaveingId{
     @ManyToOne
     private Leadership leadership;
 
-    @OneToMany(mappedBy = "meeting")
-    private List<Resolution> resolutions;
+    @OneToMany(mappedBy = "meeting", fetch = FetchType.EAGER)
+    private Set<Resolution> resolutions;
     
     public Meeting() {
     }
@@ -114,11 +119,11 @@ public class Meeting implements Serializable, MemberAdder.HaveingId{
         this.leadership = leadership;
     }    
 
-    public List<Resolution> getResolutions() {
+    public Set<Resolution> getResolutions() {
         return resolutions;
     }
 
-    public void setResolutions(List<Resolution> resolutions) {
+    public void setResolutions(Set<Resolution> resolutions) {
         this.resolutions = resolutions;
     }
     
