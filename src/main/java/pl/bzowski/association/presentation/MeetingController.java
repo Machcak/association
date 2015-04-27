@@ -196,11 +196,6 @@ public class MeetingController implements Serializable {
         report.setDateOf(selected.getDayOf());
         report.setTitle(selected.getNumber());
         JsfUtil.persist(PersistAction.CREATE, "Udało się zapisać sprawozdanie", reportFacade, report);
-//        if(report.getId()==null){
-//            reportFacade.create(report);
-//        }else{
-//            reportFacade.edit(report);
-//        }
     }
     
     public void changeMember(javax.faces.event.AjaxBehaviorEvent e){

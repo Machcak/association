@@ -9,10 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,7 +25,12 @@ import pl.bzowski.association.business.boundary.MemberAdder;
 @Table(name = "leadership")
 public class Leadership implements Serializable, MemberAdder.HaveingId {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -845901209152095287L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     

@@ -9,18 +9,20 @@
     <!-- INTERFACE -->
     <cc:interface>
         <cc:attribute name="content" />
-        <cc:attribute name="saveListener" method-signature="void saveListener()" />
+        <cc:attribute 	name="saveListener" 
+        				method-signature="void saveListener()" />
     </cc:interface>
 
     <!-- IMPLEMENTATION -->
     <cc:implementation>
         
         <h:form id="CKEditorWithoutAssociationMemberForm">
+        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <p:growl id="editorgrowl" showDetail="true"  /> 
             <p:dialog id="editorDialog"  widgetVar="CKEditor">
                 <pe:ckEditor id="CKEditor" 
                              value="#{cc.attrs.content}" >  
-                    <p:ajax event="save" listener="#{cc.attrs.saveListener}" update="editorgrowl,:ResolutionListForm:datalist"/>  
+					<p:ajax event="save" listener="#{cc.attrs.saveListener}" update="editorgrowl,:ResolutionListForm:datalist"/>  
                 </pe:ckEditor>  
             </p:dialog>
         </h:form>

@@ -36,7 +36,9 @@
                     <p:ajax event="change" listener="#{cc.attrs.myattributeUpdatedEventListener}"  />
                 </p:selectOneMenu>
                 <pe:ckEditor id="CKEditor" value="#{cc.attrs.content}" >  
-                    <p:ajax event="save" listener="#{cc.attrs.saveListener}" />  
+                    <p:ajax event="save" 
+                    		listener="#{cc.attrs.saveListener}" 
+                    		update="editorgrowl"/>  
                 </pe:ckEditor>  
             </p:dialog>
         </h:form>

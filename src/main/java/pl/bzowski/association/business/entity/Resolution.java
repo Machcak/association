@@ -3,7 +3,6 @@ package pl.bzowski.association.business.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +21,12 @@ import javax.validation.constraints.NotNull;
 @Table(name = "resolution")
 public class Resolution implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4353882776504028287L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
@@ -38,10 +42,12 @@ public class Resolution implements Serializable {
     
     
     @ManyToOne
+    @NotNull
     private Leadership leadership;
     
     
     @ManyToOne
+    @NotNull
     private Meeting meeting;
 
     public Long getId() {

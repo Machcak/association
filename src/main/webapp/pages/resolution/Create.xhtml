@@ -19,6 +19,22 @@
                         <p:inputText id="content" value="#{resolutionController.selected.content}" title="#{text.CreateResolutionTitle_content}" />
                         <p:outputLabel value="#{text.CreateResolutionLabel_dayOfResolution}" for="dayOfResolution" />
                         <p:calendar id="dayOfResolution" pattern="dd.MM.yyyy"  mask="true" value="#{resolutionController.selected.dayOfResolution}" title="#{text.EditResolutionTitle_dayOfResolution}"  showOn="button"/>
+                        <p:outputLabel value="#{text.Leadership}" for="leadershipSelectOneField" />
+                        <p:selectOneMenu id="leadershipSelectOneField" value="#{resolutionController.selected.leadership}" >
+                        	<f:selectItems	value="#{leadershipController.items}"
+                        					var="leadershipVar"
+                        					itemValue="#{leadershipVar}" 
+                        					itemLabel="#{leadershipVar.leadershipType.type} #{leadershipVar.number}">	
+                        	</f:selectItems>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{text.Meeting}" for="meetingSelectOneField" />
+                        <p:selectOneMenu id="meetingSelectOneField" value="#{resolutionController.selected.meeting}" >
+                        	<f:selectItems	value="#{meetingController.items}"
+                        					var="meetingVar"
+                        					itemValue="#{meetingVar}" 
+                        					itemLabel="#{meetingVar.leadership.leadershipType.type} #{meetingVar.leadership.number} - #{meetingVar.number} ">	
+                        	</f:selectItems>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{resolutionController.create}" value="#{text.Save}" update="display,:ResolutionListForm:datalist,:growl" oncomplete="handleSubmit(args,'ResolutionCreateDialog');"/>
                     <p:commandButton value="#{text.Cancel}" onclick="ResolutionCreateDialog.hide()"/>
