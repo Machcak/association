@@ -2,23 +2,23 @@
 <!-- Created with Jaspersoft Studio version last-->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="zestawienie_finansowe_bez_skladek" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3281078f-dd5f-4f06-b7cb-6c230ef7ba98">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="association"/>
-	<style name="Style1" fontName="Dejavu Machcak"/>
+	<style name="Style1" fontName="DejaVu Sans"/>
 	<parameter name="datefrom" class="java.util.Date"/>
 	<parameter name="dateto" class="java.util.Date"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT CONCAT(( SELECT termname FROM balanceterm WHERE dateto = $P{dateto} AND termtype = 0 ORDER BY dateto desc LIMIT 1 ), ': Bank: ', COALESCE(SUM(amount), 0) , ' zł.') as dane
+		<![CDATA[SELECT CONCAT(( SELECT termname FROM balanceterm WHERE dateto = DATE_FORMAT($P{dateto},'%Y-%m-%d') AND termtype = 0 ORDER BY dateto desc LIMIT 1 ), ': Bank: ', COALESCE(SUM(amount), 0) , ' zł.') as dane
 FROM balance b 
 JOIN incometo it on it.id = b.incometo_id
 JOIN balanceterm bt on bt.id = b.balanceterm_id
-WHERE incomingdate <= $P{dateto}
+WHERE incomingdate <= DATE_FORMAT($P{dateto},'%Y-%m-%d')
 AND  (it.title = 'Konto'  or it.title = 'Operacja na bankomacie'  )
 
 UNION
-SELECT CONCAT(( SELECT termname FROM balanceterm WHERE dateto = $P{dateto} AND termtype = 0 ORDER BY dateto desc LIMIT 1 ), ': Kasa: ', COALESCE(SUM(if(it.title = 'Operacja na bankomacie', amount * -1, amount)), 0) , ' zł.') as dane
+SELECT CONCAT(( SELECT termname FROM balanceterm WHERE dateto = DATE_FORMAT($P{dateto},'%Y-%m-%d') AND termtype = 0 ORDER BY dateto desc LIMIT 1 ), ': Kasa: ', COALESCE(SUM(if(it.title = 'Operacja na bankomacie', amount * -1, amount)), 0) , ' zł.') as dane
 FROM balance b 
 JOIN incometo it on it.id = b.incometo_id
 JOIN balanceterm bt on bt.id = b.balanceterm_id
-WHERE incomingdate <= $P{dateto}
+WHERE incomingdate <= DATE_FORMAT($P{dateto},'%Y-%m-%d')
 AND  (it.title = 'Kasa'  or it.title = 'Operacja na bankomacie'  )]]>
 	</queryString>
 	<field name="dane" class="java.lang.String"/>

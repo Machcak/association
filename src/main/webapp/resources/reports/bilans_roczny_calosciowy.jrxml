@@ -8,16 +8,16 @@
 		<![CDATA[SELECT o.*,  ROUND((@amounttotal := amount + @amounttotal),2) as amounttotal 
 FROM(
 			SELECT b.id,  incomingdate, eventname, termname, lastname, firstname, amount
-			FROM association.balance b 
-			JOIN association.balanceevent e on b.balanceevent_id = e.id 
-			LEFT JOIN association.associationmember m on m.id = b.member_id 
-			JOIN association.balanceterm t on t.id = b.balanceterm_id 
-			WHERE incomingdate between $P{datefrom} and $P{dateto}
+			FROM balance b 
+			JOIN balanceevent e on b.balanceevent_id = e.id 
+			LEFT JOIN associationmember m on m.id = b.member_id 
+			JOIN balanceterm t on t.id = b.balanceterm_id 
+			WHERE incomingdate between DATE_FORMAT($P{datefrom},'%Y-%m-%d') and DATE_FORMAT($P{dateto},'%Y-%m-%d')
 			AND (b.incometo_id = 1  or b.incometo_id = 2 or  b.incometo_id = 3 )
 		  ) o,
   (SELECT @amounttotal := ( SELECT COALESCE(SUM(amount), 0) 
 												  FROM balance b 
-												  WHERE incomingdate <$P{datefrom}
+												  WHERE incomingdate < DATE_FORMAT($P{datefrom},'%Y-%m-%d')
 												  AND  (b.incometo_id = 1  or b.incometo_id = 2  or  b.incometo_id = 3 )
 												  ) 
   ) c 

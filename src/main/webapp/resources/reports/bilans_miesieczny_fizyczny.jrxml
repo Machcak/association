@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version last-->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bilans_miesieczny_fizyczny" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b7066cec-1919-4876-8047-077d455c59aa">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bilans_miesieczny_fizyczny" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b7066cec-1919-4876-8047-077d455c59aa"
+whenNoDataType="AllSectionsNoDetail" >
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="association"/>	
+	<style name="Style1" fontName="DejaVu Sans" />
+	<parameter isForPrompting="true" name="datefrom" class="java.util.Date"/>
+	<parameter isForPrompting="true" name="dateto" class="java.util.Date"/>
 	
-	<style name="Style1" fontName="DejaVuSans" />
-	<parameter name="datefrom" class="java.util.Date"/>
-	<parameter name="dateto" class="java.util.Date"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT o.*,  ROUND((@amounttotal := if(title = 'Operacja na bankomacie', (amount * -1)  + @amounttotal, amount + @amounttotal) ),2) as amounttotal
 FROM(
@@ -14,13 +16,13 @@ FROM(
 			LEFT JOIN associationmember m on m.id = b.member_id 
 			JOIN balanceterm t on t.id = b.balanceterm_id 
 			JOIN incometo it on it.id = b.incometo_id 
-			WHERE incomingdate between '2015-03-01' and '2015-03-31'
+			WHERE incomingdate between DATE_FORMAT($P{datefrom},'%Y-%m-%d') and DATE_FORMAT($P{dateto},'%Y-%m-%d')
 			AND  ( it.title = 'Kasa'  or it.title = 'Operacja na bankomacie'  or  it.title = 'Bilans Otwarcia Miesiąca')
 		  ) o,
   (SELECT @amounttotal := ( SELECT COALESCE(SUM(if(incometo_id = 4, amount * -1, amount)), 0) 
 												  FROM balance b 
 												  JOIN incometo it on it.id = b.incometo_id 
-												  WHERE incomingdate <'2015-03-01'
+												  WHERE incomingdate < DATE_FORMAT($P{datefrom},'%Y-%m-%d')
 												  AND  (it.title = 'Kasa'  or it.title = 'Operacja na bankomacie'  or  it.title = 'Bilans Otwarcia Miesiąca')
 												  ) 
   ) c 

@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version last-->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="wydatki_za_okres" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1a685534-b62a-4893-94e1-4fa208656cd3">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="association"/>
-	<style name="Style1" fontName="Dejavu Machcak"/>
+	<style name="Style1" fontName="DejaVu Sans"/>
 	<parameter name="datefrom" class="java.util.Date"/>
 	<parameter name="dateto" class="java.util.Date"/>
 	<queryString language="SQL">
@@ -10,7 +10,7 @@
 from balance b
 join balanceevent be on b.balanceevent_id = be.id
 where amount < 0
-and b.incomingdate between  $P{datefrom} and  $P{dateto}
+and b.incomingdate between  DATE_FORMAT($P{datefrom},'%Y-%m-%d') and  DATE_FORMAT($P{dateto},'%Y-%m-%d')
 order by b.incomingdate]]>
 	</queryString>
 	<field name="incomingdate" class="java.sql.Date">

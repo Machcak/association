@@ -11,11 +11,11 @@ LEFT JOIN (
 		FROM associationmember am
 		JOIN balance b ON b.member_id = am.id
 		JOIN balanceterm bt ON bt.id = b.balanceterm_id
-		WHERE  $P{in_date}  between bt.datefrom and bt.dateto
+		WHERE  DATE_FORMAT($P{in_date},'%Y-%m-%d')  between bt.datefrom and bt.dateto
     	) zaplacili ON allam.id = zaplacili.id
 JOIN membershiphistory mh ON mh.member_id = allam.id
     where zaplacili.id is null
-    and   $P{in_date}  between mh.datefrom and IFNULL(mh.dateto, '9999-12-31');]]>
+    and   DATE_FORMAT($P{in_date},'%Y-%m-%d')  between mh.datefrom and IFNULL(mh.dateto, '9999-12-31');]]>
 	</queryString>
 	<field name="LASTNAME" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
