@@ -38,13 +38,15 @@ public class ReportsBean extends AbstractReportBean implements Serializable {
     @Override
     protected Map<String, Object> getReportParameters() {
         Map<String, Object> reportParameters = new HashMap<String, Object>();
- 
+        Calendar instance = Calendar.getInstance();
+        instance.set(2015,	02, 01);
         if(datefrom != null){
-    		reportParameters.put("datefrom", datefrom);
+    		reportParameters.put("datefrom", instance.getTime());
     	}
 
+        instance.set(2015,  03, 31);
     	if(dateto != null){
-    		reportParameters.put("dateto",  dateto);
+    		reportParameters.put("dateto",  instance.getTime());
     	}
     	if(balanceterm != null){
     		reportParameters.put("balanceterm", balanceterm);

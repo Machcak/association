@@ -16,7 +16,7 @@ FROM(
 			LEFT JOIN associationmember m on m.id = b.member_id 
 			JOIN balanceterm t on t.id = b.balanceterm_id 
 			JOIN incometo it on it.id = b.incometo_id 
-			WHERE incomingdate between DATE_FORMAT($P{datefrom},'%Y-%m-%d') and DATE_FORMAT($P{dateto},'%Y-%m-%d')
+			WHERE incomingdate between $P{datefrom} and DATE_FORMAT($P{dateto},'%Y-%m-%d')
 			AND  ( it.title = 'Kasa'  or it.title = 'Operacja na bankomacie'  or  it.title = 'Bilans Otwarcia Miesiąca')
 		  ) o,
   (SELECT @amounttotal := ( SELECT COALESCE(SUM(if(incometo_id = 4, amount * -1, amount)), 0) 

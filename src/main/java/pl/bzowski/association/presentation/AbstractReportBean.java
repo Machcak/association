@@ -1,6 +1,7 @@
 package pl.bzowski.association.presentation;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -27,10 +28,19 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
+
+
+
+
+
+
+
 import pl.bzowski.association.business.boundary.Database;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -38,6 +48,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.SimpleFileResolver;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.j2ee.servlets.BaseHttpServlet;
  
@@ -88,10 +99,17 @@ public abstract class AbstractReportBean {
     		  }
     
     
-    protected void prepareReport2() throws JRException, IOException{
+    protected void prepareReport() throws JRException, IOException{
     	ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
     	ServletContext context = (ServletContext) externalContext.getContext();
     	
+    	String reportsDirPath = context.getRealPath(getCompileDir());
+    	File reportsDir = new File(reportsDirPath);
+    	if (!reportsDir.exists()) {
+    	    throw new FileNotFoundException(String.valueOf(reportsDir));
+    	}
+    	
+    	kompilujWszystkieraporty(context);
     	Connection conn = null;
     	try {
     		conn = Database.getConnection();
@@ -105,8 +123,10 @@ public abstract class AbstractReportBean {
     	 System.out.println("Done with load!");
     	 JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
     	System.out.println("Done with compileReport!");
-    	System.out.println(getReportParameters());
-    	JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, getReportParameters(), conn);
+    	Map<String, Object> reportParameters = getReportParameters();
+    	reportParameters.put(JRParameter.REPORT_FILE_RESOLVER, new SimpleFileResolver(reportsDir));
+    	System.out.println();
+    	JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, reportParameters, conn);
     	System.out.println("Done with fillReport!");
     	JRPdfExporter export = new JRPdfExporter();
     	export.setParameter(JRExporterParameter.JASPER_PRINT,jasperPrint);
@@ -114,23 +134,32 @@ public abstract class AbstractReportBean {
     	System.out.println("Done with setJasperPrint!");
     	export.exportReport();
     	System.out.println("Done with exportReport!");
-//    	JasperViewer.viewReport(jasperPrint);
-//    	 System.out.println("Done with viewReport!");
-    			 //   } catch(Exception e) {
-//    			      String text = "Could not create the report " + e.getMessage() + " " + e.g
-    	//		 etLocalizedMessage();
-//    			       System.out.println(text);
-//    			     }
     }
+
+	private void kompilujWszystkieraporty(ServletContext context) throws JRException {
+		for(File file : podajWszystkieNazwyRaportow( context )){
+			String name = file.getName();
+			if(name.contains("jrxml")){
+				ReportConfigUtil.compileReport(context, getCompileDir(), name.substring(0, name.indexOf('.')));
+			}
+		}
+	}
     
-    protected void prepareReport() throws JRException, IOException {
+    private File[] podajWszystkieNazwyRaportow(ServletContext context ) {
+    	String compileDir = getCompileDir();
+    	File folder = new File(context.getRealPath(compileDir));
+    	File[] listOfFiles = folder.listFiles();
+		return listOfFiles;
+	}
+
+	protected void prepareReport0() throws JRException, IOException {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
  
         ServletContext context = (ServletContext) externalContext.getContext();
         HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
         HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
  
-        ReportConfigUtil.compileReport(context, getCompileDir(), getCompileFileName());
+        kompilujWszystkieraporty(context);
  
         File reportFile = new File(ReportConfigUtil.getJasperFilePath(context, getCompileDir(), getCompileFileName() + ".jasper"));
  

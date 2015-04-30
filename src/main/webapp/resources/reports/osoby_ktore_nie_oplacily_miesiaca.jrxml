@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version last-->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="osoby_ktore_nie_oplacily_miesiaca" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cce492f8-198e-49c3-8626-916eabaa5989">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="osoby_ktore_nie_oplacily_miesiaca" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cce492f8-198e-49c3-8626-916eabaa5989"
+whenNoDataType="AllSectionsNoDetail" >
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="association"/>
-	<parameter name="in_date" class="java.util.Date"/>
+	<parameter name="datefrom" class="java.util.Date"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT *
 FROM associationmember allam
@@ -11,11 +12,11 @@ LEFT JOIN (
 		FROM associationmember am
 		JOIN balance b ON b.member_id = am.id
 		JOIN balanceterm bt ON bt.id = b.balanceterm_id
-		WHERE  DATE_FORMAT($P{in_date},'%Y-%m-%d')  between bt.datefrom and bt.dateto
+		WHERE   $P{datefrom}   between bt.datefrom and bt.dateto
     	) zaplacili ON allam.id = zaplacili.id
 JOIN membershiphistory mh ON mh.member_id = allam.id
     where zaplacili.id is null
-    and   DATE_FORMAT($P{in_date},'%Y-%m-%d')  between mh.datefrom and IFNULL(mh.dateto, '9999-12-31');]]>
+    and    $P{datefrom}  between mh.datefrom and IFNULL(mh.dateto, '9999-12-31');]]>
 	</queryString>
 	<field name="LASTNAME" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -59,7 +60,7 @@ JOIN membershiphistory mh ON mh.member_id = allam.id
 					<property name="local_mesure_unity" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<textFieldExpression><![CDATA[$P{in_date}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[ $P{datefrom} ]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="0" y="40" width="100" height="20" uuid="969d08ab-fb10-4e1c-9069-845456f14d4a"/>

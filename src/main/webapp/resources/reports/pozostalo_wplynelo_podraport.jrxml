@@ -5,6 +5,7 @@
 	<style name="Style1" fontName="DejaVu Sans"/>
 	<parameter name="datefrom" class="java.util.Date"/>
 	<parameter name="dateto" class="java.util.Date"/>
+	
 	<queryString language="SQL">
 		<![CDATA[SELECT CONCAT(( SELECT termname FROM balanceterm WHERE dateto < DATE_FORMAT($P{datefrom},'%Y-%m-%d') AND termtype = 0 ORDER BY dateto desc LIMIT 1 ),  ': pozostalo: ', COALESCE(SUM(amount), 0), ' zł.' ) as dane
 FROM balance b 
