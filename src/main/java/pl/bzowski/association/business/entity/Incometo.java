@@ -2,6 +2,7 @@ package pl.bzowski.association.business.entity;
 
 import java.io.Serializable;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,12 +15,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.envers.Audited;
+
 /**
  *
  * @author Machcak
  */
 @Entity
 @Table(name = "incometo")
+@Audited
 @NamedQueries({
     @NamedQuery(name = "Incometo.findAll", query = "SELECT i FROM Incometo i"),
     @NamedQuery(name = "Incometo.findById", query = "SELECT i FROM Incometo i WHERE i.id = :id"),

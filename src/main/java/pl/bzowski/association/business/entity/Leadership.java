@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.envers.Audited;
+
 import pl.bzowski.association.business.boundary.MemberAdder;
 
 /**
@@ -23,6 +25,7 @@ import pl.bzowski.association.business.boundary.MemberAdder;
  */
 @Entity
 @Table(name = "leadership")
+@Audited
 public class Leadership implements Serializable, MemberAdder.HaveingId {
 
     /**

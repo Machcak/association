@@ -3,6 +3,7 @@ package pl.bzowski.association.business.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,12 +20,15 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.envers.Audited;
+
 /**
  *
  * @author Machcak
  */
 @Entity
 @Table(name = "balanceterm")
+@Audited
 @NamedQueries({
     @NamedQuery(name = "Balanceterm.findAll", query = "SELECT b FROM Balanceterm b"),
     @NamedQuery(name = "Balanceterm.findById", query = "SELECT b FROM Balanceterm b WHERE b.id = :id"),

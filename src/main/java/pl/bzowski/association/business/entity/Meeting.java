@@ -19,6 +19,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.envers.Audited;
+
 import pl.bzowski.association.business.boundary.MemberAdder;
 
 /**
@@ -27,6 +29,7 @@ import pl.bzowski.association.business.boundary.MemberAdder;
  */
 @Entity
 @Table(name = "meeting")
+@Audited
 public class Meeting implements Serializable, MemberAdder.HaveingId{
     
     /**

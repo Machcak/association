@@ -2,6 +2,7 @@ package pl.bzowski.association.business.entity;
 
 import java.io.Serializable;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,12 +17,15 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.envers.Audited;
+
 /**
  *
  * @author Machcak
  */
 @Entity
 @Table(name = "balanceevent")
+@Audited
 @NamedQueries({
     @NamedQuery(name = "Balanceevent.findAll", query = "SELECT b FROM Balanceevent b"),
     @NamedQuery(name = "Balanceevent.findById", query = "SELECT b FROM Balanceevent b WHERE b.id = :id"),

@@ -8,12 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.envers.Audited;
+
 /**
  *
  * @author Machcak
  */
 @Entity
 @Table(name="reporttype")
+@Audited
 public class ReportType implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

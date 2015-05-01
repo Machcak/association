@@ -3,6 +3,7 @@ package pl.bzowski.association.business.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,12 +19,15 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.envers.Audited;
+
 /**
  *
  * @author Machcak
  */
 @Entity
 @Table(name = "balance")
+@Audited
 @NamedQueries({
     @NamedQuery(name = "Balance.findAll", query = "SELECT b FROM Balance b"),
     @NamedQuery(name = "Balance.findById", query = "SELECT b FROM Balance b WHERE b.id = :id"),

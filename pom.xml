@@ -67,7 +67,12 @@
     		<artifactId>jasperreports-fonts</artifactId>
     		<version>6.0.0</version>
 		</dependency>
-    </dependencies>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-envers</artifactId>
+		<version>4.3.9.Final</version>
+		</dependency>	
+	</dependencies>
     <build>
         <plugins>
             <plugin>

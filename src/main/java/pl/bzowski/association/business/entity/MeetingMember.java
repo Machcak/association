@@ -11,6 +11,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.envers.Audited;
+
 import pl.bzowski.association.business.boundary.MemberAdder;
 
 /**
@@ -24,6 +26,7 @@ import pl.bzowski.association.business.boundary.MemberAdder;
 })
 @Entity
 @Table(name = "meetingmember")
+@Audited
 public class MeetingMember implements Serializable, MemberAdder.HaveingId {
     
     public static final String findAllMembersOfMeeting = "MeetingMember.findAllMembersOfMeeting";

@@ -16,6 +16,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.envers.Audited;
+
 /**
  *
  * @author Machcak
@@ -26,6 +28,7 @@ import javax.validation.constraints.NotNull;
 })
 @Entity
 @Table(name = "report")
+@Audited
 public class Report implements Serializable {
     
     public static final String findReportForMeeting = "Report.findReportForMeeting";

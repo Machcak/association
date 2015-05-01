@@ -10,12 +10,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.envers.Audited;
+
 /**
  *
  * @author Machcak
  */
 @Entity
 @Table(name = "leadershipmember")
+@Audited
 public class LeadershipMember implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

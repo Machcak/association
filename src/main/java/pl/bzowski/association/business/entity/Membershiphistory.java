@@ -18,6 +18,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.envers.Audited;
+
 /**
  *
  * @author Machcak
@@ -34,6 +36,7 @@ import javax.validation.constraints.NotNull;
             + " WHERE :curentDate  between mh.datefrom and CASE WHEN (mh.dateto is null) THEN '9999-12-31' ELSE mh.dateto END "
             )
 })
+@Audited
 public class Membershiphistory implements Serializable {
 	
 	public static final String FIND_ALL_TODAY_ACTIVE_MEMBERS = "AssociationMember.FIND_ALL_TODAY_ACTIVE_MEMBERS";
