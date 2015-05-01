@@ -46,7 +46,7 @@ public class ReportsBean extends AbstractReportBean implements Serializable {
     		reportParameters.put("dateto",  dateto.clone());
     	}
     	if(balanceterm != null){
-    		reportParameters.put("balanceterm", balanceterm);
+    		reportParameters.put("balanceterm", balanceterm.longValue());
     	}
  
         return reportParameters;

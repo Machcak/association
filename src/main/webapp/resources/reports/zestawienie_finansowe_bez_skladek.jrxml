@@ -5,10 +5,6 @@
 	<style name="Style1" fontName="DejaVu Sans"/>
 	<parameter name="datefrom" class="java.util.Date"/>
 	<parameter name="dateto" class="java.util.Date"/>
-	<variable name="SUBBREPORT_VAR" class="java.lang.String " calculation="System">
-   		 
-	</variable>
-	
 	<queryString language="SQL">
 		<![CDATA[SELECT CONCAT(( SELECT termname FROM balanceterm WHERE dateto = DATE_FORMAT($P{dateto},'%Y-%m-%d') AND termtype = 0 ORDER BY dateto desc LIMIT 1 ), ': Bank: ', COALESCE(SUM(amount), 0) , ' zł.') as dane
 FROM balance b 
