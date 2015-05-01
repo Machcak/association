@@ -15,7 +15,7 @@
 	</ui:define>
 
 	<ui:define name="body">
-		<h:form id="JasperReportsListForm">
+		<h:form id="JasperReportsListForm" target="_blank">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<p:panel header="#{text.reports}">
 				<p:growl id="growl" showDetail="true" />

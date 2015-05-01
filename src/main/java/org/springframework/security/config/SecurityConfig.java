@@ -18,4 +18,5 @@ public class SecurityConfig  {
             .inMemoryAuthentication()
                 .withUser("spectrum").password("2015//Stowarzyszenie//").roles("USER");
     }
+
 }

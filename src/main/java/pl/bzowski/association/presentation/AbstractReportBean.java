@@ -102,6 +102,8 @@ public abstract class AbstractReportBean {
     protected void prepareReport() throws JRException, IOException{
     	ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
     	ServletContext context = (ServletContext) externalContext.getContext();
+        HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+        HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
     	
     	String reportsDirPath = context.getRealPath(getCompileDir());
     	File reportsDir = new File(reportsDirPath);
@@ -127,13 +129,24 @@ public abstract class AbstractReportBean {
     	reportParameters.put(JRParameter.REPORT_FILE_RESOLVER, new SimpleFileResolver(reportsDir));
     	System.out.println();
     	JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, reportParameters, conn);
-    	System.out.println("Done with fillReport!");
-    	JRPdfExporter export = new JRPdfExporter();
-    	export.setParameter(JRExporterParameter.JASPER_PRINT,jasperPrint);
-    	export.setParameter(JRExporterParameter.OUTPUT_FILE_NAME,"output.pdf");
-    	System.out.println("Done with setJasperPrint!");
-    	export.exportReport();
-    	System.out.println("Done with exportReport!");
+//    	System.out.println("Done with fillReport!");
+//    	JRPdfExporter export = new JRPdfExporter();
+//    	export.setParameter(JRExporterParameter.JASPER_PRINT,jasperPrint);
+//    	export.setParameter(JRExporterParameter.OUTPUT_FILE_NAME,"output.pdf");
+//    	System.out.println("Done with setJasperPrint!");
+//    	export.exportReport();
+//    	System.out.println("Done with exportReport!");
+    	
+        if (getExportOption().equals(ExportOption.HTML)) {
+            ReportConfigUtil.exportReportAsHtml(jasperPrint, response.getWriter());
+        } else if (getExportOption().equals(ExportOption.EXCEL)) {
+            ReportConfigUtil.exportReportAsExcel(jasperPrint, response.getWriter());
+        } else {
+            request.getSession().setAttribute(BaseHttpServlet.DEFAULT_JASPER_PRINT_SESSION_ATTRIBUTE, jasperPrint);
+            response.sendRedirect(request.getContextPath() + "/servlets/report/" + getExportOption());
+        }
+ 
+        FacesContext.getCurrentInstance().responseComplete();
     }
 
 	private void kompilujWszystkieraporty(ServletContext context) throws JRException {
