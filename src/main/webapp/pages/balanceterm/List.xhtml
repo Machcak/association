@@ -51,7 +51,7 @@
                             </h:outputText>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.Create}" actionListener="#{balancetermController.prepareCreate}" update=":BalancetermCreateForm" oncomplete="PF('BalancetermCreateDialog').show()"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.create}" actionListener="#{balancetermController.prepareCreate}" update=":BalancetermCreateForm" oncomplete="PF('BalancetermCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{text.View}" update=":BalancetermViewForm" oncomplete="PF('BalancetermViewDialog').show()" disabled="#{empty balancetermController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{text.Edit}" update=":BalancetermEditForm" oncomplete="PF('BalancetermEditDialog').show()" disabled="#{empty balancetermController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{text.Delete}" actionListener="#{balancetermController.destroy}" update=":growl,datalist" disabled="#{empty balancetermController.selected}"/>

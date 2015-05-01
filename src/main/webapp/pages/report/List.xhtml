@@ -57,7 +57,7 @@
                             <h:outputText value="#{item.associationMember.firstName} #{item.associationMember.lastName}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.Create}" actionListener="#{reportController.prepareCreate}" update=":ReportCreateForm" oncomplete="PF('ReportCreateDialog').show()"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.create}" actionListener="#{reportController.prepareCreate}" update=":ReportCreateForm" oncomplete="PF('ReportCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{text.View}" update=":ReportViewForm" oncomplete="PF('ReportViewDialog').show()" disabled="#{empty reportController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{text.Edit}" update=":ReportEditForm" oncomplete="PF('ReportEditDialog').show()" disabled="#{empty reportController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{text.Delete}" actionListener="#{reportController.destroy}" update=":growl,datalist" disabled="#{empty reportController.selected}"/>

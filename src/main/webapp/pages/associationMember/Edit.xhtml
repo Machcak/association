@@ -13,10 +13,10 @@
             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{associationMemberController.selected != null}">
-                        <p:outputLabel value="#{text.first_name}" for="firstName" />
-                        <p:inputText id="firstName" value="#{associationMemberController.selected.firstName}" title="#{text.EditAssociationMemberTitle_firstName}" />
-                        <p:outputLabel value="#{text.last_name}" for="lastName" />
-                        <p:inputText id="lastName" value="#{associationMemberController.selected.lastName}" title="#{text.EditAssociationMemberTitle_lastName}" />
+                        <p:outputLabel value="#{text.firstName}" for="firstName" />
+                        <p:inputText id="firstName" value="#{associationMemberController.selected.firstName}" title="#{text.firstName}" />
+                        <p:outputLabel value="#{text.lastName}" for="lastName" />
+                        <p:inputText id="lastName" value="#{associationMemberController.selected.lastName}" title="#{text.lastName}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{associationMemberController.update}" value="#{text.Save}" update="display,:AssociationMemberListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AssociationMemberEditDialog');"/>
                     <p:commandButton value="#{text.Cancel}" onclick="AssociationMemberEditDialog.hide()"/>

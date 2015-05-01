@@ -57,11 +57,11 @@
                             </h:outputText>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.Create}" actionListener="#{leadershipController.prepareCreate}" update=":LeadershipCreateForm" oncomplete="PF('LeadershipCreateDialog').show()"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.create}" actionListener="#{leadershipController.prepareCreate}" update=":LeadershipCreateForm" oncomplete="PF('LeadershipCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{text.View}" update=":LeadershipViewForm" oncomplete="PF('LeadershipViewDialog').show()" disabled="#{empty leadershipController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{text.Edit}" update=":LeadershipEditForm" oncomplete="PF('LeadershipEditDialog').show()" disabled="#{empty leadershipController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{text.Delete}" actionListener="#{leadershipController.destroy}" update=":growl,datalist" disabled="#{empty leadershipController.selected}"/>
-                            <p:commandButton id="addMemberButton" icon="ui-icon-plus" value="#{text.Members}" actionListener="#{leadershipController.prepareAddMember}" update=":#{p:component('LeadershipAddMemberForm')}" oncomplete="PF('AddMemberDialog').show()" disabled="#{empty leadershipController.selected}"/>
+                            <p:commandButton id="addMemberButton" icon="ui-icon-plus" value="#{text.members}" actionListener="#{leadershipController.prepareAddMember}" update=":#{p:component('LeadershipAddMemberForm')}" oncomplete="PF('AddMemberDialog').show()" disabled="#{empty leadershipController.selected}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

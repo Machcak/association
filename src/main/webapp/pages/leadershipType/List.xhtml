@@ -35,7 +35,7 @@
                             <h:outputText value="#{item.type}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.Create}" actionListener="#{leadershipTypeController.prepareCreate}" update=":LeadershipTypeCreateForm" oncomplete="PF('LeadershipTypeCreateDialog').show()"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.create}" actionListener="#{leadershipTypeController.prepareCreate}" update=":LeadershipTypeCreateForm" oncomplete="PF('LeadershipTypeCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{text.View}" update=":LeadershipTypeViewForm" oncomplete="PF('LeadershipTypeViewDialog').show()" disabled="#{empty leadershipTypeController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{text.Edit}" update=":LeadershipTypeEditForm" oncomplete="PF('LeadershipTypeEditDialog').show()" disabled="#{empty leadershipTypeController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{text.Delete}" actionListener="#{leadershipTypeController.destroy}" update=":growl,datalist" disabled="#{empty leadershipTypeController.selected}"/>

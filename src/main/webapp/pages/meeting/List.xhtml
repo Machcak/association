@@ -87,7 +87,7 @@
                             </p:dataTable>
                         </p:rowExpansion>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.Create}" actionListener="#{meetingController.prepareCreate}" update=":MeetingCreateForm" oncomplete="PF('MeetingCreateDialog').show()"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.create}" actionListener="#{meetingController.prepareCreate}" update=":MeetingCreateForm" oncomplete="PF('MeetingCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{text.View}" update=":MeetingViewForm" oncomplete="PF('MeetingViewDialog').show()" disabled="#{empty meetingController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{text.Edit}" update=":MeetingEditForm" oncomplete="PF('MeetingEditDialog').show()" disabled="#{empty meetingController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{text.Delete}" actionListener="#{meetingController.destroy}" update=":growl,datalist" disabled="#{empty meetingController.selected}"/>

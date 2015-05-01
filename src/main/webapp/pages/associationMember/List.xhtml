@@ -33,13 +33,13 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{text.first_name}"/>
+                                <h:outputText value="#{text.firstName}"/>
                             </f:facet>
                             <h:outputText value="#{item.firstName}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{text.last_name}"/>
+                                <h:outputText value="#{text.lastName}"/>
                             </f:facet>
                             <h:outputText value="#{item.lastName}"/>
                         </p:column>
@@ -66,7 +66,7 @@
 
                         </p:rowExpansion>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.Create}" actionListener="#{associationMemberController.prepareCreate}" update=":AssociationMemberCreateForm" oncomplete="PF('AssociationMemberCreateDialog').show()"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{text.create}" actionListener="#{associationMemberController.prepareCreate}" update=":AssociationMemberCreateForm" oncomplete="PF('AssociationMemberCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{text.View}" update=":AssociationMemberViewForm" oncomplete="PF('AssociationMemberViewDialog').show()" disabled="#{empty associationMemberController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{text.Edit}" update=":AssociationMemberEditForm" oncomplete="PF('AssociationMemberEditDialog').show()" disabled="#{empty associationMemberController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{text.Delete}" actionListener="#{associationMemberController.destroy}" update=":growl,datalist" disabled="#{empty associationMemberController.selected}"/>

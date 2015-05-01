@@ -8,18 +8,18 @@
 
     <ui:composition>
 
-        <p:dialog id="AssociationMemberCreateDlg" widgetVar="AssociationMemberCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.Create}">
+        <p:dialog id="AssociationMemberCreateDlg" widgetVar="AssociationMemberCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.create}">
             <h:form id="AssociationMemberCreateForm">
             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{associationMemberController.selected != null}">
-                        <p:outputLabel value="#{text.first_name}" for="firstName" />
-                        <p:inputText id="firstName" value="#{associationMemberController.selected.firstName}" title="#{text.CreateAssociationMemberTitle_firstName}" />
-                        <p:outputLabel value="#{text.last_name}" for="lastName" />
-                        <p:inputText id="lastName" value="#{associationMemberController.selected.lastName}" title="#{text.CreateAssociationMemberTitle_lastName}" />
+                        <p:outputLabel value="#{text.firstName}" for="firstName" />
+                        <p:inputText id="firstName" value="#{associationMemberController.selected.firstName}" title="#{text.firstName}" />
+                        <p:outputLabel value="#{text.lastName}" for="lastName" />
+                        <p:inputText id="lastName" value="#{associationMemberController.selected.lastName}" title="#{text.lastName}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{associationMemberController.create}" value="#{text.Save}" update="display,:AssociationMemberListForm:datalist,:growl" oncomplete="handleSubmit(args,'AssociationMemberCreateDialog');"/>
-                    <p:commandButton value="#{text.Cancel}" onclick="AssociationMemberCreateDialog.hide()"/>
+                    <p:commandButton actionListener="#{associationMemberController.create}" value="#{text.save}" update="display,:AssociationMemberListForm:datalist,:growl" oncomplete="handleSubmit(args,'AssociationMemberCreateDialog');"/>
+                    <p:commandButton value="#{text.cancel}" onclick="AssociationMemberCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

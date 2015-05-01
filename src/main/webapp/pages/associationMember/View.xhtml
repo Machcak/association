@@ -13,9 +13,9 @@
             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{associationMemberController.selected != null}">
-                        <h:outputText value="#{text.first_name}"/>
+                        <h:outputText value="#{text.firstName}"/>
                         <h:outputText value="#{associationMemberController.selected.firstName}" title="#{text.ViewAssociationMemberTitle_firstName}"/>
-                        <h:outputText value="#{text.last_name}"/>
+                        <h:outputText value="#{text.lastName}"/>
                         <h:outputText value="#{associationMemberController.selected.lastName}" title="#{text.ViewAssociationMemberTitle_lastName}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{text.Close}" onclick="AssociationMemberViewDialog.hide()"/>
