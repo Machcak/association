@@ -33,15 +33,13 @@ import org.hibernate.envers.Audited;
     @NamedQuery(name = "Balance.findById", query = "SELECT b FROM Balance b WHERE b.id = :id"),
     @NamedQuery(name = "Balance.findByIncomingdate", query = "SELECT b FROM Balance b WHERE b.incomingdate = :incomingdate"),
     @NamedQuery(name = "Balance.findByAmount", query = "SELECT b FROM Balance b WHERE b.amount = :amount"),
-    @NamedQuery(name = Balance.ACCOUNT_BALANCE, query = "SELECT SUM(b.amount) FROM Balance b"),
+    @NamedQuery(name = Balance.ACCOUNT_BALANCE, query = "SELECT SUM(b.amount) FROM Balance b WHERE ( b.incometo.title = 'Konto'  or b.incometo.title = 'Kasa'  or  b.incometo.title = 'Bilans Otwarcia Miesiąca' ) "),
     @NamedQuery(name = Balance.FIND_ALL_ORDER_BY_INCOMINGDATE_DESC,
             query = "SELECT b FROM Balance b ORDER BY b.incomingdate DESC"),
     @NamedQuery(name = Balance.FIND_LAST_INCOME_FROM_MEMBER,
             query = "SELECT b FROM Balance b WHERE b.associationMember = :member ORDER BY b.balanceterm.dateto desc"),
     @NamedQuery(name = Balance.ACCOUNT,
-            query = "SELECT SUM(b.amount) FROM Balance b WHERE b.incometo.id = 1"),
-    @NamedQuery(name = Balance.KASA,
-            query = "SELECT SUM(b.amount) FROM Balance b WHERE b.incometo.id = 2")
+            query = "SELECT SUM(b.amount) FROM Balance b WHERE ( b.incometo.title = 'Konto'  or b.incometo.title = 'Operacja na bankomacie'  or  b.incometo.title = 'Bilans Otwarcia Miesiąca')")
 })
 public class Balance implements Serializable {
     
@@ -52,9 +50,7 @@ public class Balance implements Serializable {
     public static final String FIND_LAST_INCOME_FROM_MEMBER = "Balance.FIND_LAST_INCOME_FROM_MEMBER";
     
     public static final String ACCOUNT = "Balance.ACCOUNT";
-    
-        public static final String KASA = "Balance.KASA";
-    
+        
     private static final long serialVersionUID = 1L;
     
     @Id

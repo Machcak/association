@@ -100,8 +100,10 @@ public class BalanceFacade extends AbstractFacade<Balance> {
     }
     
     public BigDecimal getKasa() {
-        return em.createNamedQuery(Balance.KASA, BigDecimal.class)
-                .getSingleResult();
+    	BigDecimal accountBalance = getAccountBalance();
+    	BigDecimal account = getAccount();
+    	
+        return accountBalance.subtract(account);
     }
 
 }

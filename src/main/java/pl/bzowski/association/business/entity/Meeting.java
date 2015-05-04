@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -27,6 +29,12 @@ import pl.bzowski.association.business.boundary.MemberAdder;
  *
  * @author Machcak
  */
+@NamedQueries({
+	@NamedQuery( name = Meeting.findAllOrderByDate,
+			query = "	SELECT m "
+					+ " FROM Meeting m"
+					+ "	ORDER BY m.dayOf DESC")
+})
 @Entity
 @Table(name = "meeting")
 @Audited
@@ -36,6 +44,8 @@ public class Meeting implements Serializable, MemberAdder.HaveingId{
 	 * 
 	 */
 	private static final long serialVersionUID = 1161888420785802366L;
+
+	public static final String findAllOrderByDate = "Meeting.findAllOrderByDate";
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

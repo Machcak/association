@@ -8,7 +8,7 @@
 
     <ui:composition>
 
-        <p:dialog id="ResolutionCreateDlg" widgetVar="ResolutionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.CreateResolutionTitle}">
+        <p:dialog id="ResolutionCreateDlg" widgetVar="ResolutionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{text.resolution}">
             <h:form id="ResolutionCreateForm">
             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h:panelGroup id="display">
@@ -27,12 +27,12 @@
                         					itemLabel="#{leadershipVar.leadershipType.type} #{leadershipVar.number}">	
                         	</f:selectItems>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{text.Meeting}" for="meetingSelectOneField" />
+                        <p:outputLabel value="#{text.meeting}" for="meetingSelectOneField" />
                         <p:selectOneMenu id="meetingSelectOneField" value="#{resolutionController.selected.meeting}" >
                         	<f:selectItems	value="#{meetingController.items}"
                         					var="meetingVar"
                         					itemValue="#{meetingVar}" 
-                        					itemLabel="#{meetingVar.leadership.leadershipType.type} #{meetingVar.leadership.number} - #{meetingVar.number} ">	
+                        					itemLabel="#{meetingVar.description}">	
                         	</f:selectItems>
                         </p:selectOneMenu>
                     </p:panelGrid>

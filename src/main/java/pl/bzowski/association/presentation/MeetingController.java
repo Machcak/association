@@ -116,7 +116,7 @@ public class MeetingController implements Serializable {
 
     public List<Meeting> getItems() {
         if (items == null) {
-            items = getFacade().findAll();
+            items = getFacade().findAllOrderByDateDesc();
         }
         return items;
     }
